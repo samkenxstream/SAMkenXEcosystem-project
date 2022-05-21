@@ -16809,6 +16809,25 @@
               ]
             },
             {
+              "shortName": "GetAccessApprovalServiceAccount",
+              "fullName": "google.cloud.accessapproval.v1.AccessApproval.GetAccessApprovalServiceAccount",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/serviceAccount}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=folders/*/serviceAccount}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=organizations/*/serviceAccount}"
+                }
+              ]
+            },
+            {
               "shortName": "GetAccessApprovalSettings",
               "fullName": "google.cloud.accessapproval.v1.AccessApproval.GetAccessApprovalSettings",
               "mode": "UNARY",
@@ -16843,6 +16862,25 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{name=organizations/*/approvalRequests/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "InvalidateApprovalRequest",
+              "fullName": "google.cloud.accessapproval.v1.AccessApproval.InvalidateApprovalRequest",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/approvalRequests/*}:invalidate"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=folders/*/approvalRequests/*}:invalidate"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=organizations/*/approvalRequests/*}:invalidate"
                 }
               ]
             },
