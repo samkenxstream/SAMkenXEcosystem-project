@@ -211,7 +211,7 @@ maven_install(
     ],
 )
 
-_gax_java_version = "2.16.0"
+_gax_java_version = "2.18.1"
 
 http_archive(
     name = "com_google_api_gax_java",
@@ -236,7 +236,7 @@ grpc_java_repositories()
 
 # Java microgenerator.
 # Must go AFTER java-gax, since both java gax and gapic-generator are written in java and may conflict.
-_gapic_generator_java_version = "2.7.0"
+_gapic_generator_java_version = "2.8.0"
 
 http_archive(
     name = "gapic_generator_java",
@@ -281,9 +281,9 @@ gapic_generator_register_toolchains()
 # TypeScript
 ##############################################################################
 
-_gapic_generator_typescript_version = "2.14.2"
+_gapic_generator_typescript_version = "2.14.5"
 
-_gapic_generator_typescript_sha256 = "dc2e838ea115c977872746fafa00eef789d515902f5f6722a77a832951374063"
+_gapic_generator_typescript_sha256 = "f02de5e7ac46eb5b8b6323806c7b2e370191f2ac9604916e8ccb0d8affff6006"
 
 ### TypeScript generator
 http_archive(
