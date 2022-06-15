@@ -19,12 +19,9 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@com_google_googleapis_imports//:imports.bzl", "proto_library_with_info")
 
 proto_library(
-    name = "batch_proto",
+    name = "functions_proto",
     srcs = [
-        "batch.proto",
-        "job.proto",
-        "task.proto",
-        "volume.proto",
+        "functions.proto",
     ],
     deps = [
         "//google/api:annotations_proto",
@@ -32,17 +29,18 @@ proto_library(
         "//google/api:field_behavior_proto",
         "//google/api:resource_proto",
         "//google/longrunning:operations_proto",
-        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
 
 proto_library_with_info(
-    name = "batch_proto_with_info",
+    name = "functions_proto_with_info",
     deps = [
-        ":batch_proto",
-        "//google/cloud:common_resources_proto",
+        ":functions_proto",
         "//google/cloud/location:location_proto",
+        "//google/cloud:common_resources_proto",
         "//google/iam/v1:iam_policy_proto",
     ],
 )
@@ -60,29 +58,29 @@ load(
 )
 
 java_proto_library(
-    name = "batch_java_proto",
-    deps = [":batch_proto"],
+    name = "functions_java_proto",
+    deps = [":functions_proto"],
 )
 
 java_grpc_library(
-    name = "batch_java_grpc",
-    srcs = [":batch_proto"],
-    deps = [":batch_java_proto"],
+    name = "functions_java_grpc",
+    srcs = [":functions_proto"],
+    deps = [":functions_java_proto"],
 )
 
 java_gapic_library(
-    name = "batch_java_gapic",
-    srcs = [":batch_proto_with_info"],
+    name = "functions_java_gapic",
+    srcs = [":functions_proto_with_info"],
     gapic_yaml = None,
-    grpc_service_config = "batch_grpc_service_config.json",
-    service_yaml = "batch_v1.yaml",
+    grpc_service_config = "functions_grpc_service_config.json",
+    service_yaml = "cloudfunctions_v2beta.yaml",
     test_deps = [
-        ":batch_java_grpc",
+        ":functions_java_grpc",
         "//google/cloud/location:location_java_grpc",
         "//google/iam/v1:iam_java_grpc",
     ],
     deps = [
-        ":batch_java_proto",
+        ":functions_java_proto",
         "//google/api:api_java_proto",
         "//google/cloud/location:location_java_proto",
         "//google/iam/v1:iam_java_proto",
@@ -90,22 +88,21 @@ java_gapic_library(
 )
 
 java_gapic_test(
-    name = "batch_java_gapic_test_suite",
+    name = "functions_java_gapic_test_suite",
     test_classes = [
-        "com.google.cloud.batch.v1.BatchServiceClientTest",
+        "com.google.cloud.functions.v2beta.FunctionServiceClientTest",
     ],
-    runtime_deps = [":batch_java_gapic_test"],
+    runtime_deps = [":functions_java_gapic_test"],
 )
 
 # Open Source Packages
 java_gapic_assembly_gradle_pkg(
-    name = "google-cloud-batch-v1-java",
-    include_samples = True,
+    name = "google-cloud-functions-v2beta-java",
     deps = [
-        ":batch_java_gapic",
-        ":batch_java_grpc",
-        ":batch_java_proto",
-        ":batch_proto",
+        ":functions_java_gapic",
+        ":functions_java_grpc",
+        ":functions_java_proto",
+        ":functions_proto",
     ],
 )
 
@@ -121,10 +118,10 @@ load(
 )
 
 go_proto_library(
-    name = "batch_go_proto",
+    name = "functions_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "google.golang.org/genproto/googleapis/cloud/batch/v1",
-    protos = [":batch_proto"],
+    importpath = "google.golang.org/genproto/googleapis/cloud/functions/v2beta",
+    protos = [":functions_proto"],
     deps = [
         "//google/api:annotations_go_proto",
         "//google/longrunning:longrunning_go_proto",
@@ -132,38 +129,38 @@ go_proto_library(
 )
 
 go_gapic_library(
-    name = "batch_go_gapic",
-    srcs = [":batch_proto_with_info"],
-    grpc_service_config = "batch_grpc_service_config.json",
-    importpath = "cloud.google.com/go/batch/apiv1;batch",
+    name = "functions_go_gapic",
+    srcs = [":functions_proto_with_info"],
+    grpc_service_config = "functions_grpc_service_config.json",
+    importpath = "cloud.google.com/go/functions/apiv2beta;functions",
+    service_yaml = "cloudfunctions_v2beta.yaml",
     metadata = True,
-    service_yaml = "batch_v1.yaml",
     deps = [
-        ":batch_go_proto",
+        ":functions_go_proto",
         "//google/cloud/location:location_go_proto",
         "//google/iam/v1:iam_go_proto",
         "//google/longrunning:longrunning_go_proto",
-        "@com_google_cloud_go//longrunning:go_default_library",
         "@com_google_cloud_go//longrunning/autogen:go_default_library",
-        "@io_bazel_rules_go//proto/wkt:duration_go_proto",
+        "@com_google_cloud_go//longrunning:go_default_library",
+        "@io_bazel_rules_go//proto/wkt:any_go_proto",
     ],
 )
 
 go_test(
-    name = "batch_go_gapic_test",
-    srcs = [":batch_go_gapic_srcjar_test"],
-    embed = [":batch_go_gapic"],
-    importpath = "cloud.google.com/go/batch/apiv1",
+    name = "functions_go_gapic_test",
+    srcs = [":functions_go_gapic_srcjar_test"],
+    embed = [":functions_go_gapic"],
+    importpath = "cloud.google.com/go/functions/apiv2beta",
 )
 
 # Open Source Packages
 go_gapic_assembly_pkg(
-    name = "gapi-cloud-batch-v1-go",
+    name = "gapi-cloud-functions-v2beta-go",
     deps = [
-        ":batch_go_gapic",
-        ":batch_go_gapic_srcjar-metadata.srcjar",
-        ":batch_go_gapic_srcjar-test.srcjar",
-        ":batch_go_proto",
+        ":functions_go_gapic",
+        ":functions_go_gapic_srcjar-test.srcjar",
+        ":functions_go_gapic_srcjar-metadata.srcjar",
+        ":functions_go_proto",
     ],
 )
 
@@ -177,17 +174,17 @@ load(
 )
 
 py_gapic_library(
-    name = "batch_py_gapic",
-    srcs = [":batch_proto"],
-    grpc_service_config = "batch_grpc_service_config.json",
-    service_yaml = "batch_v1.yaml",
+    name = "functions_py_gapic",
+    srcs = [":functions_proto"],
+    grpc_service_config = "functions_grpc_service_config.json",
+    service_yaml = "cloudfunctions_v2beta.yaml",
 )
 
 # Open Source Packages
 py_gapic_assembly_pkg(
-    name = "batch-v1-py",
+    name = "functions-v2beta-py",
     deps = [
-        ":batch_py_gapic",
+        ":functions_py_gapic",
     ],
 )
 
@@ -203,34 +200,34 @@ load(
 )
 
 php_proto_library(
-    name = "batch_php_proto",
-    deps = [":batch_proto"],
+    name = "functions_php_proto",
+    deps = [":functions_proto"],
 )
 
 php_grpc_library(
-    name = "batch_php_grpc",
-    srcs = [":batch_proto"],
-    deps = [":batch_php_proto"],
+    name = "functions_php_grpc",
+    srcs = [":functions_proto"],
+    deps = [":functions_php_proto"],
 )
 
 php_gapic_library(
-    name = "batch_php_gapic",
-    srcs = [":batch_proto_with_info"],
-    grpc_service_config = "batch_grpc_service_config.json",
-    service_yaml = "batch_v1.yaml",
+    name = "functions_php_gapic",
+    srcs = [":functions_proto_with_info"],
+    grpc_service_config = "functions_grpc_service_config.json",
+    service_yaml = "cloudfunctions_v2beta.yaml",
     deps = [
-        ":batch_php_grpc",
-        ":batch_php_proto",
+        ":functions_php_grpc",
+        ":functions_php_proto",
     ],
 )
 
 # Open Source Packages
 php_gapic_assembly_pkg(
-    name = "google-cloud-batch-v1-php",
+    name = "google-cloud-functions-v2beta-php",
     deps = [
-        ":batch_php_gapic",
-        ":batch_php_grpc",
-        ":batch_php_proto",
+        ":functions_php_gapic",
+        ":functions_php_grpc",
+        ":functions_php_proto",
     ],
 )
 
@@ -244,21 +241,21 @@ load(
 )
 
 nodejs_gapic_library(
-    name = "batch_nodejs_gapic",
-    package_name = "@google-cloud/batch",
-    src = ":batch_proto_with_info",
+    name = "functions_nodejs_gapic",
+    package_name = "@google-cloud/functions",
+    src = ":functions_proto_with_info",
     extra_protoc_parameters = ["metadata"],
-    grpc_service_config = "batch_grpc_service_config.json",
-    package = "google.cloud.batch.v1",
-    service_yaml = "batch_v1.yaml",
+    grpc_service_config = "functions_grpc_service_config.json",
+    package = "google.cloud.functions.v2beta",
+    service_yaml = "cloudfunctions_v2beta.yaml",
     deps = [],
 )
 
 nodejs_gapic_assembly_pkg(
-    name = "batch-v1-nodejs",
+    name = "functions-v2beta-nodejs",
     deps = [
-        ":batch_nodejs_gapic",
-        ":batch_proto",
+        ":functions_nodejs_gapic",
+        ":functions_proto",
     ],
 )
 
@@ -267,42 +264,43 @@ nodejs_gapic_assembly_pkg(
 ##############################################################################
 load(
     "@com_google_googleapis_imports//:imports.bzl",
-    "ruby_cloud_gapic_library",
     "ruby_gapic_assembly_pkg",
+    "ruby_cloud_gapic_library",
     "ruby_grpc_library",
     "ruby_proto_library",
 )
 
 ruby_proto_library(
-    name = "batch_ruby_proto",
-    deps = [":batch_proto"],
+    name = "functions_ruby_proto",
+    deps = [":functions_proto"],
 )
 
 ruby_grpc_library(
-    name = "batch_ruby_grpc",
-    srcs = [":batch_proto"],
-    deps = [":batch_ruby_proto"],
+    name = "functions_ruby_grpc",
+    srcs = [":functions_proto"],
+    deps = [":functions_ruby_proto"],
 )
 
 ruby_cloud_gapic_library(
-    name = "batch_ruby_gapic",
-    srcs = [":batch_proto_with_info"],
-    extra_protoc_parameters = ["ruby-cloud-gem-name=google-cloud-batch-v1"],
-    grpc_service_config = "batch_grpc_service_config.json",
-    service_yaml = "batch_v1.yaml",
+    name = "functions_ruby_gapic",
+    srcs = [":functions_proto_with_info"],
+    extra_protoc_parameters = [
+        "ruby-cloud-gem-name=google-cloud-functions-v2beta",
+    ],
+    grpc_service_config = "functions_grpc_service_config.json",
     deps = [
-        ":batch_ruby_grpc",
-        ":batch_ruby_proto",
+        ":functions_ruby_grpc",
+        ":functions_ruby_proto",
     ],
 )
 
 # Open Source Packages
 ruby_gapic_assembly_pkg(
-    name = "google-cloud-batch-v1-ruby",
+    name = "google-cloud-functions-v2beta-ruby",
     deps = [
-        ":batch_ruby_gapic",
-        ":batch_ruby_grpc",
-        ":batch_ruby_proto",
+        ":functions_ruby_gapic",
+        ":functions_ruby_grpc",
+        ":functions_ruby_proto",
     ],
 )
 
@@ -318,35 +316,35 @@ load(
 )
 
 csharp_proto_library(
-    name = "batch_csharp_proto",
-    deps = [":batch_proto"],
+    name = "functions_csharp_proto",
+    deps = [":functions_proto"],
 )
 
 csharp_grpc_library(
-    name = "batch_csharp_grpc",
-    srcs = [":batch_proto"],
-    deps = [":batch_csharp_proto"],
+    name = "functions_csharp_grpc",
+    srcs = [":functions_proto"],
+    deps = [":functions_csharp_proto"],
 )
 
 csharp_gapic_library(
-    name = "batch_csharp_gapic",
-    srcs = [":batch_proto_with_info"],
+    name = "functions_csharp_gapic",
+    srcs = [":functions_proto_with_info"],
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
-    grpc_service_config = "batch_grpc_service_config.json",
-    service_yaml = "batch_v1.yaml",
+    grpc_service_config = "functions_grpc_service_config.json",
+    service_yaml = "cloudfunctions_v2beta.yaml",
     deps = [
-        ":batch_csharp_grpc",
-        ":batch_csharp_proto",
+        ":functions_csharp_grpc",
+        ":functions_csharp_proto",
     ],
 )
 
 # Open Source Packages
 csharp_gapic_assembly_pkg(
-    name = "google-cloud-batch-v1-csharp",
+    name = "google-cloud-functions-v2beta-csharp",
     deps = [
-        ":batch_csharp_gapic",
-        ":batch_csharp_grpc",
-        ":batch_csharp_proto",
+        ":functions_csharp_gapic",
+        ":functions_csharp_grpc",
+        ":functions_csharp_proto",
     ],
 )
 
@@ -360,13 +358,13 @@ load(
 )
 
 cc_proto_library(
-    name = "batch_cc_proto",
-    deps = [":batch_proto"],
+    name = "functions_cc_proto",
+    deps = [":functions_proto"],
 )
 
 cc_grpc_library(
-    name = "batch_cc_grpc",
-    srcs = [":batch_proto"],
+    name = "functions_cc_grpc",
+    srcs = [":functions_proto"],
     grpc_only = True,
-    deps = [":batch_cc_proto"],
+    deps = [":functions_cc_proto"],
 )
