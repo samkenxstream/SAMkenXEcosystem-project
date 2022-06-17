@@ -112,7 +112,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-_gapic_generator_go_version = "0.28.0"
+_gapic_generator_go_version = "0.31.0"
 
 http_archive(
     name = "com_googleapis_gapic_generator_go",
@@ -314,7 +314,7 @@ yarn_install(
 ##############################################################################
 
 # PHP micro-generator
-_gapic_generator_php_version = "1.4.6"
+_gapic_generator_php_version = "1.4.8"
 
 http_archive(
     name = "gapic_generator_php",
