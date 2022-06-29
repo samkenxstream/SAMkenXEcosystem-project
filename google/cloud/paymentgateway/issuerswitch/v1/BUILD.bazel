@@ -19,11 +19,12 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@com_google_googleapis_imports//:imports.bzl", "proto_library_with_info")
 
 proto_library(
-    name = "livestream_proto",
+    name = "issuerswitch_proto",
     srcs = [
-        "outputs.proto",
-        "resources.proto",
-        "service.proto",
+        "common_fields.proto",
+        "resolutions.proto",
+        "rules.proto",
+        "transactions.proto",
     ],
     deps = [
         "//google/api:annotations_proto",
@@ -31,18 +32,17 @@ proto_library(
         "//google/api:field_behavior_proto",
         "//google/api:resource_proto",
         "//google/longrunning:operations_proto",
-        "//google/rpc:status_proto",
-        "@com_google_protobuf//:duration_proto",
+        "//google/type:date_proto",
+        "//google/type:money_proto",
         "@com_google_protobuf//:empty_proto",
-        "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
 
 proto_library_with_info(
-    name = "livestream_proto_with_info",
+    name = "issuerswitch_proto_with_info",
     deps = [
-        ":livestream_proto",
+        ":issuerswitch_proto",
         "//google/cloud:common_resources_proto",
     ],
 )
@@ -60,52 +60,56 @@ load(
 )
 
 java_proto_library(
-    name = "livestream_java_proto",
-    deps = [":livestream_proto"],
+    name = "issuerswitch_java_proto",
+    deps = [":issuerswitch_proto"],
 )
 
 java_grpc_library(
-    name = "livestream_java_grpc",
-    srcs = [":livestream_proto"],
-    deps = [":livestream_java_proto"],
+    name = "issuerswitch_java_grpc",
+    srcs = [":issuerswitch_proto"],
+    deps = [":issuerswitch_java_proto"],
 )
 
 java_gapic_library(
-    name = "livestream_java_gapic",
-    srcs = [":livestream_proto_with_info"],
+    name = "issuerswitch_java_gapic",
+    srcs = [":issuerswitch_proto_with_info"],
     gapic_yaml = None,
-    grpc_service_config = "livestream_grpc_service_config.json",
-    service_yaml = "livestream_v1.yaml",
+    grpc_service_config = "issuerswitch_grpc_service_config.json",
+    service_yaml = "issuerswitch_v1.yaml",
     test_deps = [
-        ":livestream_java_grpc",
+        ":issuerswitch_java_grpc",
     ],
     transport = "grpc+rest",
     deps = [
-        ":livestream_java_proto",
+        ":issuerswitch_java_proto",
         "//google/api:api_java_proto",
     ],
 )
 
 java_gapic_test(
-    name = "livestream_java_gapic_test_suite",
+    name = "issuerswitch_java_gapic_test_suite",
     test_classes = [
-        "com.google.cloud.video.livestream.v1.LivestreamServiceClientHttpJsonTest",
-        "com.google.cloud.video.livestream.v1.LivestreamServiceClientTest",
+        "com.google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchResolutionsClientHttpJsonTest",
+        "com.google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchResolutionsClientTest",
+        "com.google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchRulesClientHttpJsonTest",
+        "com.google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchRulesClientTest",
+        "com.google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchTransactionsClientHttpJsonTest",
+        "com.google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchTransactionsClientTest",
     ],
-    runtime_deps = [":livestream_java_gapic_test"],
+    runtime_deps = [":issuerswitch_java_gapic_test"],
 )
 
 # Open Source Packages
 java_gapic_assembly_gradle_pkg(
-    name = "google-cloud-video-livestream-v1-java",
-    include_samples = True,
+    name = "google-cloud-paymentgateway-issuerswitch-v1-java",
     transport = "grpc+rest",
     deps = [
-        ":livestream_java_gapic",
-        ":livestream_java_grpc",
-        ":livestream_java_proto",
-        ":livestream_proto",
+        ":issuerswitch_java_gapic",
+        ":issuerswitch_java_grpc",
+        ":issuerswitch_java_proto",
+        ":issuerswitch_proto",
     ],
+    include_samples = True,
 )
 
 ##############################################################################
@@ -120,49 +124,49 @@ load(
 )
 
 go_proto_library(
-    name = "livestream_go_proto",
+    name = "issuerswitch_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "google.golang.org/genproto/googleapis/cloud/video/livestream/v1",
-    protos = [":livestream_proto"],
+    importpath = "google.golang.org/genproto/googleapis/cloud/paymentgateway/issuerswitch/v1",
+    protos = [":issuerswitch_proto"],
     deps = [
         "//google/api:annotations_go_proto",
         "//google/longrunning:longrunning_go_proto",
-        "//google/rpc:status_go_proto",
+        "//google/type:date_go_proto",
+        "//google/type:money_go_proto",
     ],
 )
 
 go_gapic_library(
-    name = "livestream_go_gapic",
-    srcs = [":livestream_proto_with_info"],
-    grpc_service_config = "livestream_grpc_service_config.json",
-    importpath = "cloud.google.com/go/video/livestream/apiv1;livestream",
+    name = "issuerswitch_go_gapic",
+    srcs = [":issuerswitch_proto_with_info"],
+    grpc_service_config = "issuerswitch_grpc_service_config.json",
+    importpath = "cloud.google.com/go/paymentgateway/issuerswitch/apiv1;issuerswitch",
     metadata = True,
-    service_yaml = "livestream_v1.yaml",
+    service_yaml = "issuerswitch_v1.yaml",
     transport = "grpc+rest",
     deps = [
-        ":livestream_go_proto",
+        ":issuerswitch_go_proto",
         "//google/longrunning:longrunning_go_proto",
-        "@com_google_cloud_go//longrunning:go_default_library",
         "@com_google_cloud_go//longrunning/autogen:go_default_library",
-        "@io_bazel_rules_go//proto/wkt:duration_go_proto",
+        "@com_google_cloud_go//longrunning:go_default_library",
     ],
 )
 
 go_test(
-    name = "livestream_go_gapic_test",
-    srcs = [":livestream_go_gapic_srcjar_test"],
-    embed = [":livestream_go_gapic"],
-    importpath = "cloud.google.com/go/video/livestream/apiv1",
+    name = "issuerswitch_go_gapic_test",
+    srcs = [":issuerswitch_go_gapic_srcjar_test"],
+    embed = [":issuerswitch_go_gapic"],
+    importpath = "cloud.google.com/go/paymentgateway/issuerswitch/apiv1",
 )
 
 # Open Source Packages
 go_gapic_assembly_pkg(
-    name = "gapi-cloud-video-livestream-v1-go",
+    name = "gapi-cloud-paymentgateway-issuerswitch-v1-go",
     deps = [
-        ":livestream_go_gapic",
-        ":livestream_go_gapic_srcjar-metadata.srcjar",
-        ":livestream_go_gapic_srcjar-test.srcjar",
-        ":livestream_go_proto",
+        ":issuerswitch_go_gapic",
+        ":issuerswitch_go_gapic_srcjar-test.srcjar",
+        ":issuerswitch_go_gapic_srcjar-metadata.srcjar",
+        ":issuerswitch_go_proto",
     ],
 )
 
@@ -176,21 +180,17 @@ load(
 )
 
 py_gapic_library(
-    name = "livestream_py_gapic",
-    srcs = [":livestream_proto"],
-    grpc_service_config = "livestream_grpc_service_config.json",
-    opt_args = [
-        "warehouse-package-name=google-cloud-video-live-stream",
-        "python-gapic-namespace=google.cloud.video",
-        "python-gapic-name=live_stream",
-    ],
+    name = "issuerswitch_py_gapic",
+    srcs = [":issuerswitch_proto"],
+    grpc_service_config = "issuerswitch_grpc_service_config.json",
+    service_yaml = "issuerswitch_v1.yaml",
 )
 
 # Open Source Packages
 py_gapic_assembly_pkg(
-    name = "video-livestream-v1-py",
+    name = "paymentgateway-issuerswitch-v1-py",
     deps = [
-        ":livestream_py_gapic",
+        ":issuerswitch_py_gapic",
     ],
 )
 
@@ -206,34 +206,34 @@ load(
 )
 
 php_proto_library(
-    name = "livestream_php_proto",
-    deps = [":livestream_proto"],
+    name = "issuerswitch_php_proto",
+    deps = [":issuerswitch_proto"],
 )
 
 php_grpc_library(
-    name = "livestream_php_grpc",
-    srcs = [":livestream_proto"],
-    deps = [":livestream_php_proto"],
+    name = "issuerswitch_php_grpc",
+    srcs = [":issuerswitch_proto"],
+    deps = [":issuerswitch_php_proto"],
 )
 
 php_gapic_library(
-    name = "livestream_php_gapic",
-    srcs = [":livestream_proto_with_info"],
-    grpc_service_config = "livestream_grpc_service_config.json",
-    service_yaml = "livestream_v1.yaml",
+    name = "issuerswitch_php_gapic",
+    srcs = [":issuerswitch_proto_with_info"],
+    grpc_service_config = "issuerswitch_grpc_service_config.json",
+    service_yaml = "issuerswitch_v1.yaml",
     deps = [
-        ":livestream_php_grpc",
-        ":livestream_php_proto",
+        ":issuerswitch_php_grpc",
+        ":issuerswitch_php_proto",
     ],
 )
 
 # Open Source Packages
 php_gapic_assembly_pkg(
-    name = "google-cloud-video-livestream-v1-php",
+    name = "google-cloud-paymentgateway-issuerswitch-v1-php",
     deps = [
-        ":livestream_php_gapic",
-        ":livestream_php_grpc",
-        ":livestream_php_proto",
+        ":issuerswitch_php_gapic",
+        ":issuerswitch_php_grpc",
+        ":issuerswitch_php_proto",
     ],
 )
 
@@ -247,21 +247,21 @@ load(
 )
 
 nodejs_gapic_library(
-    name = "livestream_nodejs_gapic",
-    package_name = "@google-cloud/livestream",
-    src = ":livestream_proto_with_info",
+    name = "issuerswitch_nodejs_gapic",
+    package_name = "@google-cloud/issuerswitch",
+    src = ":issuerswitch_proto_with_info",
     extra_protoc_parameters = ["metadata"],
-    grpc_service_config = "livestream_grpc_service_config.json",
-    package = "google.cloud.video.livestream.v1",
-    service_yaml = "livestream_v1.yaml",
+    grpc_service_config = "issuerswitch_grpc_service_config.json",
+    package = "google.cloud.paymentgateway.issuerswitch.v1",
+    service_yaml = "issuerswitch_v1.yaml",
     deps = [],
 )
 
 nodejs_gapic_assembly_pkg(
-    name = "video-livestream-v1-nodejs",
+    name = "paymentgateway-issuerswitch-v1-nodejs",
     deps = [
-        ":livestream_nodejs_gapic",
-        ":livestream_proto",
+        ":issuerswitch_nodejs_gapic",
+        ":issuerswitch_proto",
     ],
 )
 
@@ -270,48 +270,44 @@ nodejs_gapic_assembly_pkg(
 ##############################################################################
 load(
     "@com_google_googleapis_imports//:imports.bzl",
-    "ruby_cloud_gapic_library",
     "ruby_gapic_assembly_pkg",
+    "ruby_cloud_gapic_library",
     "ruby_grpc_library",
     "ruby_proto_library",
 )
 
 ruby_proto_library(
-    name = "livestream_ruby_proto",
-    deps = [":livestream_proto"],
+    name = "issuerswitch_ruby_proto",
+    deps = [":issuerswitch_proto"],
 )
 
 ruby_grpc_library(
-    name = "livestream_ruby_grpc",
-    srcs = [":livestream_proto"],
-    deps = [":livestream_ruby_proto"],
+    name = "issuerswitch_ruby_grpc",
+    srcs = [":issuerswitch_proto"],
+    deps = [":issuerswitch_ruby_proto"],
 )
 
 ruby_cloud_gapic_library(
-    name = "livestream_ruby_gapic",
-    srcs = [":livestream_proto_with_info"],
+    name = "issuerswitch_ruby_gapic",
+    srcs = [":issuerswitch_proto_with_info"],
     extra_protoc_parameters = [
-        "ruby-cloud-api-id=livestream.googleapis.com",
-        "ruby-cloud-api-shortname=livestream",
-        "ruby-cloud-gem-name=google-cloud-video-live_stream-v1",
-        "ruby-cloud-product-url=https://cloud.google.com/livestream/",
+        "ruby-cloud-gem-name=google-cloud-paymentgateway-issuerswitch-v1",
     ],
-    grpc_service_config = "livestream_grpc_service_config.json",
-    ruby_cloud_description = "The Live Stream API transcodes mezzanine live signals into direct-to-consumer streaming formats, including Dynamic Adaptive Streaming over HTTP (DASH/MPEG-DASH), and HTTP Live Streaming (HLS), for multiple device platforms.",
-    ruby_cloud_title = "Live Stream V1",
+    grpc_service_config = "issuerswitch_grpc_service_config.json",
+    service_yaml = "issuerswitch_v1.yaml",
     deps = [
-        ":livestream_ruby_grpc",
-        ":livestream_ruby_proto",
+        ":issuerswitch_ruby_grpc",
+        ":issuerswitch_ruby_proto",
     ],
 )
 
 # Open Source Packages
 ruby_gapic_assembly_pkg(
-    name = "google-cloud-video-livestream-v1-ruby",
+    name = "google-cloud-paymentgateway-issuerswitch-v1-ruby",
     deps = [
-        ":livestream_ruby_gapic",
-        ":livestream_ruby_grpc",
-        ":livestream_ruby_proto",
+        ":issuerswitch_ruby_gapic",
+        ":issuerswitch_ruby_grpc",
+        ":issuerswitch_ruby_proto",
     ],
 )
 
@@ -327,35 +323,35 @@ load(
 )
 
 csharp_proto_library(
-    name = "livestream_csharp_proto",
-    deps = [":livestream_proto"],
+    name = "issuerswitch_csharp_proto",
+    deps = [":issuerswitch_proto"],
 )
 
 csharp_grpc_library(
-    name = "livestream_csharp_grpc",
-    srcs = [":livestream_proto"],
-    deps = [":livestream_csharp_proto"],
+    name = "issuerswitch_csharp_grpc",
+    srcs = [":issuerswitch_proto"],
+    deps = [":issuerswitch_csharp_proto"],
 )
 
 csharp_gapic_library(
-    name = "livestream_csharp_gapic",
-    srcs = [":livestream_proto_with_info"],
+    name = "issuerswitch_csharp_gapic",
+    srcs = [":issuerswitch_proto_with_info"],
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
-    grpc_service_config = "livestream_grpc_service_config.json",
-    service_yaml = "livestream_v1.yaml",
+    grpc_service_config = "issuerswitch_grpc_service_config.json",
+    service_yaml = "issuerswitch_v1.yaml",
     deps = [
-        ":livestream_csharp_grpc",
-        ":livestream_csharp_proto",
+        ":issuerswitch_csharp_grpc",
+        ":issuerswitch_csharp_proto",
     ],
 )
 
 # Open Source Packages
 csharp_gapic_assembly_pkg(
-    name = "google-cloud-video-livestream-v1-csharp",
+    name = "google-cloud-paymentgateway-issuerswitch-v1-csharp",
     deps = [
-        ":livestream_csharp_gapic",
-        ":livestream_csharp_grpc",
-        ":livestream_csharp_proto",
+        ":issuerswitch_csharp_gapic",
+        ":issuerswitch_csharp_grpc",
+        ":issuerswitch_csharp_proto",
     ],
 )
 
@@ -369,13 +365,13 @@ load(
 )
 
 cc_proto_library(
-    name = "livestream_cc_proto",
-    deps = [":livestream_proto"],
+    name = "issuerswitch_cc_proto",
+    deps = [":issuerswitch_proto"],
 )
 
 cc_grpc_library(
-    name = "livestream_cc_grpc",
-    srcs = [":livestream_proto"],
+    name = "issuerswitch_cc_grpc",
+    srcs = [":issuerswitch_proto"],
     grpc_only = True,
-    deps = [":livestream_cc_proto"],
+    deps = [":issuerswitch_cc_proto"],
 )
