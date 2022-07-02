@@ -19,33 +19,27 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@com_google_googleapis_imports//:imports.bzl", "proto_library_with_info")
 
 proto_library(
-    name = "stitcher_proto",
+    name = "admin_proto",
     srcs = [
-        "ad_tag_details.proto",
-        "cdn_keys.proto",
-        "companions.proto",
-        "events.proto",
-        "sessions.proto",
-        "slates.proto",
-        "stitch_details.proto",
-        "video_stitcher_service.proto",
+        "analytics_admin.proto",
+        "resources.proto",
     ],
     deps = [
         "//google/api:annotations_proto",
         "//google/api:client_proto",
         "//google/api:field_behavior_proto",
         "//google/api:resource_proto",
-        "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
-        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
     ],
 )
 
 proto_library_with_info(
-    name = "stitcher_proto_with_info",
+    name = "admin_proto_with_info",
     deps = [
-        ":stitcher_proto",
+        ":admin_proto",
         "//google/cloud:common_resources_proto",
     ],
 )
@@ -63,49 +57,52 @@ load(
 )
 
 java_proto_library(
-    name = "stitcher_java_proto",
-    deps = [":stitcher_proto"],
+    name = "admin_java_proto",
+    deps = [":admin_proto"],
 )
 
 java_grpc_library(
-    name = "stitcher_java_grpc",
-    srcs = [":stitcher_proto"],
-    deps = [":stitcher_java_proto"],
+    name = "admin_java_grpc",
+    srcs = [":admin_proto"],
+    deps = [":admin_java_proto"],
 )
 
 java_gapic_library(
-    name = "stitcher_java_gapic",
-    srcs = [":stitcher_proto_with_info"],
+    name = "admin_java_gapic",
+    srcs = [":admin_proto_with_info"],
     gapic_yaml = None,
-    grpc_service_config = "videostitcher_grpc_service_config.json",
-    service_yaml = "videostitcher_v1.yaml",
+    grpc_service_config = "admin_grpc_service_config.json",
+    service_yaml = "analyticsadmin.yaml",
     test_deps = [
-        ":stitcher_java_grpc",
+        ":admin_java_grpc",
     ],
+    transport = "grpc+rest",
     deps = [
-        ":stitcher_java_proto",
+        ":admin_java_proto",
         "//google/api:api_java_proto",
     ],
 )
 
 java_gapic_test(
-    name = "stitcher_java_gapic_test_suite",
+    name = "admin_java_gapic_test_suite",
     test_classes = [
-        "com.google.cloud.video.stitcher.v1.VideoStitcherServiceClientTest",
+        "com.google.analytics.admin.v1beta.AnalyticsAdminServiceClientHttpJsonTest",
+        "com.google.analytics.admin.v1beta.AnalyticsAdminServiceClientTest",
     ],
-    runtime_deps = [":stitcher_java_gapic_test"],
+    runtime_deps = [":admin_java_gapic_test"],
 )
 
 # Open Source Packages
 java_gapic_assembly_gradle_pkg(
-    name = "google-cloud-video-stitcher-v1-java",
-    include_samples = True,
+    name = "google-cloud-analytics-admin-v1beta-java",
+    transport = "grpc+rest",
     deps = [
-        ":stitcher_java_gapic",
-        ":stitcher_java_grpc",
-        ":stitcher_java_proto",
-        ":stitcher_proto",
+        ":admin_java_gapic",
+        ":admin_java_grpc",
+        ":admin_java_proto",
+        ":admin_proto",
     ],
+    include_samples = True,
 )
 
 ##############################################################################
@@ -120,43 +117,43 @@ load(
 )
 
 go_proto_library(
-    name = "stitcher_go_proto",
+    name = "admin_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "google.golang.org/genproto/googleapis/cloud/video/stitcher/v1",
-    protos = [":stitcher_proto"],
+    importpath = "google.golang.org/genproto/googleapis/analytics/admin/v1beta",
+    protos = [":admin_proto"],
     deps = [
         "//google/api:annotations_go_proto",
     ],
 )
 
 go_gapic_library(
-    name = "stitcher_go_gapic",
-    srcs = [":stitcher_proto_with_info"],
-    grpc_service_config = "videostitcher_grpc_service_config.json",
-    importpath = "cloud.google.com/go/video/stitcher/apiv1;stitcher",
+    name = "admin_go_gapic",
+    srcs = [":admin_proto_with_info"],
+    grpc_service_config = "admin_grpc_service_config.json",
+    importpath = "google.golang.org/google/analytics/admin/v1beta;admin",
     metadata = True,
-    service_yaml = "videostitcher_v1.yaml",
+    service_yaml = "analyticsadmin.yaml",
+    transport = "grpc+rest",
     deps = [
-        ":stitcher_go_proto",
-        "@io_bazel_rules_go//proto/wkt:duration_go_proto",
+        ":admin_go_proto",
     ],
 )
 
 go_test(
-    name = "stitcher_go_gapic_test",
-    srcs = [":stitcher_go_gapic_srcjar_test"],
-    embed = [":stitcher_go_gapic"],
-    importpath = "cloud.google.com/go/video/stitcher/apiv1",
+    name = "admin_go_gapic_test",
+    srcs = [":admin_go_gapic_srcjar_test"],
+    embed = [":admin_go_gapic"],
+    importpath = "google.golang.org/google/analytics/admin/v1beta",
 )
 
 # Open Source Packages
 go_gapic_assembly_pkg(
-    name = "gapi-cloud-video-stitcher-v1-go",
+    name = "gapi-cloud-analytics-admin-v1beta-go",
     deps = [
-        ":stitcher_go_gapic",
-        ":stitcher_go_gapic_srcjar-metadata.srcjar",
-        ":stitcher_go_gapic_srcjar-test.srcjar",
-        ":stitcher_go_proto",
+        ":admin_go_gapic",
+        ":admin_go_gapic_srcjar-test.srcjar",
+        ":admin_go_gapic_srcjar-metadata.srcjar",
+        ":admin_go_proto",
     ],
 )
 
@@ -170,17 +167,17 @@ load(
 )
 
 py_gapic_library(
-    name = "stitcher_py_gapic",
-    srcs = [":stitcher_proto"],
-    grpc_service_config = "videostitcher_grpc_service_config.json",
-    service_yaml = "videostitcher_v1.yaml",
+    name = "admin_py_gapic",
+    srcs = [":admin_proto"],
+    grpc_service_config = "admin_grpc_service_config.json",
+    service_yaml = "analyticsadmin.yaml",
 )
 
 # Open Source Packages
 py_gapic_assembly_pkg(
-    name = "video-stitcher-v1-py",
+    name = "analytics-admin-v1beta-py",
     deps = [
-        ":stitcher_py_gapic",
+        ":admin_py_gapic",
     ],
 )
 
@@ -196,34 +193,34 @@ load(
 )
 
 php_proto_library(
-    name = "stitcher_php_proto",
-    deps = [":stitcher_proto"],
+    name = "admin_php_proto",
+    deps = [":admin_proto"],
 )
 
 php_grpc_library(
-    name = "stitcher_php_grpc",
-    srcs = [":stitcher_proto"],
-    deps = [":stitcher_php_proto"],
+    name = "admin_php_grpc",
+    srcs = [":admin_proto"],
+    deps = [":admin_php_proto"],
 )
 
 php_gapic_library(
-    name = "stitcher_php_gapic",
-    srcs = [":stitcher_proto_with_info"],
-    grpc_service_config = "videostitcher_grpc_service_config.json",
-    service_yaml = "videostitcher_v1.yaml",
+    name = "admin_php_gapic",
+    srcs = [":admin_proto_with_info"],
+    grpc_service_config = "admin_grpc_service_config.json",
+    service_yaml = "analyticsadmin.yaml",
     deps = [
-        ":stitcher_php_grpc",
-        ":stitcher_php_proto",
+        ":admin_php_grpc",
+        ":admin_php_proto",
     ],
 )
 
 # Open Source Packages
 php_gapic_assembly_pkg(
-    name = "google-cloud-video-stitcher-v1-php",
+    name = "google-cloud-analytics-admin-v1beta-php",
     deps = [
-        ":stitcher_php_gapic",
-        ":stitcher_php_grpc",
-        ":stitcher_php_proto",
+        ":admin_php_gapic",
+        ":admin_php_grpc",
+        ":admin_php_proto",
     ],
 )
 
@@ -237,21 +234,21 @@ load(
 )
 
 nodejs_gapic_library(
-    name = "stitcher_nodejs_gapic",
-    package_name = "@google-cloud/video-stitcher",
-    src = ":stitcher_proto_with_info",
+    name = "admin_nodejs_gapic",
+    package_name = "@google-cloud/admin",
+    src = ":admin_proto_with_info",
     extra_protoc_parameters = ["metadata"],
-    grpc_service_config = "videostitcher_grpc_service_config.json",
-    package = "google.cloud.video.stitcher.v1",
-    service_yaml = "videostitcher_v1.yaml",
+    grpc_service_config = "admin_grpc_service_config.json",
+    package = "google.analytics.admin.v1beta",
+    service_yaml = "analyticsadmin.yaml",
     deps = [],
 )
 
 nodejs_gapic_assembly_pkg(
-    name = "video-stitcher-v1-nodejs",
+    name = "analytics-admin-v1beta-nodejs",
     deps = [
-        ":stitcher_nodejs_gapic",
-        ":stitcher_proto",
+        ":admin_nodejs_gapic",
+        ":admin_proto",
     ],
 )
 
@@ -260,48 +257,44 @@ nodejs_gapic_assembly_pkg(
 ##############################################################################
 load(
     "@com_google_googleapis_imports//:imports.bzl",
-    "ruby_cloud_gapic_library",
     "ruby_gapic_assembly_pkg",
+    "ruby_cloud_gapic_library",
     "ruby_grpc_library",
     "ruby_proto_library",
 )
 
 ruby_proto_library(
-    name = "stitcher_ruby_proto",
-    deps = [":stitcher_proto"],
+    name = "admin_ruby_proto",
+    deps = [":admin_proto"],
 )
 
 ruby_grpc_library(
-    name = "stitcher_ruby_grpc",
-    srcs = [":stitcher_proto"],
-    deps = [":stitcher_ruby_proto"],
+    name = "admin_ruby_grpc",
+    srcs = [":admin_proto"],
+    deps = [":admin_ruby_proto"],
 )
 
 ruby_cloud_gapic_library(
-    name = "stitcher_ruby_gapic",
-    srcs = [":stitcher_proto_with_info"],
+    name = "admin_ruby_gapic",
+    srcs = [":admin_proto_with_info"],
     extra_protoc_parameters = [
-        "ruby-cloud-api-id=videostitcher.googleapis.com",
-        "ruby-cloud-api-shortname=videostitcher",
-        "ruby-cloud-gem-name=google-cloud-video-stitcher-v1",
-        "ruby-cloud-product-url=https://cloud.google.com/video-stitcher/",
+        "ruby-cloud-gem-name=google-cloud-analytics-admin-v1beta",
     ],
-    grpc_service_config = "videostitcher_grpc_service_config.json",
-    ruby_cloud_description = "The Video Stitcher API allows you to manipulate video content to dynamically insert ads prior to delivery to client devices. Using the Video Stitcher API, you can monetize your video-on-demand (VOD) and livestreaming videos by inserting ads as described by metadata stored on ad servers.",
-    ruby_cloud_title = "Video Stitcher V1",
+    grpc_service_config = "admin_grpc_service_config.json",
+    service_yaml = "analyticsadmin.yaml",
     deps = [
-        ":stitcher_ruby_grpc",
-        ":stitcher_ruby_proto",
+        ":admin_ruby_grpc",
+        ":admin_ruby_proto",
     ],
 )
 
 # Open Source Packages
 ruby_gapic_assembly_pkg(
-    name = "google-cloud-video-stitcher-v1-ruby",
+    name = "google-cloud-analytics-admin-v1beta-ruby",
     deps = [
-        ":stitcher_ruby_gapic",
-        ":stitcher_ruby_grpc",
-        ":stitcher_ruby_proto",
+        ":admin_ruby_gapic",
+        ":admin_ruby_grpc",
+        ":admin_ruby_proto",
     ],
 )
 
@@ -317,35 +310,35 @@ load(
 )
 
 csharp_proto_library(
-    name = "stitcher_csharp_proto",
-    deps = [":stitcher_proto"],
+    name = "admin_csharp_proto",
+    deps = [":admin_proto"],
 )
 
 csharp_grpc_library(
-    name = "stitcher_csharp_grpc",
-    srcs = [":stitcher_proto"],
-    deps = [":stitcher_csharp_proto"],
+    name = "admin_csharp_grpc",
+    srcs = [":admin_proto"],
+    deps = [":admin_csharp_proto"],
 )
 
 csharp_gapic_library(
-    name = "stitcher_csharp_gapic",
-    srcs = [":stitcher_proto_with_info"],
+    name = "admin_csharp_gapic",
+    srcs = [":admin_proto_with_info"],
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
-    grpc_service_config = "videostitcher_grpc_service_config.json",
-    service_yaml = "videostitcher_v1.yaml",
+    grpc_service_config = "admin_grpc_service_config.json",
+    service_yaml = "analyticsadmin.yaml",
     deps = [
-        ":stitcher_csharp_grpc",
-        ":stitcher_csharp_proto",
+        ":admin_csharp_grpc",
+        ":admin_csharp_proto",
     ],
 )
 
 # Open Source Packages
 csharp_gapic_assembly_pkg(
-    name = "google-cloud-video-stitcher-v1-csharp",
+    name = "google-cloud-analytics-admin-v1beta-csharp",
     deps = [
-        ":stitcher_csharp_gapic",
-        ":stitcher_csharp_grpc",
-        ":stitcher_csharp_proto",
+        ":admin_csharp_gapic",
+        ":admin_csharp_grpc",
+        ":admin_csharp_proto",
     ],
 )
 
@@ -359,13 +352,13 @@ load(
 )
 
 cc_proto_library(
-    name = "stitcher_cc_proto",
-    deps = [":stitcher_proto"],
+    name = "admin_cc_proto",
+    deps = [":admin_proto"],
 )
 
 cc_grpc_library(
-    name = "stitcher_cc_grpc",
-    srcs = [":stitcher_proto"],
+    name = "admin_cc_grpc",
+    srcs = [":admin_proto"],
     grpc_only = True,
-    deps = [":stitcher_cc_proto"],
+    deps = [":admin_cc_proto"],
 )
