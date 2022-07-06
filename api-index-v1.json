@@ -16575,32 +16575,32 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.Bigtable.V2": 2
+            "Google.Cloud.Bigtable.V2": 3
           }
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/bigtable/v2;bigtable": 2
+            "google.golang.org/genproto/googleapis/bigtable/v2;bigtable": 3
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 2
+            "true": 3
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.bigtable.v2": 2
+            "com.google.bigtable.v2": 3
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\Bigtable\\V2": 2
+            "Google\\Cloud\\Bigtable\\V2": 3
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::Bigtable::V2": 2
+            "Google::Cloud::Bigtable::V2": 3
           }
         }
       },
@@ -47970,7 +47970,9 @@
         "google.cloud.dialogflow.v2beta1.Participants",
         "google.cloud.dialogflow.v2beta1.SessionEntityTypes",
         "google.cloud.dialogflow.v2beta1.Sessions",
-        "google.cloud.dialogflow.v2beta1.Versions"
+        "google.cloud.dialogflow.v2beta1.Versions",
+        "google.cloud.location.Locations",
+        "google.longrunning.Operations"
       ]
     },
     {
@@ -49971,6 +49973,145 @@
       "configFile": "cloudfunctions_v1.yaml",
       "serviceConfigApiNames": [
         "google.cloud.functions.v1.CloudFunctionsService"
+      ]
+    },
+    {
+      "id": "google.cloud.functions.v2",
+      "directory": "google/cloud/functions/v2",
+      "version": "v2",
+      "majorVersion": "v2",
+      "hostName": "cloudfunctions.googleapis.com",
+      "title": "Cloud Functions API",
+      "description": "Manages lightweight user-provided functions executed in response to events.",
+      "importDirectories": [
+        "google/api",
+        "google/longrunning",
+        "google/protobuf"
+      ],
+      "options": {
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/cloud/functions/v2;functions": 1
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.functions.v2": 1
+          }
+        },
+        "objc_class_prefix": {
+          "valueCounts": {
+            "GCF": 1
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "FunctionService",
+          "fullName": "google.cloud.functions.v2.FunctionService",
+          "methods": [
+            {
+              "shortName": "CreateFunction",
+              "fullName": "google.cloud.functions.v2.FunctionService.CreateFunction",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=projects/*/locations/*}/functions"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteFunction",
+              "fullName": "google.cloud.functions.v2.FunctionService.DeleteFunction",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=projects/*/locations/*/functions/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GenerateDownloadUrl",
+              "fullName": "google.cloud.functions.v2.FunctionService.GenerateDownloadUrl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{name=projects/*/locations/*/functions/*}:generateDownloadUrl"
+                }
+              ]
+            },
+            {
+              "shortName": "GenerateUploadUrl",
+              "fullName": "google.cloud.functions.v2.FunctionService.GenerateUploadUrl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=projects/*/locations/*}/functions:generateUploadUrl"
+                }
+              ]
+            },
+            {
+              "shortName": "GetFunction",
+              "fullName": "google.cloud.functions.v2.FunctionService.GetFunction",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=projects/*/locations/*/functions/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListFunctions",
+              "fullName": "google.cloud.functions.v2.FunctionService.ListFunctions",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=projects/*/locations/*}/functions"
+                }
+              ]
+            },
+            {
+              "shortName": "ListRuntimes",
+              "fullName": "google.cloud.functions.v2.FunctionService.ListRuntimes",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=projects/*/locations/*}/runtimes"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateFunction",
+              "fullName": "google.cloud.functions.v2.FunctionService.UpdateFunction",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v2/{function.name=projects/*/locations/*/functions/*}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "cloudfunctions_v2.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.functions.v2.FunctionService",
+        "google.cloud.location.Locations",
+        "google.iam.v1.IAMPolicy",
+        "google.longrunning.Operations"
       ]
     },
     {
