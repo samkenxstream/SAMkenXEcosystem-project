@@ -319,7 +319,7 @@ yarn_install(
 ##############################################################################
 
 # PHP micro-generator
-_gapic_generator_php_version = "1.4.8"
+_gapic_generator_php_version = "1.5.0"
 
 http_archive(
     name = "gapic_generator_php",
@@ -359,9 +359,9 @@ http_archive(
     urls = ["https://github.com/googleapis/gax-dotnet/archive/refs/tags/%s.tar.gz" % _gax_dotnet_version],
 )
 
-_gapic_generator_csharp_version = "1.4.2"
+_gapic_generator_csharp_version = "1.4.4"
 
-_gapic_generator_csharp_sha256 = "8141912164b242dfa25d7b10118faac68ce04b209112170057da7b95962a15c6"
+_gapic_generator_csharp_sha256 = "2a3c7ab933016626e07cf55c3ee0e0893631e211562326999aaf37d4b015bc35"
 
 http_archive(
     name = "gapic_generator_csharp",
@@ -400,9 +400,9 @@ gapic_generator_csharp_repositories_gax_v3(gapic_generator_suffix = "_gax_v3")
 # Ruby
 ##############################################################################
 
-_gapic_generator_ruby_version = "v0.14.1"
+_gapic_generator_ruby_version = "v0.15.2"
 
-_gapic_generator_ruby_sha256 = "4aeb2dd67962b783ed96f545383114c499481a12b62ff3addefb011197f4cd59"
+_gapic_generator_ruby_sha256 = "0f858224e8f6a45533db33ef9aabd277f85f94b7edf61cb326267adf681b94ae"
 
 http_archive(
     name = "gapic_generator_ruby",
