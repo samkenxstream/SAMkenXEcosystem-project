@@ -29,6 +29,8 @@ proto_library(
         "control_service.proto",
         "export_config.proto",
         "import_config.proto",
+        "model.proto",
+        "model_service.proto",
         "prediction_service.proto",
         "product.proto",
         "product_service.proto",
@@ -114,6 +116,8 @@ java_gapic_test(
         "com.google.cloud.retail.v2alpha.CompletionServiceClientTest",
         "com.google.cloud.retail.v2alpha.ControlServiceClientHttpJsonTest",
         "com.google.cloud.retail.v2alpha.ControlServiceClientTest",
+        "com.google.cloud.retail.v2alpha.ModelServiceClientHttpJsonTest",
+        "com.google.cloud.retail.v2alpha.ModelServiceClientTest",
         "com.google.cloud.retail.v2alpha.PredictionServiceClientHttpJsonTest",
         "com.google.cloud.retail.v2alpha.PredictionServiceClientTest",
         "com.google.cloud.retail.v2alpha.ProductServiceClientHttpJsonTest",
@@ -209,12 +213,23 @@ load(
     "@com_google_googleapis_imports//:imports.bzl",
     "py_gapic_assembly_pkg",
     "py_gapic_library",
+    "py_test",
 )
 
 py_gapic_library(
     name = "retail_py_gapic",
     srcs = [":retail_proto"],
     grpc_service_config = "retail_grpc_service_config.json",
+)
+
+py_test(
+    name = "retail_py_gapic_test",
+    srcs = [
+        "retail_py_gapic_pytest.py",
+        "retail_py_gapic_test.py",
+    ],
+    legacy_create_init = False,
+    deps = [":retail_py_gapic"],
 )
 
 # Open Source Packages
