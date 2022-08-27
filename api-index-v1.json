@@ -14338,6 +14338,17 @@
               ]
             },
             {
+              "shortName": "RemoveDatapoints",
+              "fullName": "google.cloud.aiplatform.v1.IndexService.RemoveDatapoints",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{index=projects/*/locations/*/indexes/*}:removeDatapoints"
+                }
+              ]
+            },
+            {
               "shortName": "UpdateIndex",
               "fullName": "google.cloud.aiplatform.v1.IndexService.UpdateIndex",
               "mode": "UNARY",
@@ -14345,6 +14356,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1/{index.name=projects/*/locations/*/indexes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpsertDatapoints",
+              "fullName": "google.cloud.aiplatform.v1.IndexService.UpsertDatapoints",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{index=projects/*/locations/*/indexes/*}:upsertDatapoints"
                 }
               ]
             }
@@ -16690,6 +16712,17 @@
               ]
             },
             {
+              "shortName": "RemoveDatapoints",
+              "fullName": "google.cloud.aiplatform.v1beta1.IndexService.RemoveDatapoints",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{index=projects/*/locations/*/indexes/*}:removeDatapoints"
+                }
+              ]
+            },
+            {
               "shortName": "UpdateIndex",
               "fullName": "google.cloud.aiplatform.v1beta1.IndexService.UpdateIndex",
               "mode": "UNARY",
@@ -16697,6 +16730,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1beta1/{index.name=projects/*/locations/*/indexes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpsertDatapoints",
+              "fullName": "google.cloud.aiplatform.v1beta1.IndexService.UpsertDatapoints",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{index=projects/*/locations/*/indexes/*}:upsertDatapoints"
                 }
               ]
             }
@@ -20032,20 +20076,9 @@
               ]
             },
             {
-              "shortName": "RestrictAllowedServices",
-              "fullName": "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService.RestrictAllowedServices",
-              "mode": "UNARY"
-            },
-            {
               "shortName": "UpdateWorkload",
               "fullName": "google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService.UpdateWorkload",
-              "mode": "UNARY",
-              "bindings": [
-                {
-                  "httpMethod": "PATCH",
-                  "path": "/v1beta1/{workload.name=organizations/*/locations/*/workloads/*}"
-                }
-              ]
+              "mode": "UNARY"
             }
           ]
         }
@@ -34363,7 +34396,8 @@
       ],
       "configFile": "contactcenterinsights_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.contactcenterinsights.v1.ContactCenterInsights"
+        "google.cloud.contactcenterinsights.v1.ContactCenterInsights",
+        "google.longrunning.Operations"
       ]
     },
     {
@@ -38850,7 +38884,9 @@
       "configFile": "datastream_v1.yaml",
       "serviceConfigApiNames": [
         "google.cloud.datastream.v1.Datastream",
-        "google.cloud.location.Locations"
+        "google.cloud.location.Locations",
+        "google.iam.v1.IAMPolicy",
+        "google.longrunning.Operations"
       ]
     },
     {
@@ -46612,6 +46648,240 @@
       "configFile": "domains_v1beta1.yaml",
       "serviceConfigApiNames": [
         "google.cloud.domains.v1beta1.Domains"
+      ]
+    },
+    {
+      "id": "google.cloud.edgecontainer.v1",
+      "directory": "google/cloud/edgecontainer/v1",
+      "version": "v1",
+      "majorVersion": "v1",
+      "hostName": "edgecontainer.googleapis.com",
+      "title": "Distributed Cloud Edge Container API",
+      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "importDirectories": [
+        "google/api",
+        "google/cloud/edgecontainer/v1",
+        "google/longrunning",
+        "google/protobuf",
+        "google/rpc"
+      ],
+      "options": {
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/cloud/edgecontainer/v1;edgecontainer": 2
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 2
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.edgecontainer.v1": 2
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "EdgeContainer",
+          "fullName": "google.cloud.edgecontainer.v1.EdgeContainer",
+          "methods": [
+            {
+              "shortName": "CreateCluster",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.CreateCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/clusters"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateNodePool",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.CreateNodePool",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*/clusters/*}/nodePools"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateVpnConnection",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.CreateVpnConnection",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/vpnConnections"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteCluster",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.DeleteCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteNodePool",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.DeleteNodePool",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteVpnConnection",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.DeleteVpnConnection",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/vpnConnections/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GenerateAccessToken",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.GenerateAccessToken",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{cluster=projects/*/locations/*/clusters/*}:generateAccessToken"
+                }
+              ]
+            },
+            {
+              "shortName": "GetCluster",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.GetCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetMachine",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.GetMachine",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/machines/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetNodePool",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.GetNodePool",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetVpnConnection",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.GetVpnConnection",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/vpnConnections/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListClusters",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.ListClusters",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/clusters"
+                }
+              ]
+            },
+            {
+              "shortName": "ListMachines",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.ListMachines",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/machines"
+                }
+              ]
+            },
+            {
+              "shortName": "ListNodePools",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.ListNodePools",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*/clusters/*}/nodePools"
+                }
+              ]
+            },
+            {
+              "shortName": "ListVpnConnections",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.ListVpnConnections",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/vpnConnections"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateCluster",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.UpdateCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{cluster.name=projects/*/locations/*/clusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateNodePool",
+              "fullName": "google.cloud.edgecontainer.v1.EdgeContainer.UpdateNodePool",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{node_pool.name=projects/*/locations/*/clusters/*/nodePools/*}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "edgecontainer_v1.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.edgecontainer.v1.EdgeContainer",
+        "google.cloud.location.Locations",
+        "google.longrunning.Operations"
       ]
     },
     {
@@ -61021,37 +61291,37 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.Retail.V2": 13
+            "Google.Cloud.Retail.V2": 17
           }
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/retail/v2;retail": 13
+            "google.golang.org/genproto/googleapis/cloud/retail/v2;retail": 17
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 13
+            "true": 17
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.retail.v2": 13
+            "com.google.cloud.retail.v2": 17
           }
         },
         "objc_class_prefix": {
           "valueCounts": {
-            "RETAIL": 13
+            "RETAIL": 17
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\Retail\\V2": 13
+            "Google\\Cloud\\Retail\\V2": 17
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::Retail::V2": 13
+            "Google::Cloud::Retail::V2": 17
           }
         }
       },
@@ -61060,6 +61330,39 @@
           "shortName": "CatalogService",
           "fullName": "google.cloud.retail.v2.CatalogService",
           "methods": [
+            {
+              "shortName": "AddCatalogAttribute",
+              "fullName": "google.cloud.retail.v2.CatalogService.AddCatalogAttribute",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:addCatalogAttribute"
+                }
+              ]
+            },
+            {
+              "shortName": "GetAttributesConfig",
+              "fullName": "google.cloud.retail.v2.CatalogService.GetAttributesConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=projects/*/locations/*/catalogs/*/attributesConfig}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetCompletionConfig",
+              "fullName": "google.cloud.retail.v2.CatalogService.GetCompletionConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=projects/*/locations/*/catalogs/*/completionConfig}"
+                }
+              ]
+            },
             {
               "shortName": "GetDefaultBranch",
               "fullName": "google.cloud.retail.v2.CatalogService.GetDefaultBranch",
@@ -61083,6 +61386,28 @@
               ]
             },
             {
+              "shortName": "RemoveCatalogAttribute",
+              "fullName": "google.cloud.retail.v2.CatalogService.RemoveCatalogAttribute",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:removeCatalogAttribute"
+                }
+              ]
+            },
+            {
+              "shortName": "ReplaceCatalogAttribute",
+              "fullName": "google.cloud.retail.v2.CatalogService.ReplaceCatalogAttribute",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:replaceCatalogAttribute"
+                }
+              ]
+            },
+            {
               "shortName": "SetDefaultBranch",
               "fullName": "google.cloud.retail.v2.CatalogService.SetDefaultBranch",
               "mode": "UNARY",
@@ -61094,6 +61419,17 @@
               ]
             },
             {
+              "shortName": "UpdateAttributesConfig",
+              "fullName": "google.cloud.retail.v2.CatalogService.UpdateAttributesConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v2/{attributes_config.name=projects/*/locations/*/catalogs/*/attributesConfig}"
+                }
+              ]
+            },
+            {
               "shortName": "UpdateCatalog",
               "fullName": "google.cloud.retail.v2.CatalogService.UpdateCatalog",
               "mode": "UNARY",
@@ -61101,6 +61437,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v2/{catalog.name=projects/*/locations/*/catalogs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateCompletionConfig",
+              "fullName": "google.cloud.retail.v2.CatalogService.UpdateCompletionConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v2/{completion_config.name=projects/*/locations/*/catalogs/*/completionConfig}"
                 }
               ]
             }
@@ -61129,6 +61476,67 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v2/{parent=projects/*/locations/*/catalogs/*}/completionData:import"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "shortName": "ControlService",
+          "fullName": "google.cloud.retail.v2.ControlService",
+          "methods": [
+            {
+              "shortName": "CreateControl",
+              "fullName": "google.cloud.retail.v2.ControlService.CreateControl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=projects/*/locations/*/catalogs/*}/controls"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteControl",
+              "fullName": "google.cloud.retail.v2.ControlService.DeleteControl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=projects/*/locations/*/catalogs/*/controls/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetControl",
+              "fullName": "google.cloud.retail.v2.ControlService.GetControl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=projects/*/locations/*/catalogs/*/controls/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListControls",
+              "fullName": "google.cloud.retail.v2.ControlService.ListControls",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=projects/*/locations/*/catalogs/*}/controls"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateControl",
+              "fullName": "google.cloud.retail.v2.ControlService.UpdateControl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v2/{control.name=projects/*/locations/*/catalogs/*/controls/*}"
                 }
               ]
             }
@@ -61304,6 +61712,89 @@
           ]
         },
         {
+          "shortName": "ServingConfigService",
+          "fullName": "google.cloud.retail.v2.ServingConfigService",
+          "methods": [
+            {
+              "shortName": "AddControl",
+              "fullName": "google.cloud.retail.v2.ServingConfigService.AddControl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:addControl"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateServingConfig",
+              "fullName": "google.cloud.retail.v2.ServingConfigService.CreateServingConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=projects/*/locations/*/catalogs/*}/servingConfigs"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteServingConfig",
+              "fullName": "google.cloud.retail.v2.ServingConfigService.DeleteServingConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=projects/*/locations/*/catalogs/*/servingConfigs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetServingConfig",
+              "fullName": "google.cloud.retail.v2.ServingConfigService.GetServingConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=projects/*/locations/*/catalogs/*/servingConfigs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListServingConfigs",
+              "fullName": "google.cloud.retail.v2.ServingConfigService.ListServingConfigs",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=projects/*/locations/*/catalogs/*}/servingConfigs"
+                }
+              ]
+            },
+            {
+              "shortName": "RemoveControl",
+              "fullName": "google.cloud.retail.v2.ServingConfigService.RemoveControl",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:removeControl"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateServingConfig",
+              "fullName": "google.cloud.retail.v2.ServingConfigService.UpdateServingConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v2/{serving_config.name=projects/*/locations/*/catalogs/*/servingConfigs/*}"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "shortName": "UserEventService",
           "fullName": "google.cloud.retail.v2.UserEventService",
           "methods": [
@@ -61370,9 +61861,11 @@
         "google.cloud.location.Locations",
         "google.cloud.retail.v2.CatalogService",
         "google.cloud.retail.v2.CompletionService",
+        "google.cloud.retail.v2.ControlService",
         "google.cloud.retail.v2.PredictionService",
         "google.cloud.retail.v2.ProductService",
         "google.cloud.retail.v2.SearchService",
+        "google.cloud.retail.v2.ServingConfigService",
         "google.cloud.retail.v2.UserEventService",
         "google.longrunning.Operations"
       ]
@@ -64697,32 +65190,32 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.SecurityCenter.V1": 28
+            "Google.Cloud.SecurityCenter.V1": 29
           }
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenter": 28
+            "google.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenter": 29
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 28
+            "true": 29
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.securitycenter.v1": 28
+            "com.google.cloud.securitycenter.v1": 29
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\SecurityCenter\\V1": 28
+            "Google\\Cloud\\SecurityCenter\\V1": 29
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::SecurityCenter::V1": 28
+            "Google::Cloud::SecurityCenter::V1": 29
           }
         }
       },
@@ -69918,6 +70411,145 @@
       ]
     },
     {
+      "id": "google.cloud.timeseriesinsights.v1",
+      "directory": "google/cloud/timeseriesinsights/v1",
+      "version": "v1",
+      "majorVersion": "v1",
+      "hostName": "timeseriesinsights.googleapis.com",
+      "title": "Timeseries Insights API",
+      "description": "Provides a Timeseries Insights service which operates over time series data. Users can perform time series spike, trend, and anomaly detection. With a straightforward API and easy to understand results, the service makes it simple to gather insights from large amounts of time series data (e.g. monitoring datasets) and integrate these insights in their applications.",
+      "importDirectories": [
+        "google/api",
+        "google/protobuf",
+        "google/rpc"
+      ],
+      "options": {
+        "cc_enable_arenas": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/cloud/timeseriesinsights/v1;timeseriesinsights": 1
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.timeseriesinsights.v1": 1
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "TimeseriesInsightsController",
+          "fullName": "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController",
+          "methods": [
+            {
+              "shortName": "AppendEvents",
+              "fullName": "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController.AppendEvents",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{dataset=projects/*/locations/*/datasets/*}:appendEvents"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{dataset=projects/*/datasets/*}:appendEvents"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateDataSet",
+              "fullName": "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController.CreateDataSet",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/datasets"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/datasets"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteDataSet",
+              "fullName": "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController.DeleteDataSet",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/datasets/*}"
+                },
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/datasets/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "EvaluateSlice",
+              "fullName": "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController.EvaluateSlice",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{dataset=projects/*/locations/*/datasets/*}:evaluateSlice"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{dataset=projects/*/datasets/*}:evaluateSlice"
+                }
+              ]
+            },
+            {
+              "shortName": "ListDataSets",
+              "fullName": "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController.ListDataSets",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/datasets"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*}/datasets"
+                }
+              ]
+            },
+            {
+              "shortName": "QueryDataSet",
+              "fullName": "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController.QueryDataSet",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/datasets/*}:query"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/datasets/*}:query"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "timeseriesinsights_v1.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.location.Locations",
+        "google.cloud.timeseriesinsights.v1.TimeseriesInsightsController"
+      ]
+    },
+    {
       "id": "google.cloud.tpu.v1",
       "directory": "google/cloud/tpu/v1",
       "version": "v1",
@@ -73161,7 +73793,9 @@
       ],
       "configFile": "vpcaccess_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.vpcaccess.v1.VpcAccessService"
+        "google.cloud.location.Locations",
+        "google.cloud.vpcaccess.v1.VpcAccessService",
+        "google.longrunning.Operations"
       ]
     },
     {
@@ -82854,7 +83488,7 @@
       "version": "v2",
       "majorVersion": "v2",
       "hostName": "routes.googleapis.com",
-      "title": "routes.googleapis.com API",
+      "title": "Routes API",
       "description": "routes.googleapis.com API.",
       "importDirectories": [
         "google/api",
