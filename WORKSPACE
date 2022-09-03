@@ -138,7 +138,7 @@ http_archive(
     ],
 )
 
-_gapic_generator_go_version = "0.31.2"
+_gapic_generator_go_version = "0.32.1"
 
 http_archive(
     name = "com_googleapis_gapic_generator_go",
@@ -300,9 +300,9 @@ gapic_generator_register_toolchains()
 # TypeScript
 ##############################################################################
 
-_gapic_generator_typescript_version = "2.16.0"
+_gapic_generator_typescript_version = "2.16.1"
 
-_gapic_generator_typescript_sha256 = "30d5e90ebe04485c166e0d95cfc759322ba405ff0ab6ff900830648afd49d688"
+_gapic_generator_typescript_sha256 = "64ff0c512923c00b0a413d6ec6181f607a9b3ed8831c447fcd0360134ce4770b"
 
 ### TypeScript generator
 http_archive(
@@ -374,9 +374,9 @@ http_archive(
     urls = ["https://github.com/googleapis/gax-dotnet/archive/refs/tags/%s.tar.gz" % _gax_dotnet_version],
 )
 
-_gapic_generator_csharp_version = "1.4.7"
+_gapic_generator_csharp_version = "1.4.8"
 
-_gapic_generator_csharp_sha256 = "cb75b2e12a56485c63c25f9de29d80a82710168a19b44f267a5739427eb7fc24"
+_gapic_generator_csharp_sha256 = "1c155829aabb32a1e94fb9c4fe70054d683b1142fe7853c01f3adc3d5b184a6e"
 
 http_archive(
     name = "gapic_generator_csharp",

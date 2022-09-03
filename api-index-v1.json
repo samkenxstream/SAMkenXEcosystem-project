@@ -22152,7 +22152,6 @@
       "description": "Exchange data and analytics assets securely and efficiently.",
       "importDirectories": [
         "google/api",
-        "google/cloud/bigquery/dataexchange/common",
         "google/iam/v1",
         "google/protobuf"
       ],
@@ -22375,7 +22374,139 @@
       ],
       "configFile": "analyticshub_v1beta1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.bigquery.dataexchange.v1beta1.AnalyticsHubService"
+        "google.cloud.bigquery.dataexchange.v1beta1.AnalyticsHubService",
+        "google.cloud.location.Locations"
+      ]
+    },
+    {
+      "id": "google.cloud.bigquery.datapolicies.v1beta1",
+      "directory": "google/cloud/bigquery/datapolicies/v1beta1",
+      "version": "v1beta1",
+      "majorVersion": "v1",
+      "hostName": "bigquerydatapolicy.googleapis.com",
+      "title": "BigQuery Data Policy API",
+      "description": "Allows users to manage BigQuery data policies.",
+      "importDirectories": [
+        "google/api",
+        "google/iam/v1",
+        "google/protobuf"
+      ],
+      "options": {
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/cloud/bigquery/datapolicies/v1beta1;datapolicies": 1
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.bigquery.datapolicies.v1beta1": 1
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "DataPolicyService",
+          "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService",
+          "methods": [
+            {
+              "shortName": "CreateDataPolicy",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.CreateDataPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{parent=projects/*/locations/*}/dataPolicies"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteDataPolicy",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.DeleteDataPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1beta1/{name=projects/*/locations/*/dataPolicies/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetDataPolicy",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.GetDataPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta1/{name=projects/*/locations/*/dataPolicies/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetIamPolicy",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.GetIamPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{resource=projects/*/locations/*/dataPolicies/*}:getIamPolicy"
+                }
+              ]
+            },
+            {
+              "shortName": "ListDataPolicies",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.ListDataPolicies",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta1/{parent=projects/*/locations/*}/dataPolicies"
+                }
+              ]
+            },
+            {
+              "shortName": "SetIamPolicy",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.SetIamPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{resource=projects/*/locations/*/dataPolicies/*}:setIamPolicy"
+                }
+              ]
+            },
+            {
+              "shortName": "TestIamPermissions",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.TestIamPermissions",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{resource=projects/*/locations/*/dataPolicies/*}:testIamPermissions"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateDataPolicy",
+              "fullName": "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService.UpdateDataPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta1/{data_policy.name=projects/*/locations/*/dataPolicies/*}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "bigquerydatapolicy_v1beta1.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.bigquery.datapolicies.v1beta1.DataPolicyService"
       ]
     },
     {
@@ -62582,37 +62713,37 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.Retail.V2Beta": 18
+            "Google.Cloud.Retail.V2Beta": 20
           }
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/retail/v2beta;retail": 18
+            "google.golang.org/genproto/googleapis/cloud/retail/v2beta;retail": 20
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 18
+            "true": 20
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.retail.v2beta": 18
+            "com.google.cloud.retail.v2beta": 20
           }
         },
         "objc_class_prefix": {
           "valueCounts": {
-            "RETAIL": 18
+            "RETAIL": 20
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\Retail\\V2beta": 18
+            "Google\\Cloud\\Retail\\V2beta": 20
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::Retail::V2beta": 18
+            "Google::Cloud::Retail::V2beta": 20
           }
         }
       },
@@ -62629,6 +62760,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v2beta/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:addCatalogAttribute"
+                }
+              ]
+            },
+            {
+              "shortName": "BatchRemoveCatalogAttributes",
+              "fullName": "google.cloud.retail.v2beta.CatalogService.BatchRemoveCatalogAttributes",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2beta/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:batchRemoveCatalogAttributes"
                 }
               ]
             },
@@ -62828,6 +62970,89 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v2beta/{control.name=projects/*/locations/*/catalogs/*/controls/*}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "shortName": "ModelService",
+          "fullName": "google.cloud.retail.v2beta.ModelService",
+          "methods": [
+            {
+              "shortName": "CreateModel",
+              "fullName": "google.cloud.retail.v2beta.ModelService.CreateModel",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2beta/{parent=projects/*/locations/*/catalogs/*}/models"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteModel",
+              "fullName": "google.cloud.retail.v2beta.ModelService.DeleteModel",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2beta/{name=projects/*/locations/*/catalogs/*/models/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListModels",
+              "fullName": "google.cloud.retail.v2beta.ModelService.ListModels",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2beta/{parent=projects/*/locations/*/catalogs/*}/models"
+                }
+              ]
+            },
+            {
+              "shortName": "PauseModel",
+              "fullName": "google.cloud.retail.v2beta.ModelService.PauseModel",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2beta/{name=projects/*/locations/*/catalogs/*/models/*}:pause"
+                }
+              ]
+            },
+            {
+              "shortName": "ResumeModel",
+              "fullName": "google.cloud.retail.v2beta.ModelService.ResumeModel",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2beta/{name=projects/*/locations/*/catalogs/*/models/*}:resume"
+                }
+              ]
+            },
+            {
+              "shortName": "TuneModel",
+              "fullName": "google.cloud.retail.v2beta.ModelService.TuneModel",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2beta/{name=projects/*/locations/*/catalogs/*/models/*}:tune"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateModel",
+              "fullName": "google.cloud.retail.v2beta.ModelService.UpdateModel",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v2beta/{model.name=projects/*/locations/*/catalogs/*/models/*}"
                 }
               ]
             }
@@ -63153,6 +63378,7 @@
         "google.cloud.retail.v2beta.CatalogService",
         "google.cloud.retail.v2beta.CompletionService",
         "google.cloud.retail.v2beta.ControlService",
+        "google.cloud.retail.v2beta.ModelService",
         "google.cloud.retail.v2beta.PredictionService",
         "google.cloud.retail.v2beta.ProductService",
         "google.cloud.retail.v2beta.SearchService",
@@ -74015,32 +74241,32 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.WebSecurityScanner.V1": 10
+            "Google.Cloud.WebSecurityScanner.V1": 11
           }
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/websecurityscanner/v1;websecurityscanner": 10
+            "google.golang.org/genproto/googleapis/cloud/websecurityscanner/v1;websecurityscanner": 11
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 10
+            "true": 11
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.websecurityscanner.v1": 10
+            "com.google.cloud.websecurityscanner.v1": 11
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\WebSecurityScanner\\V1": 10
+            "Google\\Cloud\\WebSecurityScanner\\V1": 11
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::WebSecurityScanner::V1": 10
+            "Google::Cloud::WebSecurityScanner::V1": 11
           }
         }
       },
@@ -81191,6 +81417,128 @@
       ]
     },
     {
+      "id": "google.iam.v2",
+      "directory": "google/iam/v2",
+      "version": "v2",
+      "majorVersion": "v2",
+      "hostName": "iam.googleapis.com",
+      "title": "Identity and Access Management (IAM) API",
+      "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.",
+      "importDirectories": [
+        "google/api",
+        "google/iam/v2",
+        "google/longrunning",
+        "google/protobuf",
+        "google/type"
+      ],
+      "options": {
+        "csharp_namespace": {
+          "valueCounts": {
+            "Google.Cloud.Iam.V2": 2
+          }
+        },
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/iam/v2;iam": 2
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 2
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.iam.v2": 2
+          }
+        },
+        "php_namespace": {
+          "valueCounts": {
+            "Google\\Cloud\\Iam\\V2": 2
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "Policies",
+          "fullName": "google.iam.v2.Policies",
+          "methods": [
+            {
+              "shortName": "CreatePolicy",
+              "fullName": "google.iam.v2.Policies.CreatePolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=policies/*/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeletePolicy",
+              "fullName": "google.iam.v2.Policies.DeletePolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=policies/*/*/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetPolicy",
+              "fullName": "google.iam.v2.Policies.GetPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=policies/*/*/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListApplicablePolicies",
+              "fullName": "google.iam.v2.Policies.ListApplicablePolicies",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{attachment_point=*}:listApplicablePolicies"
+                }
+              ]
+            },
+            {
+              "shortName": "ListPolicies",
+              "fullName": "google.iam.v2.Policies.ListPolicies",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=policies/*/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdatePolicy",
+              "fullName": "google.iam.v2.Policies.UpdatePolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PUT",
+                  "path": "/v2/{policy.name=policies/*/*/*}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "iam_v2.yaml",
+      "serviceConfigApiNames": [
+        "google.iam.v2.Policies",
+        "google.longrunning.Operations"
+      ]
+    },
+    {
       "id": "google.iam.v2beta",
       "directory": "google/iam/v2beta",
       "version": "v2beta",
@@ -85280,6 +85628,7 @@
       ],
       "configFile": "dlp_v2.yaml",
       "serviceConfigApiNames": [
+        "google.cloud.location.Locations",
         "google.privacy.dlp.v2.DlpService"
       ]
     },
@@ -86380,315 +86729,6 @@
       "configFile": "spanner.yaml",
       "serviceConfigApiNames": [
         "google.spanner.v1.Spanner"
-      ]
-    },
-    {
-      "id": "google.storage.v1",
-      "directory": "google/storage/v1",
-      "version": "v1",
-      "majorVersion": "v1",
-      "hostName": "storage.googleapis.com",
-      "title": "Cloud Storage API",
-      "description": "Lets you store and retrieve potentially-large, immutable data objects.",
-      "importDirectories": [
-        "google/api",
-        "google/iam/v1",
-        "google/protobuf",
-        "google/storage/v1"
-      ],
-      "options": {
-        "go_package": {
-          "valueCounts": {
-            "google.golang.org/genproto/googleapis/storage/v1;storage": 2
-          }
-        },
-        "java_multiple_files": {
-          "valueCounts": {
-            "true": 2
-          }
-        },
-        "java_package": {
-          "valueCounts": {
-            "com.google.storage.v1": 2
-          }
-        }
-      },
-      "services": [
-        {
-          "shortName": "Storage",
-          "fullName": "google.storage.v1.Storage",
-          "methods": [
-            {
-              "shortName": "ComposeObject",
-              "fullName": "google.storage.v1.Storage.ComposeObject",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "CopyObject",
-              "fullName": "google.storage.v1.Storage.CopyObject",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "CreateHmacKey",
-              "fullName": "google.storage.v1.Storage.CreateHmacKey",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "DeleteBucket",
-              "fullName": "google.storage.v1.Storage.DeleteBucket",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "DeleteBucketAccessControl",
-              "fullName": "google.storage.v1.Storage.DeleteBucketAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "DeleteDefaultObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.DeleteDefaultObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "DeleteHmacKey",
-              "fullName": "google.storage.v1.Storage.DeleteHmacKey",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "DeleteNotification",
-              "fullName": "google.storage.v1.Storage.DeleteNotification",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "DeleteObject",
-              "fullName": "google.storage.v1.Storage.DeleteObject",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "DeleteObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.DeleteObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetBucket",
-              "fullName": "google.storage.v1.Storage.GetBucket",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetBucketAccessControl",
-              "fullName": "google.storage.v1.Storage.GetBucketAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetBucketIamPolicy",
-              "fullName": "google.storage.v1.Storage.GetBucketIamPolicy",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetDefaultObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.GetDefaultObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetHmacKey",
-              "fullName": "google.storage.v1.Storage.GetHmacKey",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetNotification",
-              "fullName": "google.storage.v1.Storage.GetNotification",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetObject",
-              "fullName": "google.storage.v1.Storage.GetObject",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.GetObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "GetObjectMedia",
-              "fullName": "google.storage.v1.Storage.GetObjectMedia",
-              "mode": "SERVER_STREAMING"
-            },
-            {
-              "shortName": "GetServiceAccount",
-              "fullName": "google.storage.v1.Storage.GetServiceAccount",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "InsertBucket",
-              "fullName": "google.storage.v1.Storage.InsertBucket",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "InsertBucketAccessControl",
-              "fullName": "google.storage.v1.Storage.InsertBucketAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "InsertDefaultObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.InsertDefaultObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "InsertNotification",
-              "fullName": "google.storage.v1.Storage.InsertNotification",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "InsertObject",
-              "fullName": "google.storage.v1.Storage.InsertObject",
-              "mode": "CLIENT_STREAMING"
-            },
-            {
-              "shortName": "InsertObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.InsertObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListBucketAccessControls",
-              "fullName": "google.storage.v1.Storage.ListBucketAccessControls",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListBuckets",
-              "fullName": "google.storage.v1.Storage.ListBuckets",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListChannels",
-              "fullName": "google.storage.v1.Storage.ListChannels",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListDefaultObjectAccessControls",
-              "fullName": "google.storage.v1.Storage.ListDefaultObjectAccessControls",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListHmacKeys",
-              "fullName": "google.storage.v1.Storage.ListHmacKeys",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListNotifications",
-              "fullName": "google.storage.v1.Storage.ListNotifications",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListObjectAccessControls",
-              "fullName": "google.storage.v1.Storage.ListObjectAccessControls",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "ListObjects",
-              "fullName": "google.storage.v1.Storage.ListObjects",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "LockBucketRetentionPolicy",
-              "fullName": "google.storage.v1.Storage.LockBucketRetentionPolicy",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "PatchBucket",
-              "fullName": "google.storage.v1.Storage.PatchBucket",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "PatchBucketAccessControl",
-              "fullName": "google.storage.v1.Storage.PatchBucketAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "PatchDefaultObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.PatchDefaultObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "PatchObject",
-              "fullName": "google.storage.v1.Storage.PatchObject",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "PatchObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.PatchObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "QueryWriteStatus",
-              "fullName": "google.storage.v1.Storage.QueryWriteStatus",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "RewriteObject",
-              "fullName": "google.storage.v1.Storage.RewriteObject",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "SetBucketIamPolicy",
-              "fullName": "google.storage.v1.Storage.SetBucketIamPolicy",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "StartResumableWrite",
-              "fullName": "google.storage.v1.Storage.StartResumableWrite",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "StopChannel",
-              "fullName": "google.storage.v1.Storage.StopChannel",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "TestBucketIamPermissions",
-              "fullName": "google.storage.v1.Storage.TestBucketIamPermissions",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "UpdateBucket",
-              "fullName": "google.storage.v1.Storage.UpdateBucket",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "UpdateBucketAccessControl",
-              "fullName": "google.storage.v1.Storage.UpdateBucketAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "UpdateDefaultObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.UpdateDefaultObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "UpdateHmacKey",
-              "fullName": "google.storage.v1.Storage.UpdateHmacKey",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "UpdateObject",
-              "fullName": "google.storage.v1.Storage.UpdateObject",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "UpdateObjectAccessControl",
-              "fullName": "google.storage.v1.Storage.UpdateObjectAccessControl",
-              "mode": "UNARY"
-            },
-            {
-              "shortName": "WatchAllObjects",
-              "fullName": "google.storage.v1.Storage.WatchAllObjects",
-              "mode": "UNARY"
-            }
-          ]
-        }
-      ],
-      "configFile": "storage_v1.yaml",
-      "serviceConfigApiNames": [
-        "google.storage.v1.Storage"
       ]
     },
     {

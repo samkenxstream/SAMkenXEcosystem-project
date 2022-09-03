@@ -19,23 +19,25 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@com_google_googleapis_imports//:imports.bzl", "proto_library_with_info")
 
 proto_library(
-    name = "publicca_proto",
+    name = "iam_proto",
     srcs = [
-        "resources.proto",
-        "service.proto",
+        "deny.proto",
+        "policy.proto",
     ],
     deps = [
         "//google/api:annotations_proto",
         "//google/api:client_proto",
         "//google/api:field_behavior_proto",
-        "//google/api:resource_proto",
+        "//google/longrunning:operations_proto",
+        "//google/type:expr_proto",
+        "@com_google_protobuf//:timestamp_proto",
     ],
 )
 
 proto_library_with_info(
-    name = "publicca_proto_with_info",
+    name = "iam_proto_with_info",
     deps = [
-        ":publicca_proto",
+        ":iam_proto",
         "//google/cloud:common_resources_proto",
     ],
 )
@@ -53,51 +55,51 @@ load(
 )
 
 java_proto_library(
-    name = "publicca_java_proto",
-    deps = [":publicca_proto"],
+    name = "iam_java_proto",
+    deps = [":iam_proto"],
 )
 
 java_grpc_library(
-    name = "publicca_java_grpc",
-    srcs = [":publicca_proto"],
-    deps = [":publicca_java_proto"],
+    name = "iam_java_grpc",
+    srcs = [":iam_proto"],
+    deps = [":iam_java_proto"],
 )
 
 java_gapic_library(
-    name = "publicca_java_gapic",
-    srcs = [":publicca_proto_with_info"],
+    name = "iam_java_gapic",
+    srcs = [":iam_proto_with_info"],
     gapic_yaml = None,
-    grpc_service_config = "publicca_v1beta1_grpc_service_config.json",
-    service_yaml = "publicca_v1beta1.yaml",
+    grpc_service_config = "iam_grpc_service_config.json",
+    service_yaml = "iam_v2.yaml",
     test_deps = [
-        ":publicca_java_grpc",
+        ":iam_java_grpc",
     ],
     transport = "grpc+rest",
     deps = [
-        ":publicca_java_proto",
+        ":iam_java_proto",
         "//google/api:api_java_proto",
     ],
 )
 
 java_gapic_test(
-    name = "publicca_java_gapic_test_suite",
+    name = "iam_java_gapic_test_suite",
     test_classes = [
-        "com.google.cloud.security.publicca.v1beta1.PublicCertificateAuthorityServiceClientHttpJsonTest",
-        "com.google.cloud.security.publicca.v1beta1.PublicCertificateAuthorityServiceClientTest",
+        "com.google.iam.v2.PoliciesClientHttpJsonTest",
+        "com.google.iam.v2.PoliciesClientTest",
     ],
-    runtime_deps = [":publicca_java_gapic_test"],
+    runtime_deps = [":iam_java_gapic_test"],
 )
 
 # Open Source Packages
 java_gapic_assembly_gradle_pkg(
-    name = "google-cloud-security-publicca-v1beta1-java",
+    name = "google-cloud-iam-v2-java",
     include_samples = True,
     transport = "grpc+rest",
     deps = [
-        ":publicca_java_gapic",
-        ":publicca_java_grpc",
-        ":publicca_java_proto",
-        ":publicca_proto",
+        ":iam_java_gapic",
+        ":iam_java_grpc",
+        ":iam_java_proto",
+        ":iam_proto",
     ],
 )
 
@@ -113,43 +115,48 @@ load(
 )
 
 go_proto_library(
-    name = "publicca_go_proto",
+    name = "iam_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "google.golang.org/genproto/googleapis/cloud/security/publicca/v1beta1",
-    protos = [":publicca_proto"],
+    importpath = "google.golang.org/genproto/googleapis/iam/v2",
+    protos = [":iam_proto"],
     deps = [
         "//google/api:annotations_go_proto",
+        "//google/longrunning:longrunning_go_proto",
+        "//google/type:expr_go_proto",
     ],
 )
 
 go_gapic_library(
-    name = "publicca_go_gapic",
-    srcs = [":publicca_proto_with_info"],
-    grpc_service_config = "publicca_v1beta1_grpc_service_config.json",
-    importpath = "cloud.google.com/go/security/publicca/apiv1beta1;publicca",
+    name = "iam_go_gapic",
+    srcs = [":iam_proto_with_info"],
+    grpc_service_config = "iam_grpc_service_config.json",
+    importpath = "cloud.google.com/go/iam/apiv2;iam",
     metadata = True,
-    service_yaml = "publicca_v1beta1.yaml",
+    service_yaml = "iam_v2.yaml",
     transport = "grpc+rest",
     deps = [
-        ":publicca_go_proto",
+        ":iam_go_proto",
+        "//google/longrunning:longrunning_go_proto",
+        "@com_google_cloud_go//longrunning:go_default_library",
+        "@com_google_cloud_go//longrunning/autogen:go_default_library",
     ],
 )
 
 go_test(
-    name = "publicca_go_gapic_test",
-    srcs = [":publicca_go_gapic_srcjar_test"],
-    embed = [":publicca_go_gapic"],
-    importpath = "cloud.google.com/go/security/publicca/apiv1beta1",
+    name = "iam_go_gapic_test",
+    srcs = [":iam_go_gapic_srcjar_test"],
+    embed = [":iam_go_gapic"],
+    importpath = "cloud.google.com/go/iam/apiv2",
 )
 
 # Open Source Packages
 go_gapic_assembly_pkg(
-    name = "gapi-cloud-security-publicca-v1beta1-go",
+    name = "gapi-cloud-iam-v2-go",
     deps = [
-        ":publicca_go_gapic",
-        ":publicca_go_gapic_srcjar-metadata.srcjar",
-        ":publicca_go_gapic_srcjar-test.srcjar",
-        ":publicca_go_proto",
+        ":iam_go_gapic",
+        ":iam_go_gapic_srcjar-metadata.srcjar",
+        ":iam_go_gapic_srcjar-test.srcjar",
+        ":iam_go_proto",
     ],
 )
 
@@ -164,29 +171,34 @@ load(
 )
 
 py_gapic_library(
-    name = "publicca_py_gapic",
-    srcs = [":publicca_proto"],
-    grpc_service_config = "publicca_v1beta1_grpc_service_config.json",
-    service_yaml = "publicca_v1beta1.yaml",
+    name = "iam_py_gapic",
+    srcs = [":iam_proto"],
+    grpc_service_config = "iam_grpc_service_config.json",
+    service_yaml = "iam_v2.yaml",
     deps = [
+    ],
+    opt_args = [
+        "python-gapic-name=iam",
+        "python-gapic-namespace=google.cloud",
+        "warehouse-package-name=google-cloud-iam",
     ],
 )
 
 py_test(
-    name = "publicca_py_gapic_test",
+    name = "iam_py_gapic_test",
     srcs = [
-        "publicca_py_gapic_pytest.py",
-        "publicca_py_gapic_test.py",
+        "iam_py_gapic_pytest.py",
+        "iam_py_gapic_test.py",
     ],
     legacy_create_init = False,
-    deps = [":publicca_py_gapic"],
+    deps = [":iam_py_gapic"],
 )
 
 # Open Source Packages
 py_gapic_assembly_pkg(
-    name = "security-publicca-v1beta1-py",
+    name = "iam-v2-py",
     deps = [
-        ":publicca_py_gapic",
+        ":iam_py_gapic",
     ],
 )
 
@@ -202,34 +214,34 @@ load(
 )
 
 php_proto_library(
-    name = "publicca_php_proto",
-    deps = [":publicca_proto"],
+    name = "iam_php_proto",
+    deps = [":iam_proto"],
 )
 
 php_grpc_library(
-    name = "publicca_php_grpc",
-    srcs = [":publicca_proto"],
-    deps = [":publicca_php_proto"],
+    name = "iam_php_grpc",
+    srcs = [":iam_proto"],
+    deps = [":iam_php_proto"],
 )
 
 php_gapic_library(
-    name = "publicca_php_gapic",
-    srcs = [":publicca_proto_with_info"],
-    grpc_service_config = "publicca_v1beta1_grpc_service_config.json",
-    service_yaml = "publicca_v1beta1.yaml",
+    name = "iam_php_gapic",
+    srcs = [":iam_proto_with_info"],
+    grpc_service_config = "iam_grpc_service_config.json",
+    service_yaml = "iam_v2.yaml",
     deps = [
-        ":publicca_php_grpc",
-        ":publicca_php_proto",
+        ":iam_php_grpc",
+        ":iam_php_proto",
     ],
 )
 
 # Open Source Packages
 php_gapic_assembly_pkg(
-    name = "google-cloud-security-publicca-v1beta1-php",
+    name = "google-cloud-iam-v2-php",
     deps = [
-        ":publicca_php_gapic",
-        ":publicca_php_grpc",
-        ":publicca_php_proto",
+        ":iam_php_gapic",
+        ":iam_php_grpc",
+        ":iam_php_proto",
     ],
 )
 
@@ -243,21 +255,21 @@ load(
 )
 
 nodejs_gapic_library(
-    name = "publicca_nodejs_gapic",
-    package_name = "@google-cloud/publicca",
-    src = ":publicca_proto_with_info",
+    name = "iam_nodejs_gapic",
+    package_name = "@google-cloud/iam",
+    src = ":iam_proto_with_info",
     extra_protoc_parameters = ["metadata"],
-    grpc_service_config = "publicca_v1beta1_grpc_service_config.json",
-    package = "google.cloud.security.publicca.v1beta1",
-    service_yaml = "publicca_v1beta1.yaml",
+    grpc_service_config = "iam_grpc_service_config.json",
+    package = "google.iam.v2",
+    service_yaml = "iam_v2.yaml",
     deps = [],
 )
 
 nodejs_gapic_assembly_pkg(
-    name = "security-publicca-v1beta1-nodejs",
+    name = "iam-v2-nodejs",
     deps = [
-        ":publicca_nodejs_gapic",
-        ":publicca_proto",
+        ":iam_nodejs_gapic",
+        ":iam_proto",
     ],
 )
 
@@ -273,35 +285,42 @@ load(
 )
 
 ruby_proto_library(
-    name = "publicca_ruby_proto",
-    deps = [":publicca_proto"],
+    name = "iam_ruby_proto",
+    deps = [":iam_proto"],
 )
 
 ruby_grpc_library(
-    name = "publicca_ruby_grpc",
-    srcs = [":publicca_proto"],
-    deps = [":publicca_ruby_proto"],
+    name = "iam_ruby_grpc",
+    srcs = [":iam_proto"],
+    deps = [":iam_ruby_proto"],
 )
 
 ruby_cloud_gapic_library(
-    name = "publicca_ruby_gapic",
-    srcs = [":publicca_proto_with_info"],
-    extra_protoc_parameters = ["ruby-cloud-gem-name=google-cloud-security-publicca-v1beta1"],
-    grpc_service_config = "publicca_v1beta1_grpc_service_config.json",
-    service_yaml = "publicca_v1beta1.yaml",
+    name = "iam_ruby_gapic",
+    srcs = [":iam_proto_with_info"],
+    extra_protoc_parameters = [
+        "ruby-cloud-api-id=iam.googleapis.com",
+        "ruby-cloud-api-shortname=iam",
+        "ruby-cloud-gem-name=google-iam-v2",
+        "ruby-cloud-product-url=https://cloud.google.com/iam",
+    ],
+    grpc_service_config = "iam_grpc_service_config.json",
+    service_yaml = "iam_v2.yaml",
+    ruby_cloud_description = "Manages identity and access control policies for Google Cloud Platform resources.",
+    ruby_cloud_title = "IAM V2",
     deps = [
-        ":publicca_ruby_grpc",
-        ":publicca_ruby_proto",
+        ":iam_ruby_grpc",
+        ":iam_ruby_proto",
     ],
 )
 
 # Open Source Packages
 ruby_gapic_assembly_pkg(
-    name = "google-cloud-security-publicca-v1beta1-ruby",
+    name = "google-cloud-iam-v2-ruby",
     deps = [
-        ":publicca_ruby_gapic",
-        ":publicca_ruby_grpc",
-        ":publicca_ruby_proto",
+        ":iam_ruby_gapic",
+        ":iam_ruby_grpc",
+        ":iam_ruby_proto",
     ],
 )
 
@@ -317,35 +336,35 @@ load(
 )
 
 csharp_proto_library(
-    name = "publicca_csharp_proto",
-    deps = [":publicca_proto"],
+    name = "iam_csharp_proto",
+    deps = [":iam_proto"],
 )
 
 csharp_grpc_library(
-    name = "publicca_csharp_grpc",
-    srcs = [":publicca_proto"],
-    deps = [":publicca_csharp_proto"],
+    name = "iam_csharp_grpc",
+    srcs = [":iam_proto"],
+    deps = [":iam_csharp_proto"],
 )
 
 csharp_gapic_library(
-    name = "publicca_csharp_gapic",
-    srcs = [":publicca_proto_with_info"],
+    name = "iam_csharp_gapic",
+    srcs = [":iam_proto_with_info"],
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
-    grpc_service_config = "publicca_v1beta1_grpc_service_config.json",
-    service_yaml = "publicca_v1beta1.yaml",
+    grpc_service_config = "iam_grpc_service_config.json",
+    service_yaml = "iam_v2.yaml",
     deps = [
-        ":publicca_csharp_grpc",
-        ":publicca_csharp_proto",
+        ":iam_csharp_grpc",
+        ":iam_csharp_proto",
     ],
 )
 
 # Open Source Packages
 csharp_gapic_assembly_pkg(
-    name = "google-cloud-security-publicca-v1beta1-csharp",
+    name = "google-cloud-iam-v2-csharp",
     deps = [
-        ":publicca_csharp_gapic",
-        ":publicca_csharp_grpc",
-        ":publicca_csharp_proto",
+        ":iam_csharp_gapic",
+        ":iam_csharp_grpc",
+        ":iam_csharp_proto",
     ],
 )
 
@@ -359,13 +378,13 @@ load(
 )
 
 cc_proto_library(
-    name = "publicca_cc_proto",
-    deps = [":publicca_proto"],
+    name = "iam_cc_proto",
+    deps = [":iam_proto"],
 )
 
 cc_grpc_library(
-    name = "publicca_cc_grpc",
-    srcs = [":publicca_proto"],
+    name = "iam_cc_grpc",
+    srcs = [":iam_proto"],
     grpc_only = True,
-    deps = [":publicca_cc_proto"],
+    deps = [":iam_cc_proto"],
 )
