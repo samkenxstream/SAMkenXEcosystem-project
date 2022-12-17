@@ -47,8 +47,8 @@ proto_library_with_info(
     name = "connectors_proto_with_info",
     deps = [
         ":connectors_proto",
-        "//google/cloud/location:location_proto",
         "//google/cloud:common_resources_proto",
+        "//google/cloud/location:location_proto",
         "//google/iam/v1:iam_policy_proto",
     ],
 )
@@ -81,6 +81,7 @@ java_gapic_library(
     srcs = [":connectors_proto_with_info"],
     gapic_yaml = None,
     grpc_service_config = "connectors_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "connectors_v1.yaml",
     test_deps = [
         ":connectors_java_grpc",
@@ -108,6 +109,7 @@ java_gapic_test(
 # Open Source Packages
 java_gapic_assembly_gradle_pkg(
     name = "google-cloud-connectors-v1-java",
+    include_samples = True,
     transport = "grpc+rest",
     deps = [
         ":connectors_java_gapic",
@@ -115,7 +117,6 @@ java_gapic_assembly_gradle_pkg(
         ":connectors_java_proto",
         ":connectors_proto",
     ],
-    include_samples = True,
 )
 
 ##############################################################################
@@ -146,6 +147,7 @@ go_gapic_library(
     grpc_service_config = "connectors_grpc_service_config.json",
     importpath = "cloud.google.com/go/connectors/apiv1;connectors",
     metadata = True,
+    rest_numeric_enums = True,
     service_yaml = "connectors_v1.yaml",
     transport = "grpc+rest",
     deps = [
@@ -153,8 +155,8 @@ go_gapic_library(
         "//google/cloud/location:location_go_proto",
         "//google/iam/v1:iam_go_proto",
         "//google/longrunning:longrunning_go_proto",
-        "@com_google_cloud_go//longrunning/autogen:go_default_library",
-        "@com_google_cloud_go//longrunning:go_default_library",
+        "@com_google_cloud_go_longrunning//:go_default_library",
+        "@com_google_cloud_go_longrunning//autogen:go_default_library",
         "@io_bazel_rules_go//proto/wkt:struct_go_proto",
     ],
 )
@@ -171,8 +173,8 @@ go_gapic_assembly_pkg(
     name = "gapi-cloud-connectors-v1-go",
     deps = [
         ":connectors_go_gapic",
-        ":connectors_go_gapic_srcjar-test.srcjar",
         ":connectors_go_gapic_srcjar-metadata.srcjar",
+        ":connectors_go_gapic_srcjar-test.srcjar",
         ":connectors_go_proto",
     ],
 )
@@ -191,7 +193,9 @@ py_gapic_library(
     name = "connectors_py_gapic",
     srcs = [":connectors_proto"],
     grpc_service_config = "connectors_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "connectors_v1.yaml",
+    transport = "grpc",
     deps = [
         "//google/iam/v1:iam_policy_py_proto",
     ],
@@ -241,7 +245,9 @@ php_gapic_library(
     name = "connectors_php_gapic",
     srcs = [":connectors_proto_with_info"],
     grpc_service_config = "connectors_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "connectors_v1.yaml",
+    transport = "grpc+rest",
     deps = [
         ":connectors_php_grpc",
         ":connectors_php_proto",
@@ -274,7 +280,9 @@ nodejs_gapic_library(
     extra_protoc_parameters = ["metadata"],
     grpc_service_config = "connectors_grpc_service_config.json",
     package = "google.cloud.connectors.v1",
+    rest_numeric_enums = True,
     service_yaml = "connectors_v1.yaml",
+    transport = "grpc+rest",
     deps = [],
 )
 
@@ -291,8 +299,8 @@ nodejs_gapic_assembly_pkg(
 ##############################################################################
 load(
     "@com_google_googleapis_imports//:imports.bzl",
-    "ruby_gapic_assembly_pkg",
     "ruby_cloud_gapic_library",
+    "ruby_gapic_assembly_pkg",
     "ruby_grpc_library",
     "ruby_proto_library",
 )
@@ -315,6 +323,7 @@ ruby_cloud_gapic_library(
         "ruby-cloud-gem-name=google-cloud-connectors-v1",
     ],
     grpc_service_config = "connectors_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "connectors_v1.yaml",
     deps = [
         ":connectors_ruby_grpc",
@@ -359,6 +368,7 @@ csharp_gapic_library(
     srcs = [":connectors_proto_with_info"],
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
     grpc_service_config = "connectors_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "connectors_v1.yaml",
     deps = [
         ":connectors_csharp_grpc",

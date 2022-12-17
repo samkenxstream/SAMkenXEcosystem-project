@@ -70,6 +70,7 @@ java_gapic_library(
     srcs = [":iam_proto_with_info"],
     gapic_yaml = None,
     grpc_service_config = "iam_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "iam_v2.yaml",
     test_deps = [
         ":iam_java_grpc",
@@ -132,13 +133,14 @@ go_gapic_library(
     grpc_service_config = "iam_grpc_service_config.json",
     importpath = "cloud.google.com/go/iam/apiv2;iam",
     metadata = True,
+    rest_numeric_enums = True,
     service_yaml = "iam_v2.yaml",
     transport = "grpc+rest",
     deps = [
         ":iam_go_proto",
         "//google/longrunning:longrunning_go_proto",
-        "@com_google_cloud_go//longrunning:go_default_library",
-        "@com_google_cloud_go//longrunning/autogen:go_default_library",
+        "@com_google_cloud_go_longrunning//:go_default_library",
+        "@com_google_cloud_go_longrunning//autogen:go_default_library",
     ],
 )
 
@@ -174,13 +176,15 @@ py_gapic_library(
     name = "iam_py_gapic",
     srcs = [":iam_proto"],
     grpc_service_config = "iam_grpc_service_config.json",
-    service_yaml = "iam_v2.yaml",
-    deps = [
-    ],
     opt_args = [
         "python-gapic-name=iam",
         "python-gapic-namespace=google.cloud",
         "warehouse-package-name=google-cloud-iam",
+    ],
+    rest_numeric_enums = True,
+    service_yaml = "iam_v2.yaml",
+    transport = "grpc",
+    deps = [
     ],
 )
 
@@ -228,7 +232,9 @@ php_gapic_library(
     name = "iam_php_gapic",
     srcs = [":iam_proto_with_info"],
     grpc_service_config = "iam_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "iam_v2.yaml",
+    transport = "grpc+rest",
     deps = [
         ":iam_php_grpc",
         ":iam_php_proto",
@@ -261,7 +267,9 @@ nodejs_gapic_library(
     extra_protoc_parameters = ["metadata"],
     grpc_service_config = "iam_grpc_service_config.json",
     package = "google.iam.v2",
+    rest_numeric_enums = True,
     service_yaml = "iam_v2.yaml",
+    transport = "grpc+rest",
     deps = [],
 )
 
@@ -303,11 +311,13 @@ ruby_cloud_gapic_library(
         "ruby-cloud-api-shortname=iam",
         "ruby-cloud-gem-name=google-iam-v2",
         "ruby-cloud-product-url=https://cloud.google.com/iam",
+        "ruby-cloud-wrapper-gem-override=google-iam-client",
     ],
     grpc_service_config = "iam_grpc_service_config.json",
-    service_yaml = "iam_v2.yaml",
+    rest_numeric_enums = True,
     ruby_cloud_description = "Manages identity and access control policies for Google Cloud Platform resources.",
     ruby_cloud_title = "IAM V2",
+    service_yaml = "iam_v2.yaml",
     deps = [
         ":iam_ruby_grpc",
         ":iam_ruby_proto",
@@ -351,6 +361,7 @@ csharp_gapic_library(
     srcs = [":iam_proto_with_info"],
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
     grpc_service_config = "iam_grpc_service_config.json",
+    rest_numeric_enums = True,
     service_yaml = "iam_v2.yaml",
     deps = [
         ":iam_csharp_grpc",

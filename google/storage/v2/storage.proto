@@ -22,6 +22,7 @@ import "google/api/resource.proto";
 import "google/api/routing.proto";
 import "google/iam/v1/iam_policy.proto";
 import "google/iam/v1/policy.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
@@ -69,10 +70,7 @@ service Storage {
   // Permanently deletes an empty bucket.
   rpc DeleteBucket(DeleteBucketRequest) returns (google.protobuf.Empty) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "name"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "name" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "name";
   }
@@ -80,42 +78,44 @@ service Storage {
   // Returns metadata for the specified bucket.
   rpc GetBucket(GetBucketRequest) returns (Bucket) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "name"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "name" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "name";
   }
 
   // Creates a new bucket.
   rpc CreateBucket(CreateBucketRequest) returns (Bucket) {
+    option (google.api.routing) = {
+      routing_parameters { field: "parent" path_template: "{project=**}" }
+    };
     option (google.api.method_signature) = "parent,bucket,bucket_id";
   }
 
   // Retrieves a list of buckets for a given project.
   rpc ListBuckets(ListBucketsRequest) returns (ListBucketsResponse) {
+    option (google.api.routing) = {
+      routing_parameters { field: "parent" path_template: "{project=**}" }
+    };
     option (google.api.method_signature) = "parent";
   }
 
   // Locks retention policy on a bucket.
-  rpc LockBucketRetentionPolicy(LockBucketRetentionPolicyRequest) returns (Bucket) {
+  rpc LockBucketRetentionPolicy(LockBucketRetentionPolicyRequest)
+      returns (Bucket) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "bucket"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "bucket" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "bucket";
   }
 
   // Gets the IAM policy for a specified bucket or object.
-  rpc GetIamPolicy(google.iam.v1.GetIamPolicyRequest) returns (google.iam.v1.Policy) {
+  // The `resource` field in the request should be
+  // projects/_/buckets/<bucket_name> for a bucket or
+  // projects/_/buckets/<bucket_name>/objects/<object_name> for an object.
+  rpc GetIamPolicy(google.iam.v1.GetIamPolicyRequest)
+      returns (google.iam.v1.Policy) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "resource"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "resource" path_template: "{bucket=**}" }
       routing_parameters {
         field: "resource"
         path_template: "{bucket=projects/*/buckets/*}/objects/**"
@@ -125,12 +125,13 @@ service Storage {
   }
 
   // Updates an IAM policy for the specified bucket or object.
-  rpc SetIamPolicy(google.iam.v1.SetIamPolicyRequest) returns (google.iam.v1.Policy) {
+  // The `resource` field in the request should be
+  // projects/_/buckets/<bucket_name> for a bucket or
+  // projects/_/buckets/<bucket_name>/objects/<object_name> for an object.
+  rpc SetIamPolicy(google.iam.v1.SetIamPolicyRequest)
+      returns (google.iam.v1.Policy) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "resource"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "resource" path_template: "{bucket=**}" }
       routing_parameters {
         field: "resource"
         path_template: "{bucket=projects/*/buckets/*}/objects/**"
@@ -141,12 +142,13 @@ service Storage {
 
   // Tests a set of permissions on the given bucket or object to see which, if
   // any, are held by the caller.
-  rpc TestIamPermissions(google.iam.v1.TestIamPermissionsRequest) returns (google.iam.v1.TestIamPermissionsResponse) {
+  // The `resource` field in the request should be
+  // projects/_/buckets/<bucket_name> for a bucket or
+  // projects/_/buckets/<bucket_name>/objects/<object_name> for an object.
+  rpc TestIamPermissions(google.iam.v1.TestIamPermissionsRequest)
+      returns (google.iam.v1.TestIamPermissionsResponse) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "resource"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "resource" path_template: "{bucket=**}" }
       routing_parameters {
         field: "resource"
         path_template: "{bucket=projects/*/buckets/*}/objects/**"
@@ -158,16 +160,14 @@ service Storage {
   // Updates a bucket. Equivalent to JSON API's storage.buckets.patch method.
   rpc UpdateBucket(UpdateBucketRequest) returns (Bucket) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "bucket.name"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "bucket.name" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "bucket,update_mask";
   }
 
   // Permanently deletes a notification subscription.
-  rpc DeleteNotification(DeleteNotificationRequest) returns (google.protobuf.Empty) {
+  rpc DeleteNotification(DeleteNotificationRequest)
+      returns (google.protobuf.Empty) {
     option (google.api.routing) = {
       routing_parameters {
         field: "name"
@@ -194,21 +194,16 @@ service Storage {
   // See https://cloud.google.com/storage/docs/pubsub-notifications.
   rpc CreateNotification(CreateNotificationRequest) returns (Notification) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "parent"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "parent" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "parent,notification";
   }
 
   // Retrieves a list of notification subscriptions for a given bucket.
-  rpc ListNotifications(ListNotificationsRequest) returns (ListNotificationsResponse) {
+  rpc ListNotifications(ListNotificationsRequest)
+      returns (ListNotificationsResponse) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "parent"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "parent" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "parent";
   }
@@ -228,17 +223,15 @@ service Storage {
   // is not enabled for the bucket, or if the `generation` parameter is used.
   rpc DeleteObject(DeleteObjectRequest) returns (google.protobuf.Empty) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "bucket"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "bucket" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "bucket,object";
     option (google.api.method_signature) = "bucket,object,generation";
   }
 
   // Cancels an in-progress resumable upload.
-  rpc CancelResumableWrite(CancelResumableWriteRequest) returns (CancelResumableWriteResponse) {
+  rpc CancelResumableWrite(CancelResumableWriteRequest)
+      returns (CancelResumableWriteResponse) {
     option (google.api.routing) = {
       routing_parameters {
         field: "upload_id"
@@ -251,10 +244,7 @@ service Storage {
   // Retrieves an object's metadata.
   rpc GetObject(GetObjectRequest) returns (Object) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "bucket"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "bucket" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "bucket,object";
     option (google.api.method_signature) = "bucket,object,generation";
@@ -263,10 +253,7 @@ service Storage {
   // Reads an object's data.
   rpc ReadObject(ReadObjectRequest) returns (stream ReadObjectResponse) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "bucket"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "bucket" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "bucket,object";
     option (google.api.method_signature) = "bucket,object,generation";
@@ -276,10 +263,7 @@ service Storage {
   // Equivalent to JSON API's storage.objects.patch.
   rpc UpdateObject(UpdateObjectRequest) returns (Object) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "object.bucket"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "object.bucket" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "object,update_mask";
   }
@@ -336,26 +320,12 @@ service Storage {
   // Attempting to resume an already finalized object will result in an OK
   // status, with a WriteObjectResponse containing the finalized object's
   // metadata.
-  rpc WriteObject(stream WriteObjectRequest) returns (WriteObjectResponse) {
-    option (google.api.routing) = {
-      routing_parameters {
-        field: "write_object_spec.resource.bucket"
-        path_template: "{bucket=**}"
-      }
-      routing_parameters {
-        field: "upload_id"
-        path_template: "{bucket=projects/*/buckets/*}/**"
-      }
-    };
-  }
+  rpc WriteObject(stream WriteObjectRequest) returns (WriteObjectResponse) {}
 
   // Retrieves a list of objects matching the criteria.
   rpc ListObjects(ListObjectsRequest) returns (ListObjectsResponse) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "parent"
-        path_template: "{bucket=**}"
-      }
+      routing_parameters { field: "parent" path_template: "{bucket=**}" }
     };
     option (google.api.method_signature) = "parent";
   }
@@ -364,9 +334,7 @@ service Storage {
   // metadata.
   rpc RewriteObject(RewriteObjectRequest) returns (RewriteResponse) {
     option (google.api.routing) = {
-      routing_parameters {
-        field: "source_bucket"
-      }
+      routing_parameters { field: "source_bucket" }
       routing_parameters {
         field: "destination_bucket"
         path_template: "{bucket=**}"
@@ -377,7 +345,8 @@ service Storage {
   // Starts a resumable write. How long the write operation remains valid, and
   // what happens when the write operation becomes invalid, are
   // service-dependent.
-  rpc StartResumableWrite(StartResumableWriteRequest) returns (StartResumableWriteResponse) {
+  rpc StartResumableWrite(StartResumableWriteRequest)
+      returns (StartResumableWriteResponse) {
     option (google.api.routing) = {
       routing_parameters {
         field: "write_object_spec.resource.bucket"
@@ -399,7 +368,8 @@ service Storage {
   // evicted. For any sequence of `QueryWriteStatus()` calls for a given
   // object name, the sequence of returned `persisted_size` values will be
   // non-decreasing.
-  rpc QueryWriteStatus(QueryWriteStatusRequest) returns (QueryWriteStatusResponse) {
+  rpc QueryWriteStatus(QueryWriteStatusRequest)
+      returns (QueryWriteStatusResponse) {
     option (google.api.routing) = {
       routing_parameters {
         field: "upload_id"
@@ -411,31 +381,52 @@ service Storage {
 
   // Retrieves the name of a project's Google Cloud Storage service account.
   rpc GetServiceAccount(GetServiceAccountRequest) returns (ServiceAccount) {
+    option (google.api.routing) = {
+      routing_parameters { field: "project" }
+    };
     option (google.api.method_signature) = "project";
   }
 
   // Creates a new HMAC key for the given service account.
   rpc CreateHmacKey(CreateHmacKeyRequest) returns (CreateHmacKeyResponse) {
+    option (google.api.routing) = {
+      routing_parameters { field: "project" }
+    };
     option (google.api.method_signature) = "project,service_account_email";
   }
 
   // Deletes a given HMAC key.  Key must be in an INACTIVE state.
   rpc DeleteHmacKey(DeleteHmacKeyRequest) returns (google.protobuf.Empty) {
+    option (google.api.routing) = {
+      routing_parameters { field: "project" }
+    };
     option (google.api.method_signature) = "access_id,project";
   }
 
   // Gets an existing HMAC key metadata for the given id.
   rpc GetHmacKey(GetHmacKeyRequest) returns (HmacKeyMetadata) {
+    option (google.api.routing) = {
+      routing_parameters { field: "project" }
+    };
     option (google.api.method_signature) = "access_id,project";
   }
 
   // Lists HMAC keys under a given project with the additional filters provided.
   rpc ListHmacKeys(ListHmacKeysRequest) returns (ListHmacKeysResponse) {
+    option (google.api.routing) = {
+      routing_parameters { field: "project" }
+    };
     option (google.api.method_signature) = "project";
   }
 
   // Updates a given HMAC key state between ACTIVE and INACTIVE.
   rpc UpdateHmacKey(UpdateHmacKeyRequest) returns (HmacKeyMetadata) {
+    option (google.api.routing) = {
+      routing_parameters {
+        field: "hmac_key.project"
+        path_template: "{project=**}"
+      }
+    };
     option (google.api.method_signature) = "hmac_key,update_mask";
   }
 }
@@ -445,9 +436,7 @@ message DeleteBucketRequest {
   // Required. Name of a bucket to delete.
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = {
-      type: "storage.googleapis.com/Bucket"
-    }
+    (google.api.resource_reference) = { type: "storage.googleapis.com/Bucket" }
   ];
 
   // If set, only deletes the bucket if its metageneration matches this value.
@@ -463,9 +452,7 @@ message GetBucketRequest {
   // Required. Name of a bucket.
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = {
-      type: "storage.googleapis.com/Bucket"
-    }
+    (google.api.resource_reference) = { type: "storage.googleapis.com/Bucket" }
   ];
 
   // If set, and if the bucket's current metageneration does not match the
@@ -492,15 +479,15 @@ message CreateBucketRequest {
     }
   ];
 
-  // Required. Properties of the new bucket being inserted.
+  // Properties of the new bucket being inserted.
   // The project and name of the bucket are specified in the parent and
   // bucket_id fields, respectively. Populating those fields in `bucket` will
   // result in an error.
-  Bucket bucket = 2 [(google.api.field_behavior) = REQUIRED];
+  Bucket bucket = 2;
 
-  // Required. The ID to use for this bucket, which will become the final component of
-  // the bucket's resource name. For example, the value `foo` might result in
-  // a bucket with the name `projects/123456/buckets/foo`.
+  // Required. The ID to use for this bucket, which will become the final
+  // component of the bucket's resource name. For example, the value `foo` might
+  // result in a bucket with the name `projects/123456/buckets/foo`.
   string bucket_id = 3 [(google.api.field_behavior) = REQUIRED];
 
   // Apply a predefined set of access controls to this bucket.
@@ -559,21 +546,19 @@ message LockBucketRetentionPolicyRequest {
   // Required. Name of a bucket.
   string bucket = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = {
-      type: "storage.googleapis.com/Bucket"
-    }
+    (google.api.resource_reference) = { type: "storage.googleapis.com/Bucket" }
   ];
 
-  // Makes the operation conditional on whether bucket's current metageneration
-  // matches the given value. Must be positive.
-  int64 if_metageneration_match = 2;
+  // Required. Makes the operation conditional on whether bucket's current
+  // metageneration matches the given value. Must be positive.
+  int64 if_metageneration_match = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 // Request for UpdateBucket method.
 message UpdateBucketRequest {
-  // The bucket to update.
+  // Required. The bucket to update.
   // The bucket's `name` field will be used to identify the bucket.
-  Bucket bucket = 1;
+  Bucket bucket = 1 [(google.api.field_behavior) = REQUIRED];
 
   // If set, will only modify the bucket if its metageneration matches this
   // value.
@@ -593,7 +578,7 @@ message UpdateBucketRequest {
   // "bucketOwnerRead", "private", "projectPrivate", or "publicRead".
   string predefined_default_object_acl = 9;
 
-  // List of fields to be updated.
+  // Required. List of fields to be updated.
   //
   // To specify ALL fields, equivalent to the JSON API's "update" function,
   // specify a single field with the value `*`. Note: not recommended. If a new
@@ -603,7 +588,8 @@ message UpdateBucketRequest {
   // Not specifying any fields is an error.
   // Not specifying a field while setting that field to a non-default value is
   // an error.
-  google.protobuf.FieldMask update_mask = 6;
+  google.protobuf.FieldMask update_mask = 6
+      [(google.api.field_behavior) = REQUIRED];
 }
 
 // Request message for DeleteNotification.
@@ -624,9 +610,7 @@ message GetNotificationRequest {
   // `projects/{project}/buckets/{bucket}/notificationConfigs/{notification}`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = {
-      type: "storage.googleapis.com/Bucket"
-    }
+    (google.api.resource_reference) = { type: "storage.googleapis.com/Bucket" }
   ];
 }
 
@@ -690,8 +674,8 @@ message ComposeObjectRequest {
       optional int64 if_generation_match = 1;
     }
 
-    // Required. The source object's name. All source objects must reside in the same
-    // bucket.
+    // Required. The source object's name. All source objects must reside in the
+    // same bucket.
     string name = 1 [(google.api.field_behavior) = REQUIRED];
 
     // The generation of this object to use as the source.
@@ -726,11 +710,15 @@ message ComposeObjectRequest {
   // that will be used to encrypt the object. Overrides the object
   // metadata's `kms_key_name` value, if any.
   string kms_key = 6 [(google.api.resource_reference) = {
-                        type: "cloudkms.googleapis.com/CryptoKey"
-                      }];
+    type: "cloudkms.googleapis.com/CryptoKey"
+  }];
 
   // A set of parameters common to Storage API requests concerning an object.
   CommonObjectRequestParams common_object_request_params = 7;
+
+  // The checksums of the complete object. This will be validated against the
+  // combined checksums of the component objects.
+  ObjectChecksums object_checksums = 10;
 }
 
 // Message for deleting an object.
@@ -739,7 +727,9 @@ message DeleteObjectRequest {
   // Required. Name of the bucket in which the object resides.
   string bucket = 1 [(google.api.field_behavior) = REQUIRED];
 
-  // Required. The name of the object to delete (when not using a resumable write).
+  // Required. The name of the finalized object to delete.
+  // Note: If you want to delete an unfinalized resumable upload please use
+  // `CancelResumableWrite`.
   string object = 2 [(google.api.field_behavior) = REQUIRED];
 
   // If present, permanently deletes a specific revision of this object (as
@@ -772,24 +762,22 @@ message DeleteObjectRequest {
 // Message for canceling an in-progress resumable upload.
 // `upload_id` **must** be set.
 message CancelResumableWriteRequest {
-  // Required. The upload_id of the resumable upload to cancel. This should be copied
-  // from the `upload_id` field of `StartResumableWriteResponse`.
+  // Required. The upload_id of the resumable upload to cancel. This should be
+  // copied from the `upload_id` field of `StartResumableWriteResponse`.
   string upload_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // Empty response message for canceling an in-progress resumable upload, will be
 // extended as needed.
-message CancelResumableWriteResponse {
-
-}
+message CancelResumableWriteResponse {}
 
 // Request message for ReadObject.
 message ReadObjectRequest {
-  // The name of the bucket containing the object to read.
-  string bucket = 1;
+  // Required. The name of the bucket containing the object to read.
+  string bucket = 1 [(google.api.field_behavior) = REQUIRED];
 
-  // The name of the object to read.
-  string object = 2;
+  // Required. The name of the object to read.
+  string object = 2 [(google.api.field_behavior) = REQUIRED];
 
   // If present, selects a specific revision of this object (as opposed
   // to the latest version, the default).
@@ -911,8 +899,8 @@ message ReadObjectResponse {
 
 // Describes an attempt to insert an object, possibly over multiple requests.
 message WriteObjectSpec {
-  // Destination object, including its name and its metadata.
-  Object resource = 1;
+  // Required. Destination object, including its name and its metadata.
+  Object resource = 1 [(google.api.field_behavior) = REQUIRED];
 
   // Apply a predefined set of access controls to this object.
   // Valid values are "authenticatedRead", "bucketOwnerFullControl",
@@ -963,8 +951,8 @@ message WriteObjectRequest {
     WriteObjectSpec write_object_spec = 2;
   }
 
-  // Required. The offset from the beginning of the object at which the data should be
-  // written.
+  // Required. The offset from the beginning of the object at which the data
+  // should be written.
   //
   // In the first `WriteObjectRequest` of a `WriteObject()` action, it
   // indicates the initial offset for the `Write()` call. The value **must** be
@@ -1065,23 +1053,23 @@ message ListObjectsRequest {
   // * may be used to mean "all fields".
   optional google.protobuf.FieldMask read_mask = 8;
 
-  // Filter results to objects whose names are lexicographically equal to or
-  // after lexicographic_start. If lexicographic_end is also set, the objects
+  // Optional. Filter results to objects whose names are lexicographically equal
+  // to or after lexicographic_start. If lexicographic_end is also set, the
+  // objects listed have names between lexicographic_start (inclusive) and
+  // lexicographic_end (exclusive).
+  string lexicographic_start = 10 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. Filter results to objects whose names are lexicographically
+  // before lexicographic_end. If lexicographic_start is also set, the objects
   // listed have names between lexicographic_start (inclusive) and
   // lexicographic_end (exclusive).
-  string lexicographic_start = 10;
-
-  // Filter results to objects whose names are lexicographically before
-  // lexicographic_end. If lexicographic_start is also set, the objects listed
-  // have names between lexicographic_start (inclusive) and lexicographic_end
-  // (exclusive).
-  string lexicographic_end = 11;
+  string lexicographic_end = 11 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // Request object for `QueryWriteStatus`.
 message QueryWriteStatusRequest {
-  // Required. The name of the resume token for the object whose write status is being
-  // requested.
+  // Required. The name of the resume token for the object whose write status is
+  // being requested.
   string upload_id = 1 [(google.api.field_behavior) = REQUIRED];
 
   // A set of parameters common to Storage API requests concerning an object.
@@ -1113,21 +1101,24 @@ message QueryWriteStatusResponse {
 // encryption_key_sha256_bytes fields of the
 // common_object_request_params.customer_encryption field.
 message RewriteObjectRequest {
-  // Immutable. The name of the destination object.
+  // Required. Immutable. The name of the destination object.
   // See the
-  // [Naming Guidelines](https://cloud.google.com/storage/docs/naming-objects).
+  // [Naming Guidelines](https://cloud.google.com/storage/docs/objects#naming).
   // Example: `test.txt`
   // The `name` field by itself does not uniquely identify a Cloud Storage
   // object. A Cloud Storage object is uniquely identified by the tuple of
   // (bucket, object, generation).
-  string destination_name = 24 [(google.api.field_behavior) = IMMUTABLE];
+  string destination_name = 24 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.field_behavior) = IMMUTABLE
+  ];
 
-  // Immutable. The name of the bucket containing the destination object.
+  // Required. Immutable. The name of the bucket containing the destination
+  // object.
   string destination_bucket = 25 [
+    (google.api.field_behavior) = REQUIRED,
     (google.api.field_behavior) = IMMUTABLE,
-    (google.api.resource_reference) = {
-      type: "storage.googleapis.com/Bucket"
-    }
+    (google.api.resource_reference) = { type: "storage.googleapis.com/Bucket" }
   ];
 
   // The name of the Cloud KMS key that will be used to encrypt the destination
@@ -1136,8 +1127,8 @@ message RewriteObjectRequest {
   // bucket's default encryption key, if any, or else the Google-managed
   // encryption key.
   string destination_kms_key = 27 [(google.api.resource_reference) = {
-                                     type: "cloudkms.googleapis.com/CryptoKey"
-                                   }];
+    type: "cloudkms.googleapis.com/CryptoKey"
+  }];
 
   // Properties of the destination, post-rewrite object.
   // The `name`, `bucket` and `kms_key` fields must not be populated (these
@@ -1231,6 +1222,10 @@ message RewriteObjectRequest {
 
   // A set of parameters common to Storage API requests concerning an object.
   CommonObjectRequestParams common_object_request_params = 19;
+
+  // The checksums of the complete object. This will be used to validate the
+  // destination object after rewriting.
+  ObjectChecksums object_checksums = 29;
 }
 
 // A rewrite response.
@@ -1258,11 +1253,19 @@ message RewriteResponse {
 
 // Request message StartResumableWrite.
 message StartResumableWriteRequest {
-  // The destination bucket, object, and metadata, as well as any preconditions.
-  WriteObjectSpec write_object_spec = 1;
+  // Required. The destination bucket, object, and metadata, as well as any
+  // preconditions.
+  WriteObjectSpec write_object_spec = 1
+      [(google.api.field_behavior) = REQUIRED];
 
   // A set of parameters common to Storage API requests concerning an object.
   CommonObjectRequestParams common_object_request_params = 3;
+
+  // The checksums of the complete object. This will be used to validate the
+  // uploaded object. For each upload, object_checksums can be provided with
+  // either StartResumableWriteRequest or the WriteObjectRequest with
+  // finish_write set to `true`.
+  ObjectChecksums object_checksums = 5;
 }
 
 // Response object for `StartResumableWrite`.
@@ -1274,12 +1277,12 @@ message StartResumableWriteResponse {
 
 // Request message for UpdateObject.
 message UpdateObjectRequest {
-  // The object to update.
+  // Required. The object to update.
   // The object's bucket and name fields are used to identify the object to
   // update. If present, the object's generation field selects a specific
   // revision of this object whose metadata should be updated. Otherwise,
   // assumes the live version of the object.
-  Object object = 1;
+  Object object = 1 [(google.api.field_behavior) = REQUIRED];
 
   // Makes the operation conditional on whether the object's current generation
   // matches the given value. Setting to 0 makes the operation succeed only if
@@ -1305,7 +1308,7 @@ message UpdateObjectRequest {
   // "bucketOwnerRead", "private", "projectPrivate", or "publicRead".
   string predefined_acl = 10;
 
-  // List of fields to be updated.
+  // Required. List of fields to be updated.
   //
   // To specify ALL fields, equivalent to the JSON API's "update" function,
   // specify a single field with the value `*`. Note: not recommended. If a new
@@ -1315,7 +1318,8 @@ message UpdateObjectRequest {
   // Not specifying any fields is an error.
   // Not specifying a field while setting that field to a non-default value is
   // an error.
-  google.protobuf.FieldMask update_mask = 7;
+  google.protobuf.FieldMask update_mask = 7
+      [(google.api.field_behavior) = REQUIRED];
 
   // A set of parameters common to Storage API requests concerning an object.
   CommonObjectRequestParams common_object_request_params = 8;
@@ -1335,9 +1339,9 @@ message GetServiceAccountRequest {
 
 // Request message for CreateHmacKey.
 message CreateHmacKeyRequest {
-  // Required. The project that the HMAC-owning service account lives in, in the format of
-  // "projects/<projectIdentifier>".
-  // <projectIdentifier> can be the project ID or project number.
+  // Required. The project that the HMAC-owning service account lives in, in the
+  // format of "projects/<projectIdentifier>". <projectIdentifier> can be the
+  // project ID or project number.
   string project = 1 [
     (google.api.field_behavior) = REQUIRED,
     (google.api.resource_reference) = {
@@ -1403,17 +1407,17 @@ message ListHmacKeysRequest {
     }
   ];
 
-  // Optional. The maximum number of keys to return.
-  int32 page_size = 2 [(google.api.field_behavior) = OPTIONAL];
+  // The maximum number of keys to return.
+  int32 page_size = 2;
 
-  // Optional. A previously returned token from ListHmacKeysResponse to get the next page.
-  string page_token = 3 [(google.api.field_behavior) = OPTIONAL];
+  // A previously returned token from ListHmacKeysResponse to get the next page.
+  string page_token = 3;
 
-  // Optional. If set, filters to only return HMAC keys for specified service account.
-  string service_account_email = 4 [(google.api.field_behavior) = OPTIONAL];
+  // If set, filters to only return HMAC keys for specified service account.
+  string service_account_email = 4;
 
-  // Optional. If set, return deleted keys that have not yet been wiped out.
-  bool show_deleted_keys = 5 [(google.api.field_behavior) = OPTIONAL];
+  // If set, return deleted keys that have not yet been wiped out.
+  bool show_deleted_keys = 5;
 }
 
 // Hmac key list response with next page information.
@@ -1539,8 +1543,6 @@ message ServiceConstants {
     // GetListObjectsSplitPoints RPC is valid.
     SPLIT_TOKEN_MAX_VALID_DAYS = 14;
   }
-
-
 }
 
 // A bucket.
@@ -1587,8 +1589,8 @@ message Bucket {
     // The name of the Cloud KMS key that will be used to encrypt objects
     // inserted into this bucket, if no encryption method is specified.
     string default_kms_key = 1 [(google.api.resource_reference) = {
-                                  type: "cloudkms.googleapis.com/CryptoKey"
-                                }];
+      type: "cloudkms.googleapis.com/CryptoKey"
+    }];
   }
 
   // Bucket restriction options.
@@ -1600,8 +1602,9 @@ message Bucket {
       bool enabled = 1;
 
       // The deadline time for changing
-      // `iamConfig.uniformBucketLevelAccess.enabled` from `true` to `false`.
-      // Mutable until the specified deadline is reached, but not afterward.
+      // `iam_config.uniform_bucket_level_access.enabled` from `true` to
+      // `false`. Mutable until the specified deadline is reached, but not
+      // afterward.
       google.protobuf.Timestamp lock_time = 2;
     }
 
@@ -1723,7 +1726,14 @@ message Bucket {
     // duration must be greater than zero and less than 100 years. Note that
     // enforcement of retention periods less than a day is not guaranteed. Such
     // periods should only be used for testing purposes.
-    int64 retention_period = 3;
+    optional int64 retention_period = 3;
+
+    // The duration that objects need to be retained. Retention duration must be
+    // greater than zero and less than 100 years. Note that enforcement of
+    // retention periods less than a day is not guaranteed. Such periods should
+    // only be used for testing purposes. Any `nanos` value specified will be
+    // rounded down to the nearest second.
+    google.protobuf.Duration retention_duration = 4;
   }
 
   // Properties of a bucket related to versioning.
@@ -1765,19 +1775,20 @@ message Bucket {
     // Enables Autoclass.
     bool enabled = 1;
 
-    // Output only. Latest instant at which the `enabled` field was set to true after being
-    // disabled/unconfigured or set to false after being enabled. If Autoclass
-    // is enabled when the bucket is created, the toggle_time is set to the
-    // bucket creation time.
-    google.protobuf.Timestamp toggle_time = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+    // Output only. Latest instant at which the `enabled` field was set to true
+    // after being disabled/unconfigured or set to false after being enabled. If
+    // Autoclass is enabled when the bucket is created, the toggle_time is set
+    // to the bucket creation time.
+    google.protobuf.Timestamp toggle_time = 2
+        [(google.api.field_behavior) = OUTPUT_ONLY];
   }
 
   // Immutable. The name of the bucket.
   string name = 1 [(google.api.field_behavior) = IMMUTABLE];
 
-  // Output only. The user-chosen part of the bucket name. The `{bucket}` portion of the
-  // `name` field. For globally unique buckets, this is equal to the "bucket
-  // name" of other Cloud Storage APIs. Example: "pub".
+  // Output only. The user-chosen part of the bucket name. The `{bucket}`
+  // portion of the `name` field. For globally unique buckets, this is equal to
+  // the "bucket name" of other Cloud Storage APIs. Example: "pub".
   string bucket_id = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // The etag of the bucket.
@@ -1800,14 +1811,16 @@ message Bucket {
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
   int64 metageneration = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
 
-  // Immutable. The location of the bucket. Object data for objects in the bucket resides
-  // in physical storage within this region.  Defaults to `US`. See the
+  // Immutable. The location of the bucket. Object data for objects in the
+  // bucket resides in physical storage within this region.  Defaults to `US`.
+  // See the
   // [https://developers.google.com/storage/docs/concepts-techniques#specifyinglocations"][developer's
   // guide] for the authoritative list. Attempting to update this field after
   // the bucket is created will result in an error.
   string location = 5 [(google.api.field_behavior) = IMMUTABLE];
 
-  // Output only. The location type of the bucket (region, dual-region, multi-region, etc).
+  // Output only. The location type of the bucket (region, dual-region,
+  // multi-region, etc).
   string location_type = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // The bucket's default storage class, used whenever no storageClass is
@@ -1827,12 +1840,12 @@ message Bucket {
   string rpo = 27;
 
   // Access controls on the bucket.
-  // If iamConfig.uniformBucketLevelAccess is enabled on this bucket,
+  // If iam_config.uniform_bucket_level_access is enabled on this bucket,
   // requests to set, read, or modify acl is an error.
   repeated BucketAccessControl acl = 8;
 
   // Default access controls to apply to new objects when no ACL is provided.
-  // If iamConfig.uniformBucketLevelAccess is enabled on this bucket,
+  // If iam_config.uniform_bucket_level_access is enabled on this bucket,
   // requests to set, read, or modify acl is an error.
   repeated ObjectAccessControl default_object_acl = 9;
 
@@ -1844,7 +1857,8 @@ message Bucket {
   // Output only. The creation time of the bucket.
   // Attempting to set or update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
-  google.protobuf.Timestamp create_time = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp create_time = 11
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // The bucket's [https://www.w3.org/TR/cors/][Cross-Origin Resource Sharing]
   // (CORS) config.
@@ -1853,7 +1867,8 @@ message Bucket {
   // Output only. The modification time of the bucket.
   // Attempting to set or update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
-  google.protobuf.Timestamp update_time = 13 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp update_time = 13
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // The default value for event-based hold on newly created objects in this
   // bucket.  Event-based hold is a way to retain objects indefinitely until an
@@ -1886,7 +1901,8 @@ message Bucket {
   // and name prefix (if any) for the current bucket's logs.
   Logging logging = 18;
 
-  // Output only. The owner of the bucket. This is always the project team's owner group.
+  // Output only. The owner of the bucket. This is always the project team's
+  // owner group.
   Owner owner = 19 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Encryption config for a bucket.
@@ -1912,8 +1928,8 @@ message Bucket {
   // Reserved for future use.
   bool satisfies_pzs = 25;
 
-  // Configuration that, if present, specifies the data placement for a Custom
-  // Dual Region.
+  // Configuration that, if present, specifies the data placement for a
+  // [https://cloud.google.com/storage/docs/use-dual-regions][Dual Region].
   CustomPlacementConfig custom_placement_config = 26;
 
   // The bucket's Autoclass configuration. If there is no configuration, the
@@ -1935,7 +1951,8 @@ message BucketAccessControl {
   // * `group-{groupid}`
   // * `group-{email}`
   // * `domain-{domain}`
-  // * `project-{team-projectid}`
+  // * `project-{team}-{projectnumber}`
+  // * `project-{team}-{projectid}`
   // * `allUsers`
   // * `allAuthenticatedUsers`
   // Examples:
@@ -1944,7 +1961,13 @@ message BucketAccessControl {
   // `group-example@googlegroups.com`
   // * All members of the Google Apps for Business domain `example.com` would be
   // `domain-example.com`
+  // For project entities, `project-{team}-{projectnumber}` format will be
+  // returned on response.
   string entity = 3;
+
+  // Output only. The alternative entity format, if exists. For project
+  // entities, `project-{team}-{projectid}` format will be returned on response.
+  string entity_alt = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // The ID for the entity, if any.
   string entity_id = 4;
@@ -2003,9 +2026,9 @@ message HmacKeyMetadata {
   // Immutable. Globally unique id for keys.
   string access_id = 2 [(google.api.field_behavior) = IMMUTABLE];
 
-  // Immutable. Identifies the project that owns the service account of the specified HMAC
-  // key, in the format "projects/<projectIdentifier>". <projectIdentifier> can
-  // be the project ID or project number.
+  // Immutable. Identifies the project that owns the service account of the
+  // specified HMAC key, in the format "projects/<projectIdentifier>".
+  // <projectIdentifier> can be the project ID or project number.
   string project = 3 [
     (google.api.field_behavior) = IMMUTABLE,
     (google.api.resource_reference) = {
@@ -2021,10 +2044,12 @@ message HmacKeyMetadata {
   string state = 5;
 
   // Output only. The creation time of the HMAC key.
-  google.protobuf.Timestamp create_time = 6 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp create_time = 6
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Output only. The last modification time of the HMAC key metadata.
-  google.protobuf.Timestamp update_time = 7 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp update_time = 7
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // The etag of the HMAC key.
   string etag = 8;
@@ -2043,7 +2068,8 @@ message Notification {
   // The `{project}` portion may be `_` for globally unique buckets.
   string name = 1 [(google.api.field_behavior) = REQUIRED];
 
-  // Required. The Pub/Sub topic to which this subscription publishes. Formatted as:
+  // Required. The Pub/Sub topic to which this subscription publishes. Formatted
+  // as:
   // '//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}'
   string topic = 2 [(google.api.field_behavior) = REQUIRED];
 
@@ -2052,17 +2078,17 @@ message Notification {
   // only be performed if the etag matches that of the Notification.
   string etag = 7;
 
-  // Optional. If present, only send notifications about listed event types. If empty,
+  // If present, only send notifications about listed event types. If empty,
   // sent notifications for all event types.
-  repeated string event_types = 3 [(google.api.field_behavior) = OPTIONAL];
+  repeated string event_types = 3;
 
-  // Optional. An optional list of additional attributes to attach to each Pub/Sub
+  // A list of additional attributes to attach to each Pub/Sub
   // message published for this notification subscription.
-  map<string, string> custom_attributes = 4 [(google.api.field_behavior) = OPTIONAL];
+  map<string, string> custom_attributes = 4;
 
-  // Optional. If present, only apply this notification config to object names that
+  // If present, only apply this notification config to object names that
   // begin with this prefix.
-  string object_name_prefix = 5 [(google.api.field_behavior) = OPTIONAL];
+  string object_name_prefix = 5;
 
   // Required. The desired content of the Payload.
   string payload_format = 6 [(google.api.field_behavior) = REQUIRED];
@@ -2081,9 +2107,9 @@ message CustomerEncryption {
 
 // An object.
 message Object {
-  // Immutable. The name of this object. Nearly any sequence of unicode characters is
-  // valid. See
-  // [Guidelines](https://cloud.google.com/storage/docs/naming-objects).
+  // Immutable. The name of this object. Nearly any sequence of unicode
+  // characters is valid. See
+  // [Guidelines](https://cloud.google.com/storage/docs/objects#naming).
   // Example: `test.txt`
   // The `name` field by itself does not uniquely identify a Cloud Storage
   // object. A Cloud Storage object is uniquely identified by the tuple of
@@ -2093,9 +2119,7 @@ message Object {
   // Immutable. The name of the bucket containing this object.
   string bucket = 2 [
     (google.api.field_behavior) = IMMUTABLE,
-    (google.api.resource_reference) = {
-      type: "storage.googleapis.com/Bucket"
-    }
+    (google.api.resource_reference) = { type: "storage.googleapis.com/Bucket" }
   ];
 
   // The etag of the object.
@@ -2104,17 +2128,16 @@ message Object {
   // object.
   string etag = 27;
 
-  // Immutable. The content generation of this object. Used for object versioning.
-  // Attempting to set or update this field will result in a
+  // Immutable. The content generation of this object. Used for object
+  // versioning. Attempting to set or update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
   int64 generation = 3 [(google.api.field_behavior) = IMMUTABLE];
 
-  // Output only. The version of the metadata for this generation of this object. Used for
-  // preconditions and for detecting changes in metadata. A metageneration
-  // number is only meaningful in the context of a particular generation of a
-  // particular object.
-  // Attempting to set or update this field will result in a
-  // [FieldViolation][google.rpc.BadRequest.FieldViolation].
+  // Output only. The version of the metadata for this generation of this
+  // object. Used for preconditions and for detecting changes in metadata. A
+  // metageneration number is only meaningful in the context of a particular
+  // generation of a particular object. Attempting to set or update this field
+  // will result in a [FieldViolation][google.rpc.BadRequest.FieldViolation].
   int64 metageneration = 4 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Storage class of the object.
@@ -2141,7 +2164,7 @@ message Object {
   string cache_control = 9;
 
   // Access controls on the object.
-  // If iamConfig.uniformBucketLevelAccess is enabled on the parent
+  // If iam_config.uniform_bucket_level_access is enabled on the parent
   // bucket, requests to set, read, or modify acl is an error.
   repeated ObjectAccessControl acl = 10;
 
@@ -2149,11 +2172,12 @@ message Object {
   // [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
   string content_language = 11;
 
-  // Output only. The deletion time of the object. Will be returned if and only if this
-  // version of the object has been deleted.
-  // Attempting to set or update this field will result in a
+  // Output only. The deletion time of the object. Will be returned if and only
+  // if this version of the object has been deleted. Attempting to set or update
+  // this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
-  google.protobuf.Timestamp delete_time = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp delete_time = 12
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Content-Type of the object data, matching
   // [https://tools.ietf.org/html/rfc7231#section-3.1.1.5][RFC 7231 §3.1.1.5].
@@ -2164,15 +2188,17 @@ message Object {
   // Output only. The creation time of the object.
   // Attempting to set or update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
-  google.protobuf.Timestamp create_time = 14 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp create_time = 14
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
-  // Output only. Number of underlying components that make up this object. Components are
-  // accumulated by compose operations.
-  // Attempting to set or update this field will result in a
+  // Output only. Number of underlying components that make up this object.
+  // Components are accumulated by compose operations. Attempting to set or
+  // update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
   int32 component_count = 15 [(google.api.field_behavior) = OUTPUT_ONLY];
 
-  // Output only. Hashes for the data part of this object.
+  // Output only. Hashes for the data part of this object. This field is used
+  // for output only and will be silently ignored if provided in requests.
   ObjectChecksums checksums = 16 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Output only. The modification time of the object metadata.
@@ -2183,19 +2209,21 @@ message Object {
   // Object Lifecycle Configuration.
   // Attempting to set or update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
-  google.protobuf.Timestamp update_time = 17 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp update_time = 17
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Cloud KMS Key used to encrypt this object, if the object is encrypted by
   // such a key.
   string kms_key = 18 [(google.api.resource_reference) = {
-                         type: "cloudkms.googleapis.com/CryptoKey"
-                       }];
+    type: "cloudkms.googleapis.com/CryptoKey"
+  }];
 
-  // Output only. The time at which the object's storage class was last changed. When the
-  // object is initially created, it will be set to time_created.
+  // Output only. The time at which the object's storage class was last changed.
+  // When the object is initially created, it will be set to time_created.
   // Attempting to set or update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
-  google.protobuf.Timestamp update_storage_class_time = 19 [(google.api.field_behavior) = OUTPUT_ONLY];
+  google.protobuf.Timestamp update_storage_class_time = 19
+      [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // Whether an object is under temporary hold. While this flag is set to true,
   // the object is protected against deletion and overwrites.  A common use case
@@ -2229,8 +2257,8 @@ message Object {
   // In a response, this field will always be set to true or false.
   optional bool event_based_hold = 23;
 
-  // Output only. The owner of the object. This will always be the uploader of the object.
-  // Attempting to set or update this field will result in a
+  // Output only. The owner of the object. This will always be the uploader of
+  // the object. Attempting to set or update this field will result in a
   // [FieldViolation][google.rpc.BadRequest.FieldViolation].
   Owner owner = 24 [(google.api.field_behavior) = OUTPUT_ONLY];
 
@@ -2256,7 +2284,8 @@ message ObjectAccessControl {
   // * `group-{groupid}`
   // * `group-{email}`
   // * `domain-{domain}`
-  // * `project-{team-projectid}`
+  // * `project-{team}-{projectnumber}`
+  // * `project-{team}-{projectid}`
   // * `allUsers`
   // * `allAuthenticatedUsers`
   // Examples:
@@ -2265,7 +2294,13 @@ message ObjectAccessControl {
   // `group-example@googlegroups.com`.
   // * All members of the Google Apps for Business domain `example.com` would be
   // `domain-example.com`.
+  // For project entities, `project-{team}-{projectnumber}` format will be
+  // returned on response.
   string entity = 3;
+
+  // Output only. The alternative entity format, if exists. For project
+  // entities, `project-{team}-{projectid}` format will be returned on response.
+  string entity_alt = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
 
   // The ID for the entity, if any.
   string entity_id = 4;

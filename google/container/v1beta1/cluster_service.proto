@@ -702,7 +702,7 @@ message NodeConfig {
   // `minCpuPlatform: "Intel Haswell"` or
   // `minCpuPlatform: "Intel Sandy Bridge"`. For more
   // information, read [how to specify min CPU
-  // platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+  // platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
   string min_cpu_platform = 13;
 
   // The workload metadata configuration for this node.
@@ -752,6 +752,16 @@ message NodeConfig {
   // Confidential nodes config.
   // All the nodes in the node pool will be Confidential VM once enabled.
   ConfidentialNodes confidential_nodes = 35;
+
+  // Enable or disable NCCL fast socket for the node pool.
+  optional FastSocket fast_socket = 36;
+
+  // The resource labels for the node pool to use to annotate any related
+  // Google Compute Engine resources.
+  map<string, string> resource_labels = 37;
+
+  // Logging configuration.
+  NodePoolLoggingConfig logging_config = 38;
 }
 
 // Specifies options for controlling advanced machine features.
@@ -823,6 +833,11 @@ message NodeNetworkConfig {
   //
   // This field cannot be changed after the node pool has been created.
   string pod_ipv4_cidr_block = 6;
+
+  // Whether nodes have internal IP addresses only.
+  // If enable_private_nodes is not specified, then the value is derived from
+  // [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+  optional bool enable_private_nodes = 9;
 
   // Network bandwidth tier configuration.
   optional NetworkPerformanceConfig network_performance_config = 11;
@@ -903,8 +918,9 @@ message ReservationAffinity {
   Type consume_reservation_type = 1;
 
   // Corresponds to the label key of a reservation resource. To target a
-  // SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as
-  // the key and specify the name of your reservation as its value.
+  // SPECIFIC_RESERVATION by name, specify
+  // "compute.googleapis.com/reservation-name" as the key and specify the name
+  // of your reservation as its value.
   string key = 2;
 
   // Corresponds to the label value(s) of reservation resource(s).
@@ -953,6 +969,13 @@ message NodeTaints {
 // Collection of node-level [Kubernetes
 // labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).
 message NodeLabels {
+  // Map of node label keys and node label values.
+  map<string, string> labels = 1;
+}
+
+// Collection of [GCP
+// labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).
+message ResourceLabels {
   // Map of node label keys and node label values.
   map<string, string> labels = 1;
 }
@@ -1168,6 +1191,10 @@ message PrivateClusterConfig {
 
   // Controls master global access settings.
   PrivateClusterMasterGlobalAccessConfig master_global_access_config = 8;
+
+  // Subnet to provision the master's private endpoint during cluster creation.
+  // Specified in projects/*/regions/*/subnetworks/* format.
+  string private_endpoint_subnetwork = 10;
 }
 
 // Configuration options for Istio addon.
@@ -1229,6 +1256,9 @@ message MasterAuthorizedNetworksConfig {
   // cidr_blocks define up to 10 external networks that could access
   // Kubernetes master through HTTPS.
   repeated CidrBlock cidr_blocks = 2;
+
+  // Whether master is accessbile via Google Compute Engine Public IP addresses.
+  optional bool gcp_public_cidrs_access_enabled = 3;
 }
 
 // Configuration for the legacy Attribute Based Access Control authorization
@@ -1451,9 +1481,8 @@ message BinaryAuthorization {
   // anything other than EVALUATION_MODE_UNSPECIFIED, this field is ignored.
   bool enabled = 1 [deprecated = true];
 
-  // Mode of operation for binauthz policy evaluation. Currently the only
-  // options are equivalent to enable/disable. If unspecified, defaults to
-  // DISABLED.
+  // Mode of operation for binauthz policy evaluation. If unspecified, defaults
+  // to DISABLED.
   EvaluationMode evaluation_mode = 2;
 }
 
@@ -1908,9 +1937,24 @@ message WorkloadConfig {
 // ProtectConfig defines the flags needed to enable/disable features for the
 // Protect API.
 message ProtectConfig {
+  // WorkloadVulnerabilityMode defines mode to perform vulnerability scanning.
+  enum WorkloadVulnerabilityMode {
+    // Default value not specified.
+    WORKLOAD_VULNERABILITY_MODE_UNSPECIFIED = 0;
+
+    // Disables Workload Vulnerability Scanning feature on the cluster.
+    DISABLED = 1;
+
+    // Applies basic vulnerability scanning settings for cluster workloads.
+    BASIC = 2;
+  }
+
   // WorkloadConfig defines which actions are enabled for a cluster's workload
   // configurations.
   optional WorkloadConfig workload_config = 1;
+
+  // Sets which mode to use for Protect workload vulnerability scanning feature.
+  optional WorkloadVulnerabilityMode workload_vulnerability_mode = 2;
 }
 
 // Subset of Nodepool message that has defaults.
@@ -1923,6 +1967,9 @@ message NodePoolDefaults {
 message NodeConfigDefaults {
   // GCFS (Google Container File System, also known as Riptide) options.
   GcfsConfig gcfs_config = 1;
+
+  // Logging configuration for node pools.
+  NodePoolLoggingConfig logging_config = 3;
 }
 
 // node pool configs that apply to all auto-provisioned node pools
@@ -2117,12 +2164,26 @@ message ClusterUpdate {
   // The desired Identity Service component configuration.
   IdentityServiceConfig desired_identity_service_config = 66;
 
+  // Enable/Disable private endpoint for the cluster's master.
+  optional bool desired_enable_private_endpoint = 71;
+
   // The desired network tags that apply to all auto-provisioned node pools
   // in autopilot clusters and node auto-provisioning enabled clusters.
   NetworkTags desired_node_pool_auto_config_network_tags = 110;
 
   // Enable/Disable Protect API features for the cluster.
   optional ProtectConfig desired_protect_config = 112;
+
+  // The desired config of Gateway API on this cluster.
+  GatewayAPIConfig desired_gateway_api_config = 114;
+
+  // The desired node pool logging configuration defaults for the cluster.
+  NodePoolLoggingConfig desired_node_pool_logging_config = 116;
+
+  // The desired stack type of the cluster.
+  // If a stack type is provided and does not match the current stack type of
+  // the cluster, update will attempt to change the stack type to the new type.
+  StackType desired_stack_type = 119;
 }
 
 // This operation resource represents operations that may have happened or are
@@ -2493,6 +2554,16 @@ message UpdateNodePoolRequest {
 
   // Enable or disable gvnic on the node pool.
   VirtualNIC gvnic = 29;
+
+  // Enable or disable NCCL fast socket for the node pool.
+  FastSocket fast_socket = 31;
+
+  // Logging configuration.
+  NodePoolLoggingConfig logging_config = 32;
+
+  // The resource labels for the node pool to use to annotate any related
+  // Google Compute Engine resources.
+  ResourceLabels resource_labels = 33;
 }
 
 // SetNodePoolAutoscalingRequest sets the autoscaler settings of a node pool.
@@ -3206,7 +3277,7 @@ message BlueGreenSettings {
   message StandardRolloutPolicy {
     // Blue pool size to drain in a batch.
     oneof update_batch_size {
-      // Percentage of the bool pool nodes to drain in a batch.
+      // Percentage of the blue pool nodes to drain in a batch.
       // The range of this field should be (0.0, 1.0].
       float batch_percentage = 1;
 
@@ -3848,7 +3919,7 @@ message AutoprovisioningNodePoolDefaults {
   // minCpuPlatform: Intel Haswell or
   // minCpuPlatform: Intel Sandy Bridge. For more
   // information, read [how to specify min CPU
-  // platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+  // platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
   // This field is deprecated, min_cpu_platform should be specified using
   // https://cloud.google.com/requested-min-cpu-platform label selector on the
   // pod.
@@ -4383,6 +4454,32 @@ message NetworkConfig {
   // ServiceExternalIPsConfig specifies if services with externalIPs field are
   // blocked or not.
   ServiceExternalIPsConfig service_external_ips_config = 15;
+
+  // GatewayAPIConfig contains the desired config of Gateway API on this
+  // cluster.
+  GatewayAPIConfig gateway_api_config = 16;
+}
+
+// GatewayAPIConfig contains the desired config of Gateway API on this cluster.
+message GatewayAPIConfig {
+  // Channel describes if/how Gateway API should be installed and implemented in
+  // a cluster.
+  enum Channel {
+    // Default value.
+    CHANNEL_UNSPECIFIED = 0;
+
+    // Gateway API support is disabled
+    CHANNEL_DISABLED = 1;
+
+    // Gateway API support is enabled, experimental CRDs are installed
+    CHANNEL_EXPERIMENTAL = 3;
+
+    // Gateway API support is enabled, standard CRDs are installed
+    CHANNEL_STANDARD = 4;
+  }
+
+  // The Gateway API release channel to use for Gateway API.
+  Channel channel = 1;
 }
 
 // Config to block services with externalIPs field.
@@ -4669,6 +4766,12 @@ message ShieldedNodes {
 // Configuration of gVNIC feature.
 message VirtualNIC {
   // Whether gVNIC features are enabled in the node pool.
+  bool enabled = 1;
+}
+
+// Configuration of Fast Socket feature.
+message FastSocket {
+  // Whether Fast Socket features are enabled in the node pool.
   bool enabled = 1;
 }
 
@@ -5023,6 +5126,15 @@ message LoggingComponentConfig {
 
     // workloads
     WORKLOADS = 2;
+
+    // kube-apiserver
+    APISERVER = 3;
+
+    // kube-scheduler
+    SCHEDULER = 4;
+
+    // kube-controller-manager
+    CONTROLLER_MANAGER = 5;
   }
 
   // Select components to collect logs. An empty set would disable all logging.
@@ -5037,6 +5149,30 @@ message MonitoringConfig {
   // Enable Google Cloud Managed Service for Prometheus
   // in the cluster.
   ManagedPrometheusConfig managed_prometheus_config = 2;
+}
+
+// NodePoolLoggingConfig specifies logging configuration for nodepools.
+message NodePoolLoggingConfig {
+  // Logging variant configuration.
+  LoggingVariantConfig variant_config = 1;
+}
+
+// LoggingVariantConfig specifies the behaviour of the logging component.
+message LoggingVariantConfig {
+  // Logging component variants.
+  enum Variant {
+    // Default value. This shouldn't be used.
+    VARIANT_UNSPECIFIED = 0;
+
+    // default logging variant.
+    DEFAULT = 1;
+
+    // maximum logging throughput variant.
+    MAX_THROUGHPUT = 2;
+  }
+
+  // Logging variant deployed on nodes.
+  Variant variant = 1;
 }
 
 // MonitoringComponentConfig is cluster monitoring component configuration.
@@ -5081,4 +5217,16 @@ enum DatapathProvider {
   // documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/dataplane-v2)
   // for more.
   ADVANCED_DATAPATH = 2;
+}
+
+// Possible values for IP stack type
+enum StackType {
+  // By default, the clusters will be IPV4 only
+  STACK_TYPE_UNSPECIFIED = 0;
+
+  // The value used if the cluster is a IPV4 only
+  IPV4 = 1;
+
+  // The value used if the cluster is a dual stack cluster
+  IPV4_IPV6 = 2;
 }
