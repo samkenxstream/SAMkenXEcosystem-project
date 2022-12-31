@@ -34618,6 +34618,242 @@
       "nameInServiceConfig": "contentwarehouse.googleapis.com"
     },
     {
+      "id": "google.cloud.datacatalog.lineage.v1",
+      "directory": "google/cloud/datacatalog/lineage/v1",
+      "version": "v1",
+      "majorVersion": "v1",
+      "hostName": "datalineage.googleapis.com",
+      "title": "Data Lineage API",
+      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "importDirectories": [
+        "google/api",
+        "google/longrunning",
+        "google/protobuf"
+      ],
+      "options": {
+        "csharp_namespace": {
+          "valueCounts": {
+            "Google.Cloud.DataCatalog.Lineage.V1": 1
+          }
+        },
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/cloud/datacatalog/lineage/v1;lineage": 1
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.datacatalog.lineage.v1": 1
+          }
+        },
+        "php_namespace": {
+          "valueCounts": {
+            "Google\\Cloud\\DataCatalog\\Lineage\\V1": 1
+          }
+        },
+        "ruby_package": {
+          "valueCounts": {
+            "Google::Cloud::DataCatalog::Lineage::V1": 1
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "Lineage",
+          "fullName": "google.cloud.datacatalog.lineage.v1.Lineage",
+          "methods": [
+            {
+              "shortName": "BatchSearchLinkProcesses",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.BatchSearchLinkProcesses",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}:batchSearchLinkProcesses"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateLineageEvent",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.CreateLineageEvent",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*/processes/*/runs/*}/lineageEvents"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateProcess",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.CreateProcess",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/processes"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateRun",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.CreateRun",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*/processes/*}/runs"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteLineageEvent",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.DeleteLineageEvent",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/processes/*/runs/*/lineageEvents/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteProcess",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.DeleteProcess",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/processes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteRun",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.DeleteRun",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/processes/*/runs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetLineageEvent",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.GetLineageEvent",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/processes/*/runs/*/lineageEvents/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetProcess",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.GetProcess",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/processes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetRun",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.GetRun",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/processes/*/runs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListLineageEvents",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*/processes/*/runs/*}/lineageEvents"
+                }
+              ]
+            },
+            {
+              "shortName": "ListProcesses",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.ListProcesses",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/processes"
+                }
+              ]
+            },
+            {
+              "shortName": "ListRuns",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.ListRuns",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*/processes/*}/runs"
+                }
+              ]
+            },
+            {
+              "shortName": "SearchLinks",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.SearchLinks",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}:searchLinks"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateProcess",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.UpdateProcess",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{process.name=projects/*/locations/*/processes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateRun",
+              "fullName": "google.cloud.datacatalog.lineage.v1.Lineage.UpdateRun",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{run.name=projects/*/locations/*/processes/*/runs/*}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "datalineage_v1.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.datacatalog.lineage.v1.Lineage",
+        "google.longrunning.Operations"
+      ],
+      "nameInServiceConfig": "datalineage.googleapis.com"
+    },
+    {
       "id": "google.cloud.datacatalog.v1",
       "directory": "google/cloud/datacatalog/v1",
       "version": "v1",
@@ -37570,17 +37806,17 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/dataplex/v1;dataplex": 7
+            "google.golang.org/genproto/googleapis/cloud/dataplex/v1;dataplex": 11
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 7
+            "true": 11
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.dataplex.v1": 7
+            "com.google.cloud.dataplex.v1": 11
           }
         }
       },
@@ -37706,6 +37942,100 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1/{content.name=projects/*/locations/*/lakes/*/content/**}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "shortName": "DataScanService",
+          "fullName": "google.cloud.dataplex.v1.DataScanService",
+          "methods": [
+            {
+              "shortName": "CreateDataScan",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.CreateDataScan",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/dataScans"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteDataScan",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.DeleteDataScan",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/dataScans/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetDataScan",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.GetDataScan",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/dataScans/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetDataScanJob",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.GetDataScanJob",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/dataScans/*/jobs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListDataScanJobs",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.ListDataScanJobs",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*/dataScans/*}/jobs"
+                }
+              ]
+            },
+            {
+              "shortName": "ListDataScans",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.ListDataScans",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/dataScans"
+                }
+              ]
+            },
+            {
+              "shortName": "RunDataScan",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.RunDataScan",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/dataScans/*}:run"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateDataScan",
+              "fullName": "google.cloud.dataplex.v1.DataScanService.UpdateDataScan",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{data_scan.name=projects/*/locations/*/dataScans/*}"
                 }
               ]
             }
@@ -38178,6 +38508,7 @@
       "configFile": "dataplex_v1.yaml",
       "serviceConfigApiNames": [
         "google.cloud.dataplex.v1.ContentService",
+        "google.cloud.dataplex.v1.DataScanService",
         "google.cloud.dataplex.v1.DataplexService",
         "google.cloud.dataplex.v1.MetadataService",
         "google.cloud.location.Locations",
@@ -51287,36 +51618,130 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.GkeMultiCloud.V1": 5
+            "Google.Cloud.GkeMultiCloud.V1": 7
           }
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/gkemulticloud/v1;gkemulticloud": 5
+            "google.golang.org/genproto/googleapis/cloud/gkemulticloud/v1;gkemulticloud": 7
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 5
+            "true": 7
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.gkemulticloud.v1": 5
+            "com.google.cloud.gkemulticloud.v1": 7
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\GkeMultiCloud\\V1": 5
+            "Google\\Cloud\\GkeMultiCloud\\V1": 7
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::GkeMultiCloud::V1": 5
+            "Google::Cloud::GkeMultiCloud::V1": 7
           }
         }
       },
       "services": [
+        {
+          "shortName": "AttachedClusters",
+          "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters",
+          "methods": [
+            {
+              "shortName": "CreateAttachedCluster",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.CreateAttachedCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/attachedClusters"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteAttachedCluster",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.DeleteAttachedCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/attachedClusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GenerateAttachedClusterInstallManifest",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.GenerateAttachedClusterInstallManifest",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifest"
+                }
+              ]
+            },
+            {
+              "shortName": "GetAttachedCluster",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/attachedClusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetAttachedServerConfig",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/attachedServerConfig}"
+                }
+              ]
+            },
+            {
+              "shortName": "ImportAttachedCluster",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.ImportAttachedCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/attachedClusters:import"
+                }
+              ]
+            },
+            {
+              "shortName": "ListAttachedClusters",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.ListAttachedClusters",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/attachedClusters"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateAttachedCluster",
+              "fullName": "google.cloud.gkemulticloud.v1.AttachedClusters.UpdateAttachedCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{attached_cluster.name=projects/*/locations/*/attachedClusters/*}"
+                }
+              ]
+            }
+          ]
+        },
         {
           "shortName": "AwsClusters",
           "fullName": "google.cloud.gkemulticloud.v1.AwsClusters",
@@ -51640,8 +52065,10 @@
       ],
       "configFile": "gkemulticloud_v1.yaml",
       "serviceConfigApiNames": [
+        "google.cloud.gkemulticloud.v1.AttachedClusters",
         "google.cloud.gkemulticloud.v1.AwsClusters",
-        "google.cloud.gkemulticloud.v1.AzureClusters"
+        "google.cloud.gkemulticloud.v1.AzureClusters",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "gkemulticloud.googleapis.com"
     },
@@ -54436,6 +54863,17 @@
           "fullName": "google.cloud.metastore.v1alpha.DataprocMetastore",
           "methods": [
             {
+              "shortName": "AlterMetadataResourceLocation",
+              "fullName": "google.cloud.metastore.v1alpha.DataprocMetastore.AlterMetadataResourceLocation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{service=projects/*/locations/*/services/*}:alterLocation"
+                }
+              ]
+            },
+            {
               "shortName": "CreateBackup",
               "fullName": "google.cloud.metastore.v1alpha.DataprocMetastore.CreateBackup",
               "mode": "UNARY",
@@ -54564,6 +55002,39 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1alpha/{parent=projects/*/locations/*}/services"
+                }
+              ]
+            },
+            {
+              "shortName": "MoveTableToDatabase",
+              "fullName": "google.cloud.metastore.v1alpha.DataprocMetastore.MoveTableToDatabase",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{service=projects/*/locations/*/services/*}:moveTableToDatabase"
+                }
+              ]
+            },
+            {
+              "shortName": "QueryMetadata",
+              "fullName": "google.cloud.metastore.v1alpha.DataprocMetastore.QueryMetadata",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{service=projects/*/locations/*/services/*}:queryMetadata"
+                }
+              ]
+            },
+            {
+              "shortName": "RemoveIamPolicy",
+              "fullName": "google.cloud.metastore.v1alpha.DataprocMetastore.RemoveIamPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{resource=projects/*/locations/*/services/*/**}:removeIamPolicy"
                 }
               ]
             },
@@ -54717,6 +55188,17 @@
           "fullName": "google.cloud.metastore.v1beta.DataprocMetastore",
           "methods": [
             {
+              "shortName": "AlterMetadataResourceLocation",
+              "fullName": "google.cloud.metastore.v1beta.DataprocMetastore.AlterMetadataResourceLocation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{service=projects/*/locations/*/services/*}:alterLocation"
+                }
+              ]
+            },
+            {
               "shortName": "CreateBackup",
               "fullName": "google.cloud.metastore.v1beta.DataprocMetastore.CreateBackup",
               "mode": "UNARY",
@@ -54845,6 +55327,39 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1beta/{parent=projects/*/locations/*}/services"
+                }
+              ]
+            },
+            {
+              "shortName": "MoveTableToDatabase",
+              "fullName": "google.cloud.metastore.v1beta.DataprocMetastore.MoveTableToDatabase",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{service=projects/*/locations/*/services/*}:moveTableToDatabase"
+                }
+              ]
+            },
+            {
+              "shortName": "QueryMetadata",
+              "fullName": "google.cloud.metastore.v1beta.DataprocMetastore.QueryMetadata",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{service=projects/*/locations/*/services/*}:queryMetadata"
+                }
+              ]
+            },
+            {
+              "shortName": "RemoveIamPolicy",
+              "fullName": "google.cloud.metastore.v1beta.DataprocMetastore.RemoveIamPolicy",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{resource=projects/*/locations/*/services/*/**}:removeIamPolicy"
                 }
               ]
             },
