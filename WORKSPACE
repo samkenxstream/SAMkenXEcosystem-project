@@ -133,9 +133,9 @@ go_register_toolchains(version = "1.16")
 # rules_gapic also depends on rules_go, so it must come after our own dependency on rules_go.
 # It must also come before gapic-generator-go so as to ensure that it does not bring in an old
 # version of rules_gapic.
-_rules_gapic_version = "0.20.0"
+_rules_gapic_version = "0.20.1"
 
-_rules_gapic_sha256 = "f5037df1d2e5268657a471b82569735f734d4ceb41dd21b7de93be088cf5ff15"
+_rules_gapic_sha256 = "a5a2ecbe282f73a969f10bfe1946e7169eadad4fd7341777ca0aa18fff902188"
 
 http_archive(
     name = "rules_gapic",
@@ -322,7 +322,7 @@ load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install()
 
-_gapic_generator_python_version = "1.8.0"
+_gapic_generator_python_version = "1.8.1"
 
 http_archive(
     name = "gapic_generator_python",
@@ -437,9 +437,9 @@ gapic_generator_csharp_repositories()
 # Ruby
 ##############################################################################
 
-_gapic_generator_ruby_version = "v0.18.1"
+_gapic_generator_ruby_version = "v0.19.0"
 
-_gapic_generator_ruby_sha256 = "510337661a2668583748cae9b55282ee0b359bed96858abdc3f4924f3dc1c3b3"
+_gapic_generator_ruby_sha256 = "ebfa63d6c6fc1e10a2c3ff2e1e0c29a730fa00f68dbd584ffee4527fafe3fbc3"
 
 http_archive(
     name = "gapic_generator_ruby",
