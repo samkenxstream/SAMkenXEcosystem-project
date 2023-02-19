@@ -160,6 +160,7 @@ py_gapic_library(
     srcs = [":roads_proto"],
     grpc_service_config = "roads_grpc_service_config.json",
     rest_numeric_enums = True,
+    service_yaml = "roads_v1op.yaml",
     transport = "grpc",
 )
 
@@ -254,6 +255,7 @@ ruby_cloud_gapic_library(
     srcs = [":roads_proto_with_info"],
     extra_protoc_parameters = ["ruby-cloud-gem-name=google-cloud-roads-v1op"],
     rest_numeric_enums = True,
+    service_yaml = "roads_v1op.yaml",
     deps = [
         ":roads_ruby_grpc",
         ":roads_ruby_proto",
@@ -287,11 +289,12 @@ csharp_gapic_library(
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
     grpc_service_config = "roads_grpc_service_config.json",
     rest_numeric_enums = True,
+    service_yaml = "roads_v1op.yaml",
+    transport = "grpc+rest",
     deps = [
         ":roads_csharp_grpc",
         ":roads_csharp_proto",
     ],
-    transport = "grpc+rest",
 )
 
 # Open Source Packages

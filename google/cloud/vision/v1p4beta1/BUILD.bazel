@@ -179,6 +179,7 @@ py_gapic_library(
     srcs = [":vision_proto"],
     grpc_service_config = "vision_grpc_service_config.json",
     rest_numeric_enums = True,
+    service_yaml = "vision_v1p4beta1.yaml",
     transport = "grpc+rest",
 )
 
@@ -312,6 +313,7 @@ ruby_cloud_gapic_library(
     rest_numeric_enums = True,
     ruby_cloud_description = "Cloud Vision API allows developers to easily integrate vision detection features within applications, including image labeling, face and landmark detection, optical character recognition (OCR), and tagging of explicit content.",
     ruby_cloud_title = "Cloud Vision V1p4beta1",
+    service_yaml = "vision_v1p4beta1.yaml",
     deps = [
         ":vision_ruby_grpc",
         ":vision_ruby_proto",
@@ -356,11 +358,12 @@ csharp_gapic_library(
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
     grpc_service_config = "vision_grpc_service_config.json",
     rest_numeric_enums = True,
+    service_yaml = "vision_v1p4beta1.yaml",
+    transport = "grpc+rest",
     deps = [
         ":vision_csharp_grpc",
         ":vision_csharp_proto",
     ],
-    transport = "grpc+rest",
 )
 
 # Open Source Packages

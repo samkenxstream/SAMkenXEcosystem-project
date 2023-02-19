@@ -179,6 +179,7 @@ py_gapic_library(
     srcs = [":sql_proto"],
     grpc_service_config = "sqladmin_grpc_service_config.json",
     rest_numeric_enums = True,
+    service_yaml = "sqladmin_v1beta4.yaml",
     transport = "grpc",
 )
 
@@ -346,6 +347,7 @@ ruby_gapic_assembly_pkg(
 #    srcs = [":sql_proto_with_info"],
 #    common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
 #    grpc_service_config = "sqladmin_grpc_service_config.json",
+#    service_yaml = "sqladmin_v1beta4.yaml",
 #    deps = [
 #        ":sql_csharp_grpc",
 #        ":sql_csharp_proto",

@@ -139,8 +139,8 @@ go_gapic_library(
     srcs = [":translation_proto_with_info"],
     grpc_service_config = "translate_grpc_service_config.json",
     importpath = "cloud.google.com/go/translate/apiv3;translate",
-    release_level = "ga",
     metadata = True,
+    release_level = "ga",
     rest_numeric_enums = True,
     service_yaml = "translate_v3.yaml",
     transport = "grpc+rest",
@@ -187,6 +187,7 @@ py_gapic_library(
     grpc_service_config = "translate_grpc_service_config.json",
     opt_args = ["python-gapic-name=translate"],
     rest_numeric_enums = True,
+    service_yaml = "translate_v3.yaml",
     transport = "grpc+rest",
 )
 
@@ -319,6 +320,7 @@ ruby_cloud_gapic_library(
     rest_numeric_enums = True,
     ruby_cloud_description = "Cloud Translation can dynamically translate text between thousands of language pairs. Translation lets websites and programs programmatically integrate with the translation service.",
     ruby_cloud_title = "Cloud Translation V3",
+    service_yaml = "translate_v3.yaml",
     deps = [
         ":translation_ruby_grpc",
         ":translation_ruby_proto",
@@ -364,11 +366,11 @@ csharp_gapic_library(
     grpc_service_config = "translate_grpc_service_config.json",
     rest_numeric_enums = True,
     service_yaml = "translate_v3.yaml",
+    transport = "grpc+rest",
     deps = [
         ":translation_csharp_grpc",
         ":translation_csharp_proto",
     ],
-    transport = "grpc+rest",
 )
 
 # Open Source Packages

@@ -69,7 +69,7 @@ java_gapic_library(
     test_deps = [
         ":mediatranslation_java_grpc",
     ],
-    transport = "grpc+rest",
+    transport = "grpc",
     deps = [
         ":mediatranslation_java_proto",
     ],
@@ -87,7 +87,7 @@ java_gapic_test(
 java_gapic_assembly_gradle_pkg(
     name = "google-cloud-mediatranslation-v1beta1-java",
     include_samples = True,
-    transport = "grpc+rest",
+    transport = "grpc",
     deps = [
         ":mediatranslation_java_gapic",
         ":mediatranslation_java_grpc",
@@ -123,11 +123,11 @@ go_gapic_library(
     srcs = [":mediatranslation_proto_with_info"],
     grpc_service_config = "mediatranslation_grpc_service_config.json",
     importpath = "cloud.google.com/go/mediatranslation/apiv1beta1;mediatranslation",
-    release_level = "beta",
     metadata = True,
+    release_level = "beta",
     rest_numeric_enums = True,
     service_yaml = "mediatranslation_v1beta1.yaml",
-    transport = "grpc+rest",
+    transport = "grpc",
     deps = [
         ":mediatranslation_go_proto",
     ],
@@ -169,6 +169,7 @@ py_gapic_library(
         "warehouse-package-name=google-cloud-media-translation",
     ],
     rest_numeric_enums = True,
+    service_yaml = "mediatranslation_v1beta1.yaml",
     transport = "grpc",
 )
 
@@ -253,7 +254,7 @@ nodejs_gapic_library(
     package = "google.cloud.mediatranslation.v1beta1",
     rest_numeric_enums = True,
     service_yaml = "mediatranslation_v1beta1.yaml",
-    transport = "grpc+rest",
+    transport = "grpc",
     deps = [],
 )
 
@@ -301,6 +302,7 @@ ruby_cloud_gapic_library(
     rest_numeric_enums = True,
     ruby_cloud_description = "Media Translation API delivers real-time speech translation to your content and applications directly from your audio data. Leveraging Google’s machine learning technologies, the API offers enhanced accuracy and simplified integration while equipping you with a comprehensive set of features to further refine your translation results. Improve user experience with low-latency streaming translation and scale quickly with straightforward internationalization.",
     ruby_cloud_title = "Media Translation V1beta1",
+    service_yaml = "mediatranslation_v1beta1.yaml",
     deps = [
         ":mediatranslation_ruby_grpc",
         ":mediatranslation_ruby_proto",
@@ -346,11 +348,11 @@ csharp_gapic_library(
     grpc_service_config = "mediatranslation_grpc_service_config.json",
     rest_numeric_enums = True,
     service_yaml = "mediatranslation_v1beta1.yaml",
+    transport = "grpc",
     deps = [
         ":mediatranslation_csharp_grpc",
         ":mediatranslation_csharp_proto",
     ],
-    transport = "grpc+rest",
 )
 
 # Open Source Packages
