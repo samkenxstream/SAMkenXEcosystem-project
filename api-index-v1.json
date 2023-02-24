@@ -41058,37 +41058,37 @@
       "options": {
         "cc_enable_arenas": {
           "valueCounts": {
-            "true": 21
+            "true": 22
           }
         },
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.Dialogflow.Cx.V3": 21
+            "Google.Cloud.Dialogflow.Cx.V3": 22
           }
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb": 21
+            "cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb": 22
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 21
+            "true": 22
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.dialogflow.cx.v3": 21
+            "com.google.cloud.dialogflow.cx.v3": 22
           }
         },
         "objc_class_prefix": {
           "valueCounts": {
-            "DF": 21
+            "DF": 22
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::Dialogflow::CX::V3": 21
+            "Google::Cloud::Dialogflow::CX::V3": 22
           }
         }
       },
@@ -47283,32 +47283,32 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.DocumentAI.V1": 9
+            "Google.Cloud.DocumentAI.V1": 10
           }
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/documentai/apiv1/documentaipb;documentaipb": 9
+            "cloud.google.com/go/documentai/apiv1/documentaipb;documentaipb": 10
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 9
+            "true": 10
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.documentai.v1": 9
+            "com.google.cloud.documentai.v1": 10
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\DocumentAI\\V1": 9
+            "Google\\Cloud\\DocumentAI\\V1": 10
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::DocumentAI::V1": 9
+            "Google::Cloud::DocumentAI::V1": 10
           }
         }
       },
@@ -47399,6 +47399,17 @@
               ]
             },
             {
+              "shortName": "EvaluateProcessorVersion",
+              "fullName": "google.cloud.documentai.v1.DocumentProcessorService.EvaluateProcessorVersion",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{processor_version=projects/*/locations/*/processors/*/processorVersions/*}:evaluateProcessorVersion"
+                }
+              ]
+            },
+            {
               "shortName": "FetchProcessorTypes",
               "fullName": "google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes",
               "mode": "UNARY",
@@ -47406,6 +47417,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{parent=projects/*/locations/*}:fetchProcessorTypes"
+                }
+              ]
+            },
+            {
+              "shortName": "GetEvaluation",
+              "fullName": "google.cloud.documentai.v1.DocumentProcessorService.GetEvaluation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/processors/*/processorVersions/*/evaluations/*}"
                 }
               ]
             },
@@ -47439,6 +47461,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{name=projects/*/locations/*/processors/*/processorVersions/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListEvaluations",
+              "fullName": "google.cloud.documentai.v1.DocumentProcessorService.ListEvaluations",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*/processors/*/processorVersions/*}/evaluations"
                 }
               ]
             },
@@ -47509,6 +47542,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1/{processor=projects/*/locations/*/processors/*}:setDefaultProcessorVersion"
+                }
+              ]
+            },
+            {
+              "shortName": "TrainProcessorVersion",
+              "fullName": "google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*/processors/*}/processorVersions:train"
                 }
               ]
             },
@@ -54101,6 +54145,105 @@
         "google.cloud.iot.v1.DeviceManager"
       ],
       "nameInServiceConfig": "cloudiot.googleapis.com"
+    },
+    {
+      "id": "google.cloud.kms.inventory.v1",
+      "directory": "google/cloud/kms/inventory/v1",
+      "version": "v1",
+      "majorVersion": "v1",
+      "hostName": "kmsinventory.googleapis.com",
+      "title": "KMS Inventory API",
+      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "importDirectories": [
+        "google/api",
+        "google/cloud/kms/v1",
+        "google/protobuf"
+      ],
+      "options": {
+        "cc_enable_arenas": {
+          "valueCounts": {
+            "true": 2
+          }
+        },
+        "csharp_namespace": {
+          "valueCounts": {
+            "Google.Cloud.Kms.Inventory.V1": 2
+          }
+        },
+        "go_package": {
+          "valueCounts": {
+            "cloud.google.com/go/kms/inventory/apiv1/inventorypb;inventorypb": 2
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 2
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.kms.inventory.v1": 2
+          }
+        },
+        "php_namespace": {
+          "valueCounts": {
+            "Google\\Cloud\\Kms\\Inventory\\V1": 2
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "KeyDashboardService",
+          "fullName": "google.cloud.kms.inventory.v1.KeyDashboardService",
+          "methods": [
+            {
+              "shortName": "ListCryptoKeys",
+              "fullName": "google.cloud.kms.inventory.v1.KeyDashboardService.ListCryptoKeys",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*}/cryptoKeys"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "shortName": "KeyTrackingService",
+          "fullName": "google.cloud.kms.inventory.v1.KeyTrackingService",
+          "methods": [
+            {
+              "shortName": "GetProtectedResourcesSummary",
+              "fullName": "google.cloud.kms.inventory.v1.KeyTrackingService.GetProtectedResourcesSummary",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}/protectedResourcesSummary"
+                }
+              ]
+            },
+            {
+              "shortName": "SearchProtectedResources",
+              "fullName": "google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{scope=organizations/*}/protectedResources:search"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "kmsinventory_v1.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.kms.inventory.v1.KeyDashboardService",
+        "google.cloud.kms.inventory.v1.KeyTrackingService"
+      ],
+      "nameInServiceConfig": "kmsinventory.googleapis.com"
     },
     {
       "id": "google.cloud.kms.v1",
@@ -89969,22 +90112,22 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/fleetengine/delivery/v1;delivery": 5
+            "google.golang.org/genproto/googleapis/maps/fleetengine/delivery/v1;delivery": 6
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 5
+            "true": 6
           }
         },
         "java_package": {
           "valueCounts": {
-            "google.maps.fleetengine.delivery.v1": 5
+            "google.maps.fleetengine.delivery.v1": 6
           }
         },
         "objc_class_prefix": {
           "valueCounts": {
-            "CFED": 5
+            "CFED": 6
           }
         }
       },
@@ -90045,6 +90188,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{name=providers/*/tasks/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetTaskTrackingInfo",
+              "fullName": "maps.fleetengine.delivery.v1.DeliveryService.GetTaskTrackingInfo",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=providers/*/taskTrackingInfo/*}"
                 }
               ]
             },
@@ -90321,7 +90475,7 @@
       "majorVersion": "v1",
       "hostName": "mapsplatformdatasets.googleapis.com",
       "title": "Maps Platform Datasets API",
-      "description": "mapsplatformdatasets.googleapis.com API.",
+      "description": "The Maps Platform Datasets API enables developers to ingest geospatially-tied datasets that they can use to enrich their experience of Maps Platform solutions (e.g. styling, routing).",
       "importDirectories": [
         "google/api",
         "google/maps/mapsplatformdatasets/v1alpha",
