@@ -130,9 +130,9 @@ go_register_toolchains(version = "1.16")
 # rules_gapic also depends on rules_go, so it must come after our own dependency on rules_go.
 # It must also come before gapic-generator-go so as to ensure that it does not bring in an old
 # version of rules_gapic.
-_rules_gapic_version = "0.21.1"
+_rules_gapic_version = "0.22.1"
 
-_rules_gapic_sha256 = "953f6fc0c1f3de7d399c209068c8be96ddf029050148531af161847919203404"
+_rules_gapic_sha256 = "865691b71a20a064106ce09c7f6b2087dc4eb1d7a3353f7a5f69a16ca8712f18"
 
 http_archive(
     name = "rules_gapic",
@@ -425,9 +425,9 @@ http_archive(
     urls = ["https://github.com/googleapis/gax-dotnet/archive/refs/tags/%s.tar.gz" % _gax_dotnet_version],
 )
 
-_gapic_generator_csharp_version = "1.4.10"
+_gapic_generator_csharp_version = "1.4.11"
 
-_gapic_generator_csharp_sha256 = "a5e2b49ea197daf82f6bddffa5b8c91f4829515ef7f6d20ddd924fed27ce3020"
+_gapic_generator_csharp_sha256 = "40bb2ecf1e540df8f58bdca15c48e3da6fbdddc9c5786421b858222fb4e25202"
 
 http_archive(
     name = "gapic_generator_csharp",
@@ -444,9 +444,9 @@ gapic_generator_csharp_repositories()
 # Ruby
 ##############################################################################
 
-_gapic_generator_ruby_version = "v0.22.0"
+_gapic_generator_ruby_version = "v0.23.1"
 
-_gapic_generator_ruby_sha256 = "66ef9f4c80a37b24bc59bb1a09aad22776d8a4d207b429f594077a3299cf0b1a"
+_gapic_generator_ruby_sha256 = "44f9d4076386ddbd87a13c02e2be101a783817235806e32153325ee5fba7e663"
 
 http_archive(
     name = "gapic_generator_ruby",
