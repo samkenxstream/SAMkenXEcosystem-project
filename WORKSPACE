@@ -265,7 +265,7 @@ maven_install(
     ],
 )
 
-_gapic_generator_java_version = "2.15.2"
+_gapic_generator_java_version = "2.15.3"
 
 maven_install(
     artifacts = [
@@ -318,7 +318,7 @@ load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install()
 
-_gapic_generator_python_version = "1.8.5"
+_gapic_generator_python_version = "1.9.0"
 
 http_archive(
     name = "gapic_generator_python",
