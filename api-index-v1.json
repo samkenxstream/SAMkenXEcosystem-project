@@ -18111,7 +18111,7 @@
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::AlloyDb::V1": 2
+            "Google::Cloud::AlloyDB::V1": 2
           }
         }
       },
@@ -18396,7 +18396,7 @@
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::AlloyDb::V1alpha": 2
+            "Google::Cloud::AlloyDB::V1alpha": 2
           }
         }
       },
@@ -18736,7 +18736,7 @@
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::AlloyDb::V1beta": 2
+            "Google::Cloud::AlloyDB::V1beta": 2
           }
         }
       },
@@ -48996,6 +48996,17 @@
               ]
             },
             {
+              "shortName": "ImportProcessorVersion",
+              "fullName": "google.cloud.documentai.v1beta3.DocumentProcessorService.ImportProcessorVersion",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta3/{parent=projects/*/locations/*/processors/*}/processorVersions:importProcessorVersion"
+                }
+              ]
+            },
+            {
               "shortName": "ListEvaluations",
               "fullName": "google.cloud.documentai.v1beta3.DocumentProcessorService.ListEvaluations",
               "mode": "UNARY",
@@ -72386,6 +72397,7 @@
       ],
       "configFile": "speech_v2.yaml",
       "serviceConfigApiNames": [
+        "google.cloud.location.Locations",
         "google.cloud.speech.v2.Speech",
         "google.longrunning.Operations"
       ],
