@@ -7816,6 +7816,17 @@
               ]
             },
             {
+              "shortName": "CreateConnectedSiteTag",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.CreateConnectedSiteTag",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/properties:createConnectedSiteTag"
+                }
+              ]
+            },
+            {
               "shortName": "CreateConversionEvent",
               "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.CreateConversionEvent",
               "mode": "UNARY",
@@ -7985,6 +7996,17 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1alpha/{name=accounts/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteConnectedSiteTag",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.DeleteConnectedSiteTag",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/properties:deleteConnectedSiteTag"
                 }
               ]
             },
@@ -8272,6 +8294,17 @@
               ]
             },
             {
+              "shortName": "GetEnhancedMeasurementSettings",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.GetEnhancedMeasurementSettings",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1alpha/{name=properties/*/dataStreams/*/enhancedMeasurementSettings}"
+                }
+              ]
+            },
+            {
               "shortName": "GetExpandedDataSet",
               "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.GetExpandedDataSet",
               "mode": "UNARY",
@@ -8408,6 +8441,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1alpha/{parent=properties/*}/bigQueryLinks"
+                }
+              ]
+            },
+            {
+              "shortName": "ListConnectedSiteTags",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.ListConnectedSiteTags",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/properties:listConnectedSiteTags"
                 }
               ]
             },
@@ -8577,6 +8621,10 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1alpha/{entity=properties/*}:runAccessReport"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{entity=accounts/*}:runAccessReport"
                 }
               ]
             },
@@ -8702,6 +8750,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1alpha/{display_video_360_advertiser_link.name=properties/*/displayVideo360AdvertiserLinks/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateEnhancedMeasurementSettings",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.UpdateEnhancedMeasurementSettings",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}"
                 }
               ]
             },
@@ -31117,6 +31176,17 @@
               ]
             },
             {
+              "shortName": "SimulateMaintenanceEvent",
+              "fullName": "google.cloud.compute.v1.NodeGroups.SimulateMaintenanceEvent",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{node_group}/simulateMaintenanceEvent"
+                }
+              ]
+            },
+            {
               "shortName": "TestIamPermissions",
               "fullName": "google.cloud.compute.v1.NodeGroups.TestIamPermissions",
               "mode": "UNARY",
@@ -41922,6 +41992,17 @@
               ]
             },
             {
+              "shortName": "AdvanceRollout",
+              "fullName": "google.cloud.deploy.v1.CloudDeploy.AdvanceRollout",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:advance"
+                }
+              ]
+            },
+            {
               "shortName": "ApproveRollout",
               "fullName": "google.cloud.deploy.v1.CloudDeploy.ApproveRollout",
               "mode": "UNARY",
@@ -41929,6 +42010,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:approve"
+                }
+              ]
+            },
+            {
+              "shortName": "CancelRollout",
+              "fullName": "google.cloud.deploy.v1.CloudDeploy.CancelRollout",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:cancel"
                 }
               ]
             },
@@ -42065,6 +42157,17 @@
               ]
             },
             {
+              "shortName": "IgnoreJob",
+              "fullName": "google.cloud.deploy.v1.CloudDeploy.IgnoreJob",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{rollout=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:ignoreJob"
+                }
+              ]
+            },
+            {
               "shortName": "ListDeliveryPipelines",
               "fullName": "google.cloud.deploy.v1.CloudDeploy.ListDeliveryPipelines",
               "mode": "UNARY",
@@ -42127,6 +42230,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1/{rollout=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:retryJob"
+                }
+              ]
+            },
+            {
+              "shortName": "TerminateJobRun",
+              "fullName": "google.cloud.deploy.v1.CloudDeploy.TerminateJobRun",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*/jobRuns/*}:terminate"
                 }
               ]
             },
@@ -48263,6 +48377,10 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1beta/{parent=projects/*/locations/*/dataStores/*/branches/*}/documents"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documents"
                 }
               ]
             },
@@ -48274,6 +48392,10 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1beta/{name=projects/*/locations/*/dataStores/*/branches/*/documents/*}"
+                },
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*}"
                 }
               ]
             },
@@ -48285,6 +48407,10 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1beta/{name=projects/*/locations/*/dataStores/*/branches/*/documents/*}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*}"
                 }
               ]
             },
@@ -48296,6 +48422,10 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1beta/{parent=projects/*/locations/*/dataStores/*/branches/*}/documents:import"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documents:import"
                 }
               ]
             },
@@ -48307,6 +48437,10 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1beta/{parent=projects/*/locations/*/dataStores/*/branches/*}/documents"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documents"
                 }
               ]
             },
@@ -48318,6 +48452,10 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1beta/{document.name=projects/*/locations/*/dataStores/*/branches/*/documents/*}"
+                },
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta/{document.name=projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*}"
                 }
               ]
             }
@@ -48335,6 +48473,10 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1beta/{serving_config=projects/*/locations/*/dataStores/*/servingConfigs/*}:recommend"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{serving_config=projects/*/locations/*/collections/*/dataStores/*/servingConfigs/*}:recommend"
                 }
               ]
             }
@@ -48352,6 +48494,10 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1beta/{parent=projects/*/locations/*/dataStores/*}/userEvents:collect"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:collect"
                 }
               ]
             },
@@ -48363,6 +48509,10 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1beta/{parent=projects/*/locations/*/dataStores/*}/userEvents:import"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:import"
                 }
               ]
             },
@@ -48374,6 +48524,10 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1beta/{parent=projects/*/locations/*/dataStores/*}/userEvents:write"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:write"
                 }
               ]
             }
@@ -76621,7 +76775,8 @@
         "google/cloud/video/livestream/v1",
         "google/longrunning",
         "google/protobuf",
-        "google/rpc"
+        "google/rpc",
+        "google/type"
       ],
       "options": {
         "csharp_namespace": {
@@ -76841,7 +76996,9 @@
       ],
       "configFile": "livestream_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.video.livestream.v1.LivestreamService"
+        "google.cloud.location.Locations",
+        "google.cloud.video.livestream.v1.LivestreamService",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "livestream.googleapis.com"
     },
