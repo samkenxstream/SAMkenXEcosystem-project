@@ -19,10 +19,9 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@com_google_googleapis_imports//:imports.bzl", "proto_library_with_info")
 
 proto_library(
-    name = "alloydb_proto",
+    name = "workstations_proto",
     srcs = [
-        "resources.proto",
-        "service.proto",
+        "workstations.proto",
     ],
     deps = [
         "//google/api:annotations_proto",
@@ -31,22 +30,18 @@ proto_library(
         "//google/api:resource_proto",
         "//google/longrunning:operations_proto",
         "//google/rpc:status_proto",
-        "//google/type:dayofweek_proto",
-        "//google/type:timeofday_proto",
         "@com_google_protobuf//:duration_proto",
-        "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
-        "@com_google_protobuf//:wrappers_proto",
     ],
 )
 
 proto_library_with_info(
-    name = "alloydb_proto_with_info",
+    name = "workstations_proto_with_info",
     deps = [
-        ":alloydb_proto",
-        "//google/cloud:common_resources_proto",
+        ":workstations_proto",
         "//google/cloud/location:location_proto",
+        "//google/cloud:common_resources_proto",
         "//google/iam/v1:iam_policy_proto",
     ],
 )
@@ -64,31 +59,31 @@ load(
 )
 
 java_proto_library(
-    name = "alloydb_java_proto",
-    deps = [":alloydb_proto"],
+    name = "workstations_java_proto",
+    deps = [":workstations_proto"],
 )
 
 java_grpc_library(
-    name = "alloydb_java_grpc",
-    srcs = [":alloydb_proto"],
-    deps = [":alloydb_java_proto"],
+    name = "workstations_java_grpc",
+    srcs = [":workstations_proto"],
+    deps = [":workstations_java_proto"],
 )
 
 java_gapic_library(
-    name = "alloydb_java_gapic",
-    srcs = [":alloydb_proto_with_info"],
+    name = "workstations_java_gapic",
+    srcs = [":workstations_proto_with_info"],
     gapic_yaml = None,
-    grpc_service_config = "alloydb_v1_grpc_service_config.json",
+    grpc_service_config = "workstations_grpc_service_config.json",
     rest_numeric_enums = True,
-    service_yaml = "alloydb_v1.yaml",
+    service_yaml = "workstations_v1.yaml",
     test_deps = [
         "//google/cloud/location:location_java_grpc",
         "//google/iam/v1:iam_java_grpc",
-        ":alloydb_java_grpc",
+        ":workstations_java_grpc",
     ],
     transport = "grpc+rest",
     deps = [
-        ":alloydb_java_proto",
+        ":workstations_java_proto",
         "//google/api:api_java_proto",
         "//google/cloud/location:location_java_proto",
         "//google/iam/v1:iam_java_proto",
@@ -96,25 +91,25 @@ java_gapic_library(
 )
 
 java_gapic_test(
-    name = "alloydb_java_gapic_test_suite",
+    name = "workstations_java_gapic_test_suite",
     test_classes = [
-        "com.google.cloud.alloydb.v1.AlloyDBAdminClientHttpJsonTest",
-        "com.google.cloud.alloydb.v1.AlloyDBAdminClientTest",
+        "com.google.cloud.workstations.v1.WorkstationsClientHttpJsonTest",
+        "com.google.cloud.workstations.v1.WorkstationsClientTest",
     ],
-    runtime_deps = [":alloydb_java_gapic_test"],
+    runtime_deps = [":workstations_java_gapic_test"],
 )
 
 # Open Source Packages
 java_gapic_assembly_gradle_pkg(
-    name = "google-cloud-alloydb-v1-java",
-    include_samples = True,
+    name = "google-cloud-workstations-v1-java",
     transport = "grpc+rest",
     deps = [
-        ":alloydb_java_gapic",
-        ":alloydb_java_grpc",
-        ":alloydb_java_proto",
-        ":alloydb_proto",
+        ":workstations_java_gapic",
+        ":workstations_java_grpc",
+        ":workstations_java_proto",
+        ":workstations_proto",
     ],
+    include_samples = True,
 )
 
 ##############################################################################
@@ -129,31 +124,29 @@ load(
 )
 
 go_proto_library(
-    name = "alloydb_go_proto",
+    name = "workstations_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "cloud.google.com/go/alloydb/apiv1/alloydbpb",
-    protos = [":alloydb_proto"],
+    importpath = "cloud.google.com/go/workstations/apiv1/workstationspb",
+    protos = [":workstations_proto"],
     deps = [
         "//google/api:annotations_go_proto",
         "//google/longrunning:longrunning_go_proto",
         "//google/rpc:status_go_proto",
-        "//google/type:dayofweek_go_proto",
-        "//google/type:timeofday_go_proto",
     ],
 )
 
 go_gapic_library(
-    name = "alloydb_go_gapic",
-    srcs = [":alloydb_proto_with_info"],
-    grpc_service_config = "alloydb_v1_grpc_service_config.json",
-    importpath = "cloud.google.com/go/alloydb/apiv1;alloydb",
+    name = "workstations_go_gapic",
+    srcs = [":workstations_proto_with_info"],
+    grpc_service_config = "workstations_grpc_service_config.json",
+    importpath = "cloud.google.com/go/workstations/apiv1;workstations",
     metadata = True,
-    release_level = "ga",
+    release_level = "beta",
     rest_numeric_enums = True,
-    service_yaml = "alloydb_v1.yaml",
+    service_yaml = "workstations_v1.yaml",
     transport = "grpc+rest",
     deps = [
-        ":alloydb_go_proto",
+        ":workstations_go_proto",
         "//google/cloud/location:location_go_proto",
         "//google/iam/v1:iam_go_proto",
         "//google/longrunning:longrunning_go_proto",
@@ -164,20 +157,20 @@ go_gapic_library(
 )
 
 go_test(
-    name = "alloydb_go_gapic_test",
-    srcs = [":alloydb_go_gapic_srcjar_test"],
-    embed = [":alloydb_go_gapic"],
-    importpath = "cloud.google.com/go/alloydb/apiv1",
+    name = "workstations_go_gapic_test",
+    srcs = [":workstations_go_gapic_srcjar_test"],
+    embed = [":workstations_go_gapic"],
+    importpath = "cloud.google.com/go/workstations/apiv1",
 )
 
 # Open Source Packages
 go_gapic_assembly_pkg(
-    name = "gapi-cloud-alloydb-v1-go",
+    name = "gapi-cloud-workstations-v1-go",
     deps = [
-        ":alloydb_go_gapic",
-        ":alloydb_go_gapic_srcjar-metadata.srcjar",
-        ":alloydb_go_gapic_srcjar-test.srcjar",
-        ":alloydb_go_proto",
+        ":workstations_go_gapic",
+        ":workstations_go_gapic_srcjar-test.srcjar",
+        ":workstations_go_gapic_srcjar-metadata.srcjar",
+        ":workstations_go_proto",
     ],
 )
 
@@ -192,11 +185,11 @@ load(
 )
 
 py_gapic_library(
-    name = "alloydb_py_gapic",
-    srcs = [":alloydb_proto"],
-    grpc_service_config = "alloydb_v1_grpc_service_config.json",
+    name = "workstations_py_gapic",
+    srcs = [":workstations_proto"],
+    grpc_service_config = "workstations_grpc_service_config.json",
     rest_numeric_enums = True,
-    service_yaml = "alloydb_v1.yaml",
+    service_yaml = "workstations_v1.yaml",
     transport = "grpc+rest",
     deps = [
         "//google/iam/v1:iam_policy_py_proto",
@@ -204,20 +197,20 @@ py_gapic_library(
 )
 
 py_test(
-    name = "alloydb_py_gapic_test",
+    name = "workstations_py_gapic_test",
     srcs = [
-        "alloydb_py_gapic_pytest.py",
-        "alloydb_py_gapic_test.py",
+        "workstations_py_gapic_pytest.py",
+        "workstations_py_gapic_test.py",
     ],
     legacy_create_init = False,
-    deps = [":alloydb_py_gapic"],
+    deps = [":workstations_py_gapic"],
 )
 
 # Open Source Packages
 py_gapic_assembly_pkg(
-    name = "alloydb-v1-py",
+    name = "workstations-v1-py",
     deps = [
-        ":alloydb_py_gapic",
+        ":workstations_py_gapic",
     ],
 )
 
@@ -233,36 +226,36 @@ load(
 )
 
 php_proto_library(
-    name = "alloydb_php_proto",
-    deps = [":alloydb_proto"],
+    name = "workstations_php_proto",
+    deps = [":workstations_proto"],
 )
 
 php_grpc_library(
-    name = "alloydb_php_grpc",
-    srcs = [":alloydb_proto"],
-    deps = [":alloydb_php_proto"],
+    name = "workstations_php_grpc",
+    srcs = [":workstations_proto"],
+    deps = [":workstations_php_proto"],
 )
 
 php_gapic_library(
-    name = "alloydb_php_gapic",
-    srcs = [":alloydb_proto_with_info"],
-    grpc_service_config = "alloydb_v1_grpc_service_config.json",
+    name = "workstations_php_gapic",
+    srcs = [":workstations_proto_with_info"],
+    grpc_service_config = "workstations_grpc_service_config.json",
     rest_numeric_enums = True,
-    service_yaml = "alloydb_v1.yaml",
+    service_yaml = "workstations_v1.yaml",
     transport = "grpc+rest",
     deps = [
-        ":alloydb_php_grpc",
-        ":alloydb_php_proto",
+        ":workstations_php_grpc",
+        ":workstations_php_proto",
     ],
 )
 
 # Open Source Packages
 php_gapic_assembly_pkg(
-    name = "google-cloud-alloydb-v1-php",
+    name = "google-cloud-workstations-v1-php",
     deps = [
-        ":alloydb_php_gapic",
-        ":alloydb_php_grpc",
-        ":alloydb_php_proto",
+        ":workstations_php_gapic",
+        ":workstations_php_grpc",
+        ":workstations_php_proto",
     ],
 )
 
@@ -276,23 +269,23 @@ load(
 )
 
 nodejs_gapic_library(
-    name = "alloydb_nodejs_gapic",
-    package_name = "@google-cloud/alloydb",
-    src = ":alloydb_proto_with_info",
+    name = "workstations_nodejs_gapic",
+    package_name = "@google-cloud/workstations",
+    src = ":workstations_proto_with_info",
     extra_protoc_parameters = ["metadata"],
-    grpc_service_config = "alloydb_v1_grpc_service_config.json",
-    package = "google.cloud.alloydb.v1",
+    grpc_service_config = "workstations_grpc_service_config.json",
+    package = "google.cloud.workstations.v1",
     rest_numeric_enums = True,
-    service_yaml = "alloydb_v1.yaml",
+    service_yaml = "workstations_v1.yaml",
     transport = "grpc+rest",
     deps = [],
 )
 
 nodejs_gapic_assembly_pkg(
-    name = "alloydb-v1-nodejs",
+    name = "workstations-v1-nodejs",
     deps = [
-        ":alloydb_nodejs_gapic",
-        ":alloydb_proto",
+        ":workstations_nodejs_gapic",
+        ":workstations_proto",
     ],
 )
 
@@ -301,47 +294,45 @@ nodejs_gapic_assembly_pkg(
 ##############################################################################
 load(
     "@com_google_googleapis_imports//:imports.bzl",
-    "ruby_cloud_gapic_library",
     "ruby_gapic_assembly_pkg",
+    "ruby_cloud_gapic_library",
     "ruby_grpc_library",
     "ruby_proto_library",
 )
 
 ruby_proto_library(
-    name = "alloydb_ruby_proto",
-    deps = [":alloydb_proto"],
+    name = "workstations_ruby_proto",
+    deps = [":workstations_proto"],
 )
 
 ruby_grpc_library(
-    name = "alloydb_ruby_grpc",
-    srcs = [":alloydb_proto"],
-    deps = [":alloydb_ruby_proto"],
+    name = "workstations_ruby_grpc",
+    srcs = [":workstations_proto"],
+    deps = [":workstations_ruby_proto"],
 )
 
 ruby_cloud_gapic_library(
-    name = "alloydb_ruby_gapic",
-    srcs = [":alloydb_proto_with_info"],
+    name = "workstations_ruby_gapic",
+    srcs = [":workstations_proto_with_info"],
     extra_protoc_parameters = [
-        "ruby-cloud-gem-name=google-cloud-alloy_db-v1",
-        "ruby-cloud-gem-namespace=Google::Cloud::AlloyDB::V1",
+        "ruby-cloud-gem-name=google-cloud-workstations-v1",
     ],
-    grpc_service_config = "alloydb_v1_grpc_service_config.json",
+    grpc_service_config = "workstations_grpc_service_config.json",
     rest_numeric_enums = True,
-    service_yaml = "alloydb_v1.yaml",
-    transport = "grpc+rest",
+    service_yaml = "workstations_v1.yaml",
     deps = [
-        ":alloydb_ruby_grpc",
-        ":alloydb_ruby_proto",
+        ":workstations_ruby_grpc",
+        ":workstations_ruby_proto",
     ],
 )
 
 # Open Source Packages
 ruby_gapic_assembly_pkg(
-    name = "google-cloud-alloydb-v1-ruby",
+    name = "google-cloud-workstations-v1-ruby",
     deps = [
-        ":alloydb_ruby_gapic",
-        ":alloydb_ruby_grpc",
-        ":alloydb_ruby_proto",
+        ":workstations_ruby_gapic",
+        ":workstations_ruby_grpc",
+        ":workstations_ruby_proto",
     ],
 )
 
@@ -357,36 +348,36 @@ load(
 )
 
 csharp_proto_library(
-    name = "alloydb_csharp_proto",
-    deps = [":alloydb_proto"],
+    name = "workstations_csharp_proto",
+    deps = [":workstations_proto"],
 )
 
 csharp_grpc_library(
-    name = "alloydb_csharp_grpc",
-    srcs = [":alloydb_proto"],
-    deps = [":alloydb_csharp_proto"],
+    name = "workstations_csharp_grpc",
+    srcs = [":workstations_proto"],
+    deps = [":workstations_csharp_proto"],
 )
 
 csharp_gapic_library(
-    name = "alloydb_csharp_gapic",
-    srcs = [":alloydb_proto_with_info"],
+    name = "workstations_csharp_gapic",
+    srcs = [":workstations_proto_with_info"],
     common_resources_config = "@gax_dotnet//:Google.Api.Gax/ResourceNames/CommonResourcesConfig.json",
-    grpc_service_config = "alloydb_v1_grpc_service_config.json",
+    grpc_service_config = "workstations_grpc_service_config.json",
     rest_numeric_enums = True,
-    service_yaml = "alloydb_v1.yaml",
+    service_yaml = "workstations_v1.yaml",
     deps = [
-        ":alloydb_csharp_grpc",
-        ":alloydb_csharp_proto",
+        ":workstations_csharp_grpc",
+        ":workstations_csharp_proto",
     ],
 )
 
 # Open Source Packages
 csharp_gapic_assembly_pkg(
-    name = "google-cloud-alloydb-v1-csharp",
+    name = "google-cloud-workstations-v1-csharp",
     deps = [
-        ":alloydb_csharp_gapic",
-        ":alloydb_csharp_grpc",
-        ":alloydb_csharp_proto",
+        ":workstations_csharp_gapic",
+        ":workstations_csharp_grpc",
+        ":workstations_csharp_proto",
     ],
 )
 
@@ -400,13 +391,13 @@ load(
 )
 
 cc_proto_library(
-    name = "alloydb_cc_proto",
-    deps = [":alloydb_proto"],
+    name = "workstations_cc_proto",
+    deps = [":workstations_proto"],
 )
 
 cc_grpc_library(
-    name = "alloydb_cc_grpc",
-    srcs = [":alloydb_proto"],
+    name = "workstations_cc_grpc",
+    srcs = [":workstations_proto"],
     grpc_only = True,
-    deps = [":alloydb_cc_proto"],
+    deps = [":workstations_cc_proto"],
 )
