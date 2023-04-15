@@ -111,9 +111,9 @@ rules_proto_toolchains()
 # rules_gapic also depends on rules_go, so it must come after our own dependency on rules_go.
 # It must also come before gapic-generator-go so as to ensure that it does not bring in an old
 # version of rules_gapic.
-_rules_gapic_version = "0.23.1"
+_rules_gapic_version = "0.24.0"
 
-_rules_gapic_sha256 = "cda71a5e50daa31bdf7c1bbc9196cea21adb3daea97e2a28dc9569f03c2a4f52"
+_rules_gapic_sha256 = "be9b551b22b05755efddfd8ba97102d3191364c85eb8adc7cc6c466859bfa52e"
 
 http_archive(
     name = "rules_gapic",
@@ -163,7 +163,7 @@ local_repository(
 # types e.g. longrunningpb, we must define our own version of longrunning here.
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
-_gapic_generator_go_version = "0.35.2"
+_gapic_generator_go_version = "0.35.5"
 
 http_archive(
     name = "com_googleapis_gapic_generator_go",
@@ -265,7 +265,7 @@ maven_install(
     ],
 )
 
-_gapic_generator_java_version = "2.16.0"
+_gapic_generator_java_version = "2.17.0"
 
 maven_install(
     artifacts = [
@@ -426,9 +426,9 @@ http_archive(
     urls = ["https://github.com/googleapis/gax-dotnet/archive/refs/tags/%s.tar.gz" % _gax_dotnet_version],
 )
 
-_gapic_generator_csharp_version = "1.4.11"
+_gapic_generator_csharp_version = "1.4.13"
 
-_gapic_generator_csharp_sha256 = "40bb2ecf1e540df8f58bdca15c48e3da6fbdddc9c5786421b858222fb4e25202"
+_gapic_generator_csharp_sha256 = "0d085160157e667e63f0b7487a13ee6821b28aa9b5909416854da7121a874322"
 
 http_archive(
     name = "gapic_generator_csharp",
