@@ -38824,7 +38824,7 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/dataproc/apiv1/dataprocpb;dataprocpb": 8
+            "cloud.google.com/go/dataproc/v2/apiv1/dataprocpb;dataprocpb": 8
           }
         },
         "java_multiple_files": {
@@ -61364,7 +61364,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/recaptchaenterprise/apiv1/recaptchaenterprisepb;recaptchaenterprisepb": 1
+            "cloud.google.com/go/recaptchaenterprise/v2/apiv1/recaptchaenterprisepb;recaptchaenterprisepb": 1
           }
         },
         "java_multiple_files": {
@@ -61570,7 +61570,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/recaptchaenterprise/apiv1beta1/recaptchaenterprisepb;recaptchaenterprisepb": 1
+            "cloud.google.com/go/recaptchaenterprise/v2/apiv1beta1/recaptchaenterprisepb;recaptchaenterprisepb": 1
           }
         },
         "java_multiple_files": {
@@ -64763,7 +64763,7 @@
               "bindings": [
                 {
                   "httpMethod": "POST",
-                  "path": "/v2alpha/{merchant_center_account_link.name=projects/*/locations/*/catalogs/*/merchantCenterAccountLinks/*}"
+                  "path": "/v2alpha/{parent=projects/*/locations/*/catalogs/*}/merchantCenterAccountLinks"
                 }
               ]
             },
@@ -72290,7 +72290,7 @@
       "majorVersion": "v1",
       "hostName": "storageinsights.googleapis.com",
       "title": "Storage Insights API",
-      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "description": "Provides insights capability on Google Cloud Storage",
       "importDirectories": [
         "google/api",
         "google/protobuf",
@@ -74870,7 +74870,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/translation/apiv3/translationpb;translationpb": 1
+            "cloud.google.com/go/translate/apiv3/translatepb;translatepb": 1
           }
         },
         "java_multiple_files": {
@@ -91563,7 +91563,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/monitoring/v3;monitoring": 19
+            "cloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpb": 19
           }
         },
         "java_multiple_files": {
@@ -94296,7 +94296,7 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/storage/v2;storage": 1
+            "cloud.google.com/go/storage/internal/apiv2/storagepb;storagepb": 1
           }
         },
         "java_multiple_files": {

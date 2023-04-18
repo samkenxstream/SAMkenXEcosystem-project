@@ -125,7 +125,7 @@ load(
 go_proto_library(
     name = "translation_go_proto",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
-    importpath = "cloud.google.com/go/translation/apiv3/translationpb",
+    importpath = "cloud.google.com/go/translate/apiv3/translatepb",
     protos = [":translation_proto"],
     deps = [
         "//google/api:annotations_go_proto",
@@ -166,6 +166,7 @@ go_gapic_assembly_pkg(
     deps = [
         ":translation_go_gapic",
         ":translation_go_gapic_srcjar-metadata.srcjar",
+        ":translation_go_gapic_srcjar-snippets.srcjar",
         ":translation_go_gapic_srcjar-test.srcjar",
         ":translation_go_proto",
     ],
