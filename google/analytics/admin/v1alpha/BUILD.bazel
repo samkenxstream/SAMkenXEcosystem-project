@@ -24,6 +24,7 @@ proto_library(
         "access_report.proto",
         "analytics_admin.proto",
         "audience.proto",
+        "channel_group.proto",
         "expanded_data_set.proto",
         "resources.proto",
     ],
@@ -151,7 +152,7 @@ go_test(
     name = "admin_go_gapic_test",
     srcs = [":admin_go_gapic_srcjar_test"],
     embed = [":admin_go_gapic"],
-    importpath = "google.golang.org/google/analytics/admin/v1alpha",
+    importpath = "cloud.google.com/go/analytics/admin/apiv1alpha",
 )
 
 # Open Source Packages
