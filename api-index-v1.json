@@ -5029,7 +5029,7 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Ads.SearchAds360.V0.Common": 10,
+            "Google.Ads.SearchAds360.V0.Common": 11,
             "Google.Ads.SearchAds360.V0.Enums": 54,
             "Google.Ads.SearchAds360.V0.Resources": 30,
             "Google.Ads.SearchAds360.V0.Services": 3
@@ -5037,7 +5037,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/ads/searchads360/v0/common;common": 10,
+            "google.golang.org/genproto/googleapis/ads/searchads360/v0/common;common": 11,
             "google.golang.org/genproto/googleapis/ads/searchads360/v0/enums;enums": 54,
             "google.golang.org/genproto/googleapis/ads/searchads360/v0/resources;resources": 30,
             "google.golang.org/genproto/googleapis/ads/searchads360/v0/services;services": 3
@@ -5045,12 +5045,12 @@
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 97
+            "true": 98
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.ads.searchads360.v0.common": 10,
+            "com.google.ads.searchads360.v0.common": 11,
             "com.google.ads.searchads360.v0.enums": 54,
             "com.google.ads.searchads360.v0.resources": 30,
             "com.google.ads.searchads360.v0.services": 3
@@ -5058,12 +5058,12 @@
         },
         "objc_class_prefix": {
           "valueCounts": {
-            "GASA360": 97
+            "GASA360": 98
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Ads\\SearchAds360\\V0\\Common": 10,
+            "Google\\Ads\\SearchAds360\\V0\\Common": 11,
             "Google\\Ads\\SearchAds360\\V0\\Enums": 54,
             "Google\\Ads\\SearchAds360\\V0\\Resources": 30,
             "Google\\Ads\\SearchAds360\\V0\\Services": 3
@@ -5071,7 +5071,7 @@
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Ads::SearchAds360::V0::Common": 10,
+            "Google::Ads::SearchAds360::V0::Common": 11,
             "Google::Ads::SearchAds360::V0::Enums": 54,
             "Google::Ads::SearchAds360::V0::Resources": 30,
             "Google::Ads::SearchAds360::V0::Services": 3
@@ -5187,17 +5187,17 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/ai/generativelanguage/v1beta2;generativelanguage": 5
+            "google.golang.org/genproto/googleapis/ai/generativelanguage/v1beta2;generativelanguage": 6
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 5
+            "true": 6
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.ai.generativelanguage.v1beta2": 5
+            "com.google.ai.generativelanguage.v1beta2": 6
           }
         }
       },
@@ -5311,17 +5311,17 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpb": 6
+            "cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpb": 7
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 6
+            "true": 7
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.analytics.admin.v1alpha": 6
+            "com.google.analytics.admin.v1alpha": 7
           }
         }
       },
@@ -5547,6 +5547,17 @@
               ]
             },
             {
+              "shortName": "CreateAdSenseLink",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.CreateAdSenseLink",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{parent=properties/*}/adSenseLinks"
+                }
+              ]
+            },
+            {
               "shortName": "CreateAudience",
               "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.CreateAudience",
               "mode": "UNARY",
@@ -5642,6 +5653,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateEventCreateRule",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.CreateEventCreateRule",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{parent=properties/*/dataStreams/*}/eventCreateRules"
                 }
               ]
             },
@@ -5753,6 +5775,17 @@
               ]
             },
             {
+              "shortName": "DeleteAdSenseLink",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.DeleteAdSenseLink",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1alpha/{name=properties/*/adSenseLinks/*}"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteChannelGroup",
               "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.DeleteChannelGroup",
               "mode": "UNARY",
@@ -5815,6 +5848,17 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteEventCreateRule",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.DeleteEventCreateRule",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1alpha/{name=properties/*/dataStreams/*/eventCreateRules/*}"
                 }
               ]
             },
@@ -5944,6 +5988,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1alpha/{name=accounts/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetAdSenseLink",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.GetAdSenseLink",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1alpha/{name=properties/*/adSenseLinks/*}"
                 }
               ]
             },
@@ -6091,6 +6146,17 @@
               ]
             },
             {
+              "shortName": "GetEventCreateRule",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.GetEventCreateRule",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1alpha/{name=properties/*/dataStreams/*/eventCreateRules/*}"
+                }
+              ]
+            },
+            {
               "shortName": "GetExpandedDataSet",
               "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.GetExpandedDataSet",
               "mode": "UNARY",
@@ -6209,6 +6275,17 @@
               ]
             },
             {
+              "shortName": "ListAdSenseLinks",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.ListAdSenseLinks",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1alpha/{parent=properties/*}/adSenseLinks"
+                }
+              ]
+            },
+            {
               "shortName": "ListAudiences",
               "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.ListAudiences",
               "mode": "UNARY",
@@ -6315,6 +6392,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks"
+                }
+              ]
+            },
+            {
+              "shortName": "ListEventCreateRules",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.ListEventCreateRules",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1alpha/{parent=properties/*/dataStreams/*}/eventCreateRules"
                 }
               ]
             },
@@ -6573,6 +6661,17 @@
               ]
             },
             {
+              "shortName": "UpdateEventCreateRule",
+              "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.UpdateEventCreateRule",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1alpha/{event_create_rule.name=properties/*/dataStreams/*/eventCreateRules/*}"
+                }
+              ]
+            },
+            {
               "shortName": "UpdateExpandedDataSet",
               "fullName": "google.analytics.admin.v1alpha.AnalyticsAdminService.UpdateExpandedDataSet",
               "mode": "UNARY",
@@ -6656,7 +6755,7 @@
           ]
         }
       ],
-      "configFile": "analyticsadmin_v1alpha.yaml",
+      "configFile": "analyticsadmin.yaml",
       "serviceConfigApiNames": [
         "google.analytics.admin.v1alpha.AnalyticsAdminService"
       ],
@@ -10960,7 +11059,7 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.AIPlatform.V1": 77,
+            "Google.Cloud.AIPlatform.V1": 78,
             "Google.Cloud.AIPlatform.V1.Schema.Predict.Instance": 9,
             "Google.Cloud.AIPlatform.V1.Schema.Predict.Params": 6,
             "Google.Cloud.AIPlatform.V1.Schema.Predict.Prediction": 10,
@@ -10969,7 +11068,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb": 77,
+            "cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb": 78,
             "cloud.google.com/go/aiplatform/apiv1/schema/predict/instance/instancepb;instancepb": 9,
             "cloud.google.com/go/aiplatform/apiv1/schema/predict/params/paramspb;paramspb": 6,
             "cloud.google.com/go/aiplatform/apiv1/schema/predict/prediction/predictionpb;predictionpb": 10,
@@ -10978,12 +11077,12 @@
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 113
+            "true": 114
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.aiplatform.v1": 77,
+            "com.google.cloud.aiplatform.v1": 78,
             "com.google.cloud.aiplatform.v1.schema.predict.instance": 9,
             "com.google.cloud.aiplatform.v1.schema.predict.params": 6,
             "com.google.cloud.aiplatform.v1.schema.predict.prediction": 10,
@@ -10992,7 +11091,7 @@
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\AIPlatform\\V1": 77,
+            "Google\\Cloud\\AIPlatform\\V1": 78,
             "Google\\Cloud\\AIPlatform\\V1\\Schema\\Predict\\Instance": 9,
             "Google\\Cloud\\AIPlatform\\V1\\Schema\\Predict\\Params": 6,
             "Google\\Cloud\\AIPlatform\\V1\\Schema\\Predict\\Prediction": 10,
@@ -11001,7 +11100,7 @@
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::AIPlatform::V1": 77,
+            "Google::Cloud::AIPlatform::V1": 78,
             "Google::Cloud::AIPlatform::V1::Schema::Predict::Instance": 9,
             "Google::Cloud::AIPlatform::V1::Schema::Predict::Params": 6,
             "Google::Cloud::AIPlatform::V1::Schema::Predict::Prediction": 10,
@@ -12081,6 +12180,34 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1/{model_deployment_monitoring_job.name=projects/*/locations/*/modelDeploymentMonitoringJobs/*}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "shortName": "MatchService",
+          "fullName": "google.cloud.aiplatform.v1.MatchService",
+          "methods": [
+            {
+              "shortName": "FindNeighbors",
+              "fullName": "google.cloud.aiplatform.v1.MatchService.FindNeighbors",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{index_endpoint=projects/*/locations/*/indexEndpoints/*}:findNeighbors"
+                }
+              ]
+            },
+            {
+              "shortName": "ReadIndexDatapoints",
+              "fullName": "google.cloud.aiplatform.v1.MatchService.ReadIndexDatapoints",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{index_endpoint=projects/*/locations/*/indexEndpoints/*}:readIndexDatapoints"
                 }
               ]
             }
@@ -13395,6 +13522,7 @@
         "google.cloud.aiplatform.v1.IndexEndpointService",
         "google.cloud.aiplatform.v1.IndexService",
         "google.cloud.aiplatform.v1.JobService",
+        "google.cloud.aiplatform.v1.MatchService",
         "google.cloud.aiplatform.v1.MetadataService",
         "google.cloud.aiplatform.v1.MigrationService",
         "google.cloud.aiplatform.v1.ModelService",
@@ -15488,6 +15616,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1beta1/{name=projects/*/locations/*/schedules/*}:resume"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateSchedule",
+              "fullName": "google.cloud.aiplatform.v1beta1.ScheduleService.UpdateSchedule",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta1/{schedule.name=projects/*/locations/*/schedules/*}"
                 }
               ]
             }
@@ -25125,32 +25264,32 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.CloudDms.V1": 2
+            "Google.Cloud.CloudDms.V1": 3
           }
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/clouddms/apiv1/clouddmspb;clouddmspb": 2
+            "cloud.google.com/go/clouddms/apiv1/clouddmspb;clouddmspb": 3
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 2
+            "true": 3
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.clouddms.v1": 2
+            "com.google.cloud.clouddms.v1": 3
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\CloudDms\\V1": 2
+            "Google\\Cloud\\CloudDms\\V1": 3
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::CloudDMS::V1": 2
+            "Google::Cloud::CloudDMS::V1": 3
           }
         }
       },
@@ -25160,6 +25299,39 @@
           "fullName": "google.cloud.clouddms.v1.DataMigrationService",
           "methods": [
             {
+              "shortName": "ApplyConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.ApplyConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/conversionWorkspaces/*}:apply"
+                }
+              ]
+            },
+            {
+              "shortName": "CommitConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.CommitConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/conversionWorkspaces/*}:commit"
+                }
+              ]
+            },
+            {
+              "shortName": "ConvertConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.ConvertConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/conversionWorkspaces/*}:convert"
+                }
+              ]
+            },
+            {
               "shortName": "CreateConnectionProfile",
               "fullName": "google.cloud.clouddms.v1.DataMigrationService.CreateConnectionProfile",
               "mode": "UNARY",
@@ -25167,6 +25339,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1/{parent=projects/*/locations/*}/connectionProfiles"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.CreateConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/conversionWorkspaces"
                 }
               ]
             },
@@ -25182,6 +25365,17 @@
               ]
             },
             {
+              "shortName": "CreatePrivateConnection",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.CreatePrivateConnection",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/privateConnections"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteConnectionProfile",
               "fullName": "google.cloud.clouddms.v1.DataMigrationService.DeleteConnectionProfile",
               "mode": "UNARY",
@@ -25193,6 +25387,17 @@
               ]
             },
             {
+              "shortName": "DeleteConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.DeleteConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/conversionWorkspaces/*}"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteMigrationJob",
               "fullName": "google.cloud.clouddms.v1.DataMigrationService.DeleteMigrationJob",
               "mode": "UNARY",
@@ -25200,6 +25405,50 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1/{name=projects/*/locations/*/migrationJobs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeletePrivateConnection",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.DeletePrivateConnection",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/privateConnections/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DescribeConversionWorkspaceRevisions",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.DescribeConversionWorkspaceRevisions",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{conversion_workspace=projects/*/locations/*/conversionWorkspaces/*}:describeConversionWorkspaceRevisions"
+                }
+              ]
+            },
+            {
+              "shortName": "DescribeDatabaseEntities",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.DescribeDatabaseEntities",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{conversion_workspace=projects/*/locations/*/conversionWorkspaces/*}:describeDatabaseEntities"
+                }
+              ]
+            },
+            {
+              "shortName": "FetchStaticIps",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.FetchStaticIps",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*}:fetchStaticIps"
                 }
               ]
             },
@@ -25226,6 +25475,17 @@
               ]
             },
             {
+              "shortName": "GetConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.GetConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/conversionWorkspaces/*}"
+                }
+              ]
+            },
+            {
               "shortName": "GetMigrationJob",
               "fullName": "google.cloud.clouddms.v1.DataMigrationService.GetMigrationJob",
               "mode": "UNARY",
@@ -25233,6 +25493,28 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{name=projects/*/locations/*/migrationJobs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetPrivateConnection",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.GetPrivateConnection",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/privateConnections/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ImportMappingRules",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.ImportMappingRules",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*/conversionWorkspaces/*}/mappingRules:import"
                 }
               ]
             },
@@ -25248,6 +25530,17 @@
               ]
             },
             {
+              "shortName": "ListConversionWorkspaces",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.ListConversionWorkspaces",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/conversionWorkspaces"
+                }
+              ]
+            },
+            {
               "shortName": "ListMigrationJobs",
               "fullName": "google.cloud.clouddms.v1.DataMigrationService.ListMigrationJobs",
               "mode": "UNARY",
@@ -25255,6 +25548,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{parent=projects/*/locations/*}/migrationJobs"
+                }
+              ]
+            },
+            {
+              "shortName": "ListPrivateConnections",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.ListPrivateConnections",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*}/privateConnections"
                 }
               ]
             },
@@ -25292,6 +25596,39 @@
               ]
             },
             {
+              "shortName": "RollbackConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.RollbackConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/conversionWorkspaces/*}:rollback"
+                }
+              ]
+            },
+            {
+              "shortName": "SearchBackgroundJobs",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.SearchBackgroundJobs",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{conversion_workspace=projects/*/locations/*/conversionWorkspaces/*}:searchBackgroundJobs"
+                }
+              ]
+            },
+            {
+              "shortName": "SeedConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.SeedConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/conversionWorkspaces/*}:seed"
+                }
+              ]
+            },
+            {
               "shortName": "StartMigrationJob",
               "fullName": "google.cloud.clouddms.v1.DataMigrationService.StartMigrationJob",
               "mode": "UNARY",
@@ -25325,6 +25662,17 @@
               ]
             },
             {
+              "shortName": "UpdateConversionWorkspace",
+              "fullName": "google.cloud.clouddms.v1.DataMigrationService.UpdateConversionWorkspace",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{conversion_workspace.name=projects/*/locations/*/conversionWorkspaces/*}"
+                }
+              ]
+            },
+            {
               "shortName": "UpdateMigrationJob",
               "fullName": "google.cloud.clouddms.v1.DataMigrationService.UpdateMigrationJob",
               "mode": "UNARY",
@@ -25351,7 +25699,10 @@
       ],
       "configFile": "datamigration_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.clouddms.v1.DataMigrationService"
+        "google.cloud.clouddms.v1.DataMigrationService",
+        "google.cloud.location.Locations",
+        "google.iam.v1.IAMPolicy",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "datamigration.googleapis.com"
     },
@@ -43859,6 +44210,21 @@
               ]
             },
             {
+              "shortName": "GenerateStatelessSummary",
+              "fullName": "google.cloud.dialogflow.v2.Conversations.GenerateStatelessSummary",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{stateless_conversation.parent=projects/*}/suggestions:generateStatelessSummary"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{stateless_conversation.parent=projects/*/locations/*}/suggestions:generateStatelessSummary"
+                }
+              ]
+            },
+            {
               "shortName": "GetConversation",
               "fullName": "google.cloud.dialogflow.v2.Conversations.GetConversation",
               "mode": "UNARY",
@@ -45512,6 +45878,21 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v2beta1/{parent=projects/*/locations/*}/conversations"
+                }
+              ]
+            },
+            {
+              "shortName": "GenerateStatelessSummary",
+              "fullName": "google.cloud.dialogflow.v2beta1.Conversations.GenerateStatelessSummary",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2beta1/{stateless_conversation.parent=projects/*}/suggestions:generateStatelessSummary"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2beta1/{stateless_conversation.parent=projects/*/locations/*}/suggestions:generateStatelessSummary"
                 }
               ]
             },
@@ -49838,6 +50219,7 @@
       "description": "Manages lightweight user-provided functions executed in response to events.",
       "importDirectories": [
         "google/api",
+        "google/cloud/functions/v1",
         "google/iam/v1",
         "google/longrunning",
         "google/protobuf"
@@ -49996,7 +50378,10 @@
       ],
       "configFile": "cloudfunctions_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.functions.v1.CloudFunctionsService"
+        "google.cloud.functions.v1.CloudFunctionsService",
+        "google.cloud.location.Locations",
+        "google.iam.v1.IAMPolicy",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "cloudfunctions.googleapis.com"
     },
@@ -54165,6 +54550,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1/{ekm_connection.name=projects/*/locations/*/ekmConnections/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "VerifyConnectivity",
+              "fullName": "google.cloud.kms.v1.EkmService.VerifyConnectivity",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/ekmConnections/*}:verifyConnectivity"
                 }
               ]
             }
@@ -63043,7 +63439,9 @@
       ],
       "configFile": "redis_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.redis.v1.CloudRedis"
+        "google.cloud.location.Locations",
+        "google.cloud.redis.v1.CloudRedis",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "redis.googleapis.com"
     },
@@ -81025,6 +81423,7 @@
       "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
       "importDirectories": [
         "google/api",
+        "google/longrunning",
         "google/protobuf"
       ],
       "options": {
@@ -81112,13 +81511,25 @@
                   "path": "/v1/uris:search"
                 }
               ]
+            },
+            {
+              "shortName": "SubmitUri",
+              "fullName": "google.cloud.webrisk.v1.WebRiskService.SubmitUri",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/uris:submit"
+                }
+              ]
             }
           ]
         }
       ],
       "configFile": "webrisk_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.webrisk.v1.WebRiskService"
+        "google.cloud.webrisk.v1.WebRiskService",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "webrisk.googleapis.com"
     },
@@ -82188,7 +82599,7 @@
       "majorVersion": "v1",
       "hostName": "workstations.googleapis.com",
       "title": "Cloud Workstations API",
-      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "description": "Allows administrators to create managed developer environments in the cloud.",
       "importDirectories": [
         "google/api",
         "google/longrunning",
@@ -82456,7 +82867,7 @@
       "majorVersion": "v1",
       "hostName": "workstations.googleapis.com",
       "title": "Cloud Workstations API",
-      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "description": "Allows administrators to create managed developer environments in the cloud.",
       "importDirectories": [
         "google/api",
         "google/longrunning",
@@ -87765,38 +88176,38 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.Firestore.V1": 6
+            "Google.Cloud.Firestore.V1": 7
           }
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/firestore/apiv1/firestorepb;firestorepb": 6
+            "cloud.google.com/go/firestore/apiv1/firestorepb;firestorepb": 7
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 6
+            "true": 7
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.firestore.v1": 6
+            "com.google.firestore.v1": 7
           }
         },
         "objc_class_prefix": {
           "valueCounts": {
             "": 1,
-            "GCFS": 5
+            "GCFS": 6
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\Firestore\\V1": 6
+            "Google\\Cloud\\Firestore\\V1": 7
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::Firestore::V1": 6
+            "Google::Cloud::Firestore::V1": 7
           }
         }
       },
@@ -89985,6 +90396,33 @@
               ]
             },
             {
+              "shortName": "CreateBucketAsync",
+              "fullName": "google.logging.v2.ConfigServiceV2.CreateBucketAsync",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=*/*/locations/*}/buckets:createAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=projects/*/locations/*}/buckets:createAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=organizations/*/locations/*}/buckets:createAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=folders/*/locations/*}/buckets:createAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=billingAccounts/*/locations/*}/buckets:createAsync"
+                }
+              ]
+            },
+            {
               "shortName": "CreateExclusion",
               "fullName": "google.logging.v2.ConfigServiceV2.CreateExclusion",
               "mode": "UNARY",
@@ -90008,6 +90446,33 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v2/{parent=billingAccounts/*}/exclusions"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateLink",
+              "fullName": "google.logging.v2.ConfigServiceV2.CreateLink",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=*/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=projects/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=organizations/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=folders/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{parent=billingAccounts/*/locations/*/buckets/*}/links"
                 }
               ]
             },
@@ -90120,6 +90585,33 @@
               ]
             },
             {
+              "shortName": "DeleteLink",
+              "fullName": "google.logging.v2.ConfigServiceV2.DeleteLink",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=*/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=projects/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=organizations/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=folders/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v2/{name=billingAccounts/*/locations/*/buckets/*/links/*}"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteSink",
               "fullName": "google.logging.v2.ConfigServiceV2.DeleteSink",
               "mode": "UNARY",
@@ -90196,7 +90688,7 @@
                 },
                 {
                   "httpMethod": "GET",
-                  "path": "/v2/{name=billingAccounts/*/buckets/*}"
+                  "path": "/v2/{name=billingAccounts/*/locations/*/buckets/*}"
                 }
               ]
             },
@@ -90251,6 +90743,33 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v2/{name=billingAccounts/*/exclusions/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetLink",
+              "fullName": "google.logging.v2.ConfigServiceV2.GetLink",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=*/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=projects/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=organizations/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=folders/*/locations/*/buckets/*/links/*}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{name=billingAccounts/*/locations/*/buckets/*/links/*}"
                 }
               ]
             },
@@ -90331,7 +90850,7 @@
                 },
                 {
                   "httpMethod": "GET",
-                  "path": "/v2/{name=billingAccounts/*/buckets/*/views/*}"
+                  "path": "/v2/{name=billingAccounts/*/locations/*/buckets/*/views/*}"
                 }
               ]
             },
@@ -90386,6 +90905,33 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v2/{parent=billingAccounts/*}/exclusions"
+                }
+              ]
+            },
+            {
+              "shortName": "ListLinks",
+              "fullName": "google.logging.v2.ConfigServiceV2.ListLinks",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=*/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=projects/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=organizations/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=folders/*/locations/*/buckets/*}/links"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=billingAccounts/*/locations/*/buckets/*}/links"
                 }
               ]
             },
@@ -90494,6 +91040,33 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v2/{name=billingAccounts/*/locations/*/buckets/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateBucketAsync",
+              "fullName": "google.logging.v2.ConfigServiceV2.UpdateBucketAsync",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{name=*/*/locations/*/buckets/*}:updateAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{name=projects/*/locations/*/buckets/*}:updateAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{name=organizations/*/locations/*/buckets/*}:updateAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{name=folders/*/locations/*/buckets/*}:updateAsync"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{name=billingAccounts/*/locations/*/buckets/*}:updateAsync"
                 }
               ]
             },
@@ -90696,6 +91269,22 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v2/{parent=billingAccounts/*}/logs"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=projects/*/locations/*/buckets/*/views/*}/logs"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=organizations/*/locations/*/buckets/*/views/*}/logs"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=folders/*/locations/*/buckets/*/views/*}/logs"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v2/{parent=billingAccounts/*/locations/*/buckets/*/views/*}/logs"
                 }
               ]
             },
@@ -90800,7 +91389,8 @@
       "serviceConfigApiNames": [
         "google.logging.v2.ConfigServiceV2",
         "google.logging.v2.LoggingServiceV2",
-        "google.logging.v2.MetricsServiceV2"
+        "google.logging.v2.MetricsServiceV2",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "logging.googleapis.com"
     },
@@ -90914,7 +91504,7 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/fleetengine/delivery/v1;delivery": 6
+            "cloud.google.com/go/maps/fleetengine/delivery/apiv1/deliverypb;deliverypb": 6
           }
         },
         "java_multiple_files": {
@@ -91087,7 +91677,7 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/fleetengine/v1;fleetengine": 7
+            "cloud.google.com/go/maps/fleetengine/apiv1/fleetenginepb;fleetenginepb": 7
           }
         },
         "java_multiple_files": {
@@ -91414,6 +92004,83 @@
       "nameInServiceConfig": "mapsplatformdatasets.googleapis.com"
     },
     {
+      "id": "google.maps.places.v1",
+      "directory": "google/maps/places/v1",
+      "version": "v1",
+      "majorVersion": "v1",
+      "hostName": "places.googleapis.com",
+      "title": "Places API (New)",
+      "description": "The Places API allows developers to access a variety of search and retrieval endpoints for a Place.",
+      "importDirectories": [
+        "google/api",
+        "google/geo/type",
+        "google/maps/places/v1",
+        "google/protobuf",
+        "google/type"
+      ],
+      "options": {
+        "cc_enable_arenas": {
+          "valueCounts": {
+            "true": 3
+          }
+        },
+        "csharp_namespace": {
+          "valueCounts": {
+            "Google.Maps.Places.V1": 3
+          }
+        },
+        "go_package": {
+          "valueCounts": {
+            "cloud.google.com/go/maps/places/apiv1/placespb;placespb": 3
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 3
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.maps.places.v1": 3
+          }
+        },
+        "objc_class_prefix": {
+          "valueCounts": {
+            "GMPSV1": 3
+          }
+        },
+        "php_namespace": {
+          "valueCounts": {
+            "Google\\Maps\\Places\\V1": 3
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "Places",
+          "fullName": "google.maps.places.v1.Places",
+          "methods": [
+            {
+              "shortName": "SearchText",
+              "fullName": "google.maps.places.v1.Places.SearchText",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/Text:search"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "places_v1.yaml",
+      "serviceConfigApiNames": [
+        "google.maps.places.v1.Places"
+      ],
+      "nameInServiceConfig": "places.googleapis.com"
+    },
+    {
       "id": "google.maps.playablelocations.v3",
       "directory": "google/maps/playablelocations/v3",
       "version": "v3",
@@ -91438,8 +92105,8 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/playablelocations/v3/sample;sample": 1,
-            "google.golang.org/genproto/googleapis/maps/playablelocations/v3;playablelocations": 2
+            "cloud.google.com/go/maps/playablelocations/apiv3/playablelocationspb;playablelocationspb": 2,
+            "cloud.google.com/go/maps/playablelocations/apiv3/sample/samplepb;samplepb": 1
           }
         },
         "java_multiple_files": {
@@ -91538,7 +92205,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/regionlookup/v1alpha;regionlookup": 4
+            "cloud.google.com/go/maps/regionlookup/apiv1alpha/regionlookuppb;regionlookuppb": 4
           }
         },
         "java_multiple_files": {
@@ -91614,7 +92281,7 @@
       "options": {
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/roads/v1op;roads": 1
+            "cloud.google.com/go/maps/roads/apiv1op/roadspb;roadspb": 1
           }
         },
         "java_multiple_files": {
@@ -91681,7 +92348,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/routes/v1;routes": 14
+            "cloud.google.com/go/maps/routes/apiv1/routespb;routespb": 14
           }
         },
         "java_multiple_files": {
@@ -91778,7 +92445,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/maps/routes/v1alpha;routes": 1
+            "cloud.google.com/go/maps/routes/apiv1alpha/routespb;routespb": 1
           }
         },
         "java_multiple_files": {
@@ -94444,6 +95111,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1/{backup.name=projects/*/instances/*/backups/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateDatabase",
+              "fullName": "google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabase",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{database.name=projects/*/instances/*/databases/*}"
                 }
               ]
             },
