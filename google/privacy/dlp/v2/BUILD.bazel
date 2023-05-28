@@ -15,7 +15,6 @@ load(
     "go_gapic_assembly_pkg",
     "go_gapic_library",
     "go_proto_library",
-    "go_test",
     "java_gapic_assembly_gradle_pkg",
     "java_gapic_library",
     "java_gapic_test",
@@ -148,13 +147,6 @@ go_gapic_library(
     ],
 )
 
-go_test(
-    name = "dlp_go_gapic_test",
-    srcs = [":dlp_go_gapic_srcjar_test"],
-    embed = [":dlp_go_gapic"],
-    importpath = "cloud.google.com/go/dlp/apiv2",
-)
-
 # Open Source Packages
 go_gapic_assembly_pkg(
     name = "gapi-cloud-privacy-dlp-v2-go",
@@ -211,6 +203,7 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "dlp_v2.yaml",
     transport = "grpc+rest",
+    migration_mode = "MIGRATION_MODE_UNSPECIFIED",
     deps = [
         ":dlp_php_grpc",
         ":dlp_php_proto",

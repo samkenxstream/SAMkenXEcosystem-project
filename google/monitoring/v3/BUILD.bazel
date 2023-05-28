@@ -145,7 +145,6 @@ load(
     "go_gapic_assembly_pkg",
     "go_gapic_library",
     "go_proto_library",
-    "go_test",
 )
 
 go_proto_library(
@@ -185,13 +184,6 @@ go_gapic_library(
     ],
 )
 
-go_test(
-    name = "monitoring_go_gapic_test",
-    srcs = [":monitoring_go_gapic_srcjar_test"],
-    embed = [":monitoring_go_gapic"],
-    importpath = "cloud.google.com/go/monitoring/apiv3",
-)
-
 # Open Source Packages
 go_gapic_assembly_pkg(
     name = "gapi-cloud-monitoring-v3-go",
@@ -211,7 +203,6 @@ load(
     "@com_google_googleapis_imports//:imports.bzl",
     "py_gapic_assembly_pkg",
     "py_gapic_library",
-    "py_test",
 )
 
 py_gapic_library(
@@ -272,6 +263,7 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "monitoring.yaml",
     transport = "grpc+rest",
+    migration_mode = "MIGRATION_MODE_UNSPECIFIED",
     deps = [
         ":monitoring_php_grpc",
         ":monitoring_php_proto",

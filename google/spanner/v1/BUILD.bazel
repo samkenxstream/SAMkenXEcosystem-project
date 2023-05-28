@@ -15,7 +15,6 @@ load(
     "go_gapic_assembly_pkg",
     "go_gapic_library",
     "go_proto_library",
-    "go_test",
     "java_gapic_assembly_gradle_pkg",
     "java_gapic_library",
     "java_gapic_test",
@@ -148,13 +147,6 @@ go_gapic_library(
     ],
 )
 
-go_test(
-    name = "spanner_go_gapic_test",
-    srcs = [":spanner_go_gapic_srcjar_test"],
-    embed = [":spanner_go_gapic"],
-    importpath = "cloud.google.com/go/spanner/apiv1",
-)
-
 # Open Source Packages
 go_gapic_assembly_pkg(
     name = "gapi-cloud-spanner-v1-go",
@@ -211,6 +203,7 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "spanner.yaml",
     transport = "grpc+rest",
+    migration_mode = "MIGRATION_MODE_UNSPECIFIED",
     deps = [
         ":spanner_php_grpc",
         ":spanner_php_proto",

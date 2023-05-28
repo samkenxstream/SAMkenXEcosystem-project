@@ -111,7 +111,6 @@ load(
     "go_gapic_assembly_pkg",
     "go_gapic_library",
     "go_proto_library",
-    "go_test",
 )
 
 go_proto_library(
@@ -140,13 +139,6 @@ go_gapic_library(
         ":policytroubleshooter_go_proto",
         "//google/iam/v1:iam_go_proto",
     ],
-)
-
-go_test(
-    name = "policytroubleshooter_go_gapic_test",
-    srcs = [":policytroubleshooter_go_gapic_srcjar_test"],
-    embed = [":policytroubleshooter_go_gapic"],
-    importpath = "cloud.google.com/go/policytroubleshooter/apiv1",
 )
 
 # Open Source Packages
@@ -230,6 +222,7 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "policytroubleshooter_v1.yaml",
     transport = "grpc+rest",
+    migration_mode = "MIGRATION_MODE_UNSPECIFIED",
     deps = [
         ":policytroubleshooter_php_grpc",
         ":policytroubleshooter_php_proto",

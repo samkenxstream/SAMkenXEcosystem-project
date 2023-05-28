@@ -111,7 +111,6 @@ load(
     "go_gapic_assembly_pkg",
     "go_gapic_library",
     "go_proto_library",
-    "go_test",
 )
 
 go_proto_library(
@@ -138,13 +137,6 @@ go_gapic_library(
         ":oslogin_go_proto",
         "//google/cloud/oslogin/common:common_go_proto",
     ],
-)
-
-go_test(
-    name = "oslogin_go_gapic_test",
-    srcs = [":oslogin_go_gapic_srcjar_test"],
-    embed = [":oslogin_go_gapic"],
-    importpath = "cloud.google.com/go/oslogin/apiv1",
 )
 
 # Open Source Packages
@@ -241,6 +233,7 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "oslogin_v1.yaml",
     transport = "grpc+rest",
+    migration_mode = "MIGRATION_MODE_UNSPECIFIED",
     deps = [
         ":oslogin_php_grpc",
         ":oslogin_php_proto",
