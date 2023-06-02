@@ -14,6 +14,7 @@ apis:
 - name: google.cloud.aiplatform.v1.MatchService
 - name: google.cloud.aiplatform.v1.MetadataService
 - name: google.cloud.aiplatform.v1.MigrationService
+- name: google.cloud.aiplatform.v1.ModelGardenService
 - name: google.cloud.aiplatform.v1.ModelService
 - name: google.cloud.aiplatform.v1.PipelineService
 - name: google.cloud.aiplatform.v1.PredictionService
@@ -159,6 +160,8 @@ backend:
   - selector: google.cloud.aiplatform.v1.MigrationService.BatchMigrateResources
     deadline: 60.0
   - selector: google.cloud.aiplatform.v1.MigrationService.SearchMigratableResources
+    deadline: 60.0
+  - selector: google.cloud.aiplatform.v1.ModelGardenService.GetPublisherModel
     deadline: 60.0
   - selector: 'google.cloud.aiplatform.v1.ModelService.*'
     deadline: 60.0
@@ -597,6 +600,10 @@ authentication:
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/cloud-platform
+  - selector: google.cloud.aiplatform.v1.ModelGardenService.GetPublisherModel
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
   - selector: 'google.cloud.aiplatform.v1.ModelService.*'
     oauth:
       canonical_scopes: |-
@@ -694,6 +701,12 @@ publishing:
   organization: CLOUD
   library_settings:
   - version: google.cloud.aiplatform.v1
+    dotnet_settings:
+      renamed_resources:
+        datalabeling.googleapis.com/Dataset: DataLabelingDataset
+        automl.googleapis.com/Dataset: AutoMLDataset
+        automl.googleapis.com/Model: AutoMLModel
+  - version: google.cloud.aiplatform.v1beta1
     dotnet_settings:
       renamed_resources:
         datalabeling.googleapis.com/Dataset: DataLabelingDataset

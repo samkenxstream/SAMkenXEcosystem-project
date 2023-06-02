@@ -134,10 +134,22 @@ http_archive(
     urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % _grpc_version],
 )
 
+# Explicitly declaring Protobuf version, while Protobuf dependency is already
+# instantiated in grpc_deps().
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "0b0395d34e000f1229679e10d984ed7913078f3dd7f26cf0476467f5e65716f4",
+    strip_prefix = "protobuf-23.2",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v23.2.tar.gz"],
+)
+
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
-# This declares com_google_protobuf repository
 grpc_deps()
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps", "PROTOBUF_MAVEN_ARTIFACTS")
+# This is actually already done within grpc_deps but calling this for Bazel convention.
+protobuf_deps()
 
 # gRPC enforces a specific version of Go toolchain which conflicts with our build.
 # All the relevant parts of grpc_extra_deps() are imported in this  WORKSPACE file
@@ -153,20 +165,6 @@ load("@build_bazel_apple_support//lib:repositories.bzl", "apple_support_dependen
 apple_support_dependencies()
 
 # End of C++ section
-
-# Explicitly declaring Protobuf version, while Protobuf dependency is already
-# instantiated in grpc_deps().
-http_archive(
-    name = "com_google_protobuf",
-    sha256 = "dc167b7d23ec0d6e4a3d4eae1798de6c8d162e69fa136d39753aaeb7a6e1289d",
-    strip_prefix = "protobuf-23.1",
-    urls = ["https://github.com/protocolbuffers/protobuf/archive/v23.1.tar.gz"],
-)
-
-load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps", "PROTOBUF_MAVEN_ARTIFACTS")
-
-# This is actually already done within grpc_deps but calling this for Bazel convention.
-protobuf_deps()
 
 http_archive(
     name = "rules_proto",
@@ -392,7 +390,7 @@ pnpm_repository(name = "pnpm")
 ##############################################################################
 
 # PHP micro-generator
-_gapic_generator_php_version = "1.7.5"
+_gapic_generator_php_version = "1.7.6"
 
 http_archive(
     name = "gapic_generator_php",
@@ -444,9 +442,9 @@ gapic_generator_csharp_repositories()
 # Ruby
 ##############################################################################
 
-_gapic_generator_ruby_version = "v0.23.2"
+_gapic_generator_ruby_version = "v0.23.3"
 
-_gapic_generator_ruby_sha256 = "cbd06c4bf4b0d41e361003f6976af69840c8f392b6adf89dcf0af1eaee2a8a12"
+_gapic_generator_ruby_sha256 = "4a8f21bb6ab4be08fe69f2c1bcb550a5888a9a7b7d79bd6b53080c55cbe0da7e"
 
 http_archive(
     name = "gapic_generator_ruby",
