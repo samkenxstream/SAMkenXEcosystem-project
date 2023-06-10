@@ -123,9 +123,9 @@ http_archive(
     ],
 )
 
-_grpc_version = "1.55.0"
+_grpc_version = "1.55.1"
 
-_grpc_sha256 = "c1f26622796e975a50f314e54c8bc558021ab1dabac308b9d97390c863aade9d"
+_grpc_sha256 = "17c0685da231917a7b3be2671a7b13b550a85fdda5e475313264c5f51c4da3f8"
 
 http_archive(
     name = "com_github_grpc_grpc",
@@ -270,7 +270,7 @@ maven_install(
     ],
 )
 
-_gapic_generator_java_version = "2.20.0"
+_gapic_generator_java_version = "2.21.0"
 
 maven_install(
     artifacts = [
@@ -442,9 +442,9 @@ gapic_generator_csharp_repositories()
 # Ruby
 ##############################################################################
 
-_gapic_generator_ruby_version = "v0.23.3"
+_gapic_generator_ruby_version = "v0.23.4"
 
-_gapic_generator_ruby_sha256 = "4a8f21bb6ab4be08fe69f2c1bcb550a5888a9a7b7d79bd6b53080c55cbe0da7e"
+_gapic_generator_ruby_sha256 = "185c03f011849f8e1284c7a2b4c41f57ae9fbee3013418607c5cf09c1c5cdbc3"
 
 http_archive(
     name = "gapic_generator_ruby",

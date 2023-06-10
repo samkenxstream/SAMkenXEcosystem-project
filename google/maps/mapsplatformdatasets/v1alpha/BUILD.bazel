@@ -215,7 +215,9 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "mapsplatformdatasets_v1alpha.yaml",
     transport = "grpc+rest",
-    deps = [":mapsplatformdatasets_php_proto"],
+    deps = [
+        ":mapsplatformdatasets_php_proto",
+    ],
 )
 
 # Open Source Packages
@@ -316,6 +318,7 @@ load(
 
 csharp_proto_library(
     name = "mapsplatformdatasets_csharp_proto",
+    extra_opts = [],
     deps = [":mapsplatformdatasets_proto"],
 )
 
