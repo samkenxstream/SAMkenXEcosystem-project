@@ -222,7 +222,9 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "analyticsadmin_v1alpha.yaml",
     transport = "grpc+rest",
-    deps = [":admin_php_proto"],
+    deps = [
+        ":admin_php_proto",
+    ],
 )
 
 # Open Source Packages
@@ -330,6 +332,7 @@ load(
 
 csharp_proto_library(
     name = "admin_csharp_proto",
+    extra_opts = [],
     deps = [":admin_proto"],
 )
 

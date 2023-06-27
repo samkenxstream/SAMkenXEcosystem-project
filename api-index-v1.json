@@ -9160,7 +9160,7 @@
           ]
         }
       ],
-      "configFile": "analyticsadmin.yaml",
+      "configFile": "analyticsadmin_v1alpha.yaml",
       "serviceConfigApiNames": [
         "google.analytics.admin.v1alpha.AnalyticsAdminService"
       ],
@@ -9736,7 +9736,7 @@
           ]
         }
       ],
-      "configFile": "analyticsadmin.yaml",
+      "configFile": "analyticsadmin_v1beta.yaml",
       "serviceConfigApiNames": [
         "google.analytics.admin.v1beta.AnalyticsAdminService"
       ],
@@ -10478,7 +10478,9 @@
       ],
       "configFile": "servicemanagement_v1.yaml",
       "serviceConfigApiNames": [
-        "google.api.servicemanagement.v1.ServiceManager"
+        "google.api.servicemanagement.v1.ServiceManager",
+        "google.iam.v1.IAMPolicy",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "servicemanagement.googleapis.com"
     },
@@ -11368,7 +11370,7 @@
       "majorVersion": "v1",
       "hostName": "alertcenter.googleapis.com",
       "title": "Google Workspace Alert Center API",
-      "description": "Manages alerts on issues affecting your domain.",
+      "description": "Manages alerts on issues affecting your domain. Note: The current version of this API (v1beta1) is available to all Google Workspace customers.",
       "importDirectories": [
         "google/api",
         "google/protobuf",
@@ -15191,6 +15193,17 @@
               ]
             },
             {
+              "shortName": "UpdateExplanationDataset",
+              "fullName": "google.cloud.aiplatform.v1.ModelService.UpdateExplanationDataset",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{model=projects/*/locations/*/models/*}:updateExplanationDataset"
+                }
+              ]
+            },
+            {
               "shortName": "UpdateModel",
               "fullName": "google.cloud.aiplatform.v1.ModelService.UpdateModel",
               "mode": "UNARY",
@@ -18738,6 +18751,39 @@
               ]
             },
             {
+              "shortName": "CreateSecondaryCluster",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.CreateSecondaryCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*}/clusters:createsecondary"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateSecondaryInstance",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.CreateSecondaryInstance",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*/clusters/*}/instances:createsecondary"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateUser",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.CreateUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*/locations/*/clusters/*}/users"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteBackup",
               "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.DeleteBackup",
               "mode": "UNARY",
@@ -18767,6 +18813,17 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1/{name=projects/*/locations/*/clusters/*/instances/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteUser",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.DeleteUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*/users/*}"
                 }
               ]
             },
@@ -18815,6 +18872,28 @@
               ]
             },
             {
+              "shortName": "GetUser",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.GetUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*/users/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "InjectFault",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.InjectFault",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*/instances/*}:injectFault"
+                }
+              ]
+            },
+            {
               "shortName": "ListBackups",
               "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.ListBackups",
               "mode": "UNARY",
@@ -18855,6 +18934,28 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{parent=projects/*/locations/*}/supportedDatabaseFlags"
+                }
+              ]
+            },
+            {
+              "shortName": "ListUsers",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.ListUsers",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*/clusters/*}/users"
+                }
+              ]
+            },
+            {
+              "shortName": "PromoteCluster",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.PromoteCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/locations/*/clusters/*}:promote"
                 }
               ]
             },
@@ -18910,6 +19011,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1/{instance.name=projects/*/locations/*/clusters/*/instances/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateUser",
+              "fullName": "google.cloud.alloydb.v1.AlloyDBAdmin.UpdateUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{user.name=projects/*/locations/*/clusters/*/users/*}"
                 }
               ]
             }
@@ -19045,6 +19157,17 @@
               ]
             },
             {
+              "shortName": "CreateUser",
+              "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.CreateUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{parent=projects/*/locations/*/clusters/*}/users"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteBackup",
               "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.DeleteBackup",
               "mode": "UNARY",
@@ -19074,6 +19197,17 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1alpha/{name=projects/*/locations/*/clusters/*/instances/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteUser",
+              "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.DeleteUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1alpha/{name=projects/*/locations/*/clusters/*/users/*}"
                 }
               ]
             },
@@ -19144,6 +19278,28 @@
               ]
             },
             {
+              "shortName": "GetUser",
+              "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.GetUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1alpha/{name=projects/*/locations/*/clusters/*/users/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "InjectFault",
+              "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.InjectFault",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1alpha/{name=projects/*/locations/*/clusters/*/instances/*}:injectFault"
+                }
+              ]
+            },
+            {
               "shortName": "ListBackups",
               "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.ListBackups",
               "mode": "UNARY",
@@ -19184,6 +19340,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1alpha/{parent=projects/*/locations/*}/supportedDatabaseFlags"
+                }
+              ]
+            },
+            {
+              "shortName": "ListUsers",
+              "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.ListUsers",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1alpha/{parent=projects/*/locations/*/clusters/*}/users"
                 }
               ]
             },
@@ -19250,6 +19417,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1alpha/{instance.name=projects/*/locations/*/clusters/*/instances/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateUser",
+              "fullName": "google.cloud.alloydb.v1alpha.AlloyDBAdmin.UpdateUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1alpha/{user.name=projects/*/locations/*/clusters/*/users/*}"
                 }
               ]
             }
@@ -19385,6 +19563,17 @@
               ]
             },
             {
+              "shortName": "CreateUser",
+              "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.CreateUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*/clusters/*}/users"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteBackup",
               "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.DeleteBackup",
               "mode": "UNARY",
@@ -19414,6 +19603,17 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1beta/{name=projects/*/locations/*/clusters/*/instances/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteUser",
+              "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.DeleteUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1beta/{name=projects/*/locations/*/clusters/*/users/*}"
                 }
               ]
             },
@@ -19484,6 +19684,28 @@
               ]
             },
             {
+              "shortName": "GetUser",
+              "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.GetUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{name=projects/*/locations/*/clusters/*/users/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "InjectFault",
+              "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.InjectFault",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{name=projects/*/locations/*/clusters/*/instances/*}:injectFault"
+                }
+              ]
+            },
+            {
               "shortName": "ListBackups",
               "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.ListBackups",
               "mode": "UNARY",
@@ -19524,6 +19746,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1beta/{parent=projects/*/locations/*}/supportedDatabaseFlags"
+                }
+              ]
+            },
+            {
+              "shortName": "ListUsers",
+              "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.ListUsers",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*/clusters/*}/users"
                 }
               ]
             },
@@ -19590,6 +19823,17 @@
                 {
                   "httpMethod": "PATCH",
                   "path": "/v1beta/{instance.name=projects/*/locations/*/clusters/*/instances/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateUser",
+              "fullName": "google.cloud.alloydb.v1beta.AlloyDBAdmin.UpdateUser",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta/{user.name=projects/*/locations/*/clusters/*/users/*}"
                 }
               ]
             }
@@ -27475,6 +27719,28 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{customer=accounts/*/customers/*}:listPurchasableSkus"
+                }
+              ]
+            },
+            {
+              "shortName": "ListSkuGroupBillableSkus",
+              "fullName": "google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=accounts/*/skuGroups/*}/billableSkus"
+                }
+              ]
+            },
+            {
+              "shortName": "ListSkuGroups",
+              "fullName": "google.cloud.channel.v1.CloudChannelService.ListSkuGroups",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=accounts/*}/skuGroups"
                 }
               ]
             },
@@ -50585,32 +50851,32 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.DocumentAI.V1Beta3": 10
+            "Google.Cloud.DocumentAI.V1Beta3": 12
           }
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/documentai/apiv1beta3/documentaipb;documentaipb": 10
+            "cloud.google.com/go/documentai/apiv1beta3/documentaipb;documentaipb": 12
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 10
+            "true": 12
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.documentai.v1beta3": 10
+            "com.google.cloud.documentai.v1beta3": 12
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\DocumentAI\\V1beta3": 10
+            "Google\\Cloud\\DocumentAI\\V1beta3": 12
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::DocumentAI::V1beta3": 10
+            "Google::Cloud::DocumentAI::V1beta3": 12
           }
         }
       },
@@ -50881,11 +51147,51 @@
               ]
             }
           ]
+        },
+        {
+          "shortName": "DocumentService",
+          "fullName": "google.cloud.documentai.v1beta3.DocumentService",
+          "methods": [
+            {
+              "shortName": "GetDatasetSchema",
+              "fullName": "google.cloud.documentai.v1beta3.DocumentService.GetDatasetSchema",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta3/{name=projects/*/locations/*/processors/*/dataset/datasetSchema}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateDataset",
+              "fullName": "google.cloud.documentai.v1beta3.DocumentService.UpdateDataset",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta3/{dataset.name=projects/*/locations/*/processors/*/dataset}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateDatasetSchema",
+              "fullName": "google.cloud.documentai.v1beta3.DocumentService.UpdateDatasetSchema",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta3/{dataset_schema.name=projects/*/locations/*/processors/*/dataset/datasetSchema}"
+                }
+              ]
+            }
+          ]
         }
       ],
       "configFile": "documentai_v1beta3.yaml",
       "serviceConfigApiNames": [
         "google.cloud.documentai.v1beta3.DocumentProcessorService",
+        "google.cloud.documentai.v1beta3.DocumentService",
         "google.cloud.location.Locations",
         "google.longrunning.Operations"
       ],
@@ -57962,6 +58268,83 @@
       "nameInServiceConfig": "lifesciences.googleapis.com"
     },
     {
+      "id": "google.cloud.location",
+      "directory": "google/cloud/location",
+      "version": "location",
+      "hostName": "cloud.googleapis.com",
+      "title": "Cloud Metadata API",
+      "description": "This API provides static metadata about Google Cloud Platform. Currently, it only provides basic information about Google Cloud locations, such as zones, regions, and countries.",
+      "importDirectories": [
+        "google/api",
+        "google/protobuf"
+      ],
+      "options": {
+        "cc_enable_arenas": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/cloud/location;location": 1
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.location": 1
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "Locations",
+          "fullName": "google.cloud.location.Locations",
+          "methods": [
+            {
+              "shortName": "GetLocation",
+              "fullName": "google.cloud.location.Locations.GetLocation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=locations/*}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListLocations",
+              "fullName": "google.cloud.location.Locations.ListLocations",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=locations}"
+                },
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*}/locations"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "cloud.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.location.Locations"
+      ],
+      "nameInServiceConfig": "cloud.googleapis.com"
+    },
+    {
       "id": "google.cloud.managedidentities.v1",
       "directory": "google/cloud/managedidentities/v1",
       "version": "v1",
@@ -62880,6 +63263,17 @@
               ]
             },
             {
+              "shortName": "DatabaseFailover",
+              "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.DatabaseFailover",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{environment=projects/*/locations/*/environments/*}:databaseFailover"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteEnvironment",
               "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.DeleteEnvironment",
               "mode": "UNARY",
@@ -62887,6 +63281,28 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1/{name=projects/*/locations/*/environments/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ExecuteAirflowCommand",
+              "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.ExecuteAirflowCommand",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{environment=projects/*/locations/*/environments/*}:executeAirflowCommand"
+                }
+              ]
+            },
+            {
+              "shortName": "FetchDatabaseProperties",
+              "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.FetchDatabaseProperties",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{environment=projects/*/locations/*/environments/*}:fetchDatabaseProperties"
                 }
               ]
             },
@@ -62924,6 +63340,17 @@
               ]
             },
             {
+              "shortName": "PollAirflowCommand",
+              "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.PollAirflowCommand",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{environment=projects/*/locations/*/environments/*}:pollAirflowCommand"
+                }
+              ]
+            },
+            {
               "shortName": "SaveSnapshot",
               "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.SaveSnapshot",
               "mode": "UNARY",
@@ -62931,6 +63358,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1/{environment=projects/*/locations/*/environments/*}:saveSnapshot"
+                }
+              ]
+            },
+            {
+              "shortName": "StopAirflowCommand",
+              "fullName": "google.cloud.orchestration.airflow.service.v1.Environments.StopAirflowCommand",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{environment=projects/*/locations/*/environments/*}:stopAirflowCommand"
                 }
               ]
             },
@@ -63033,6 +63471,17 @@
               ]
             },
             {
+              "shortName": "DatabaseFailover",
+              "fullName": "google.cloud.orchestration.airflow.service.v1beta1.Environments.DatabaseFailover",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{environment=projects/*/locations/*/environments/*}:databaseFailover"
+                }
+              ]
+            },
+            {
               "shortName": "DeleteEnvironment",
               "fullName": "google.cloud.orchestration.airflow.service.v1beta1.Environments.DeleteEnvironment",
               "mode": "UNARY",
@@ -63040,6 +63489,28 @@
                 {
                   "httpMethod": "DELETE",
                   "path": "/v1beta1/{name=projects/*/locations/*/environments/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ExecuteAirflowCommand",
+              "fullName": "google.cloud.orchestration.airflow.service.v1beta1.Environments.ExecuteAirflowCommand",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{environment=projects/*/locations/*/environments/*}:executeAirflowCommand"
+                }
+              ]
+            },
+            {
+              "shortName": "FetchDatabaseProperties",
+              "fullName": "google.cloud.orchestration.airflow.service.v1beta1.Environments.FetchDatabaseProperties",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta1/{environment=projects/*/locations/*/environments/*}:fetchDatabaseProperties"
                 }
               ]
             },
@@ -63077,6 +63548,17 @@
               ]
             },
             {
+              "shortName": "PollAirflowCommand",
+              "fullName": "google.cloud.orchestration.airflow.service.v1beta1.Environments.PollAirflowCommand",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{environment=projects/*/locations/*/environments/*}:pollAirflowCommand"
+                }
+              ]
+            },
+            {
               "shortName": "RestartWebServer",
               "fullName": "google.cloud.orchestration.airflow.service.v1beta1.Environments.RestartWebServer",
               "mode": "UNARY",
@@ -63095,6 +63577,17 @@
                 {
                   "httpMethod": "POST",
                   "path": "/v1beta1/{environment=projects/*/locations/*/environments/*}:saveSnapshot"
+                }
+              ]
+            },
+            {
+              "shortName": "StopAirflowCommand",
+              "fullName": "google.cloud.orchestration.airflow.service.v1beta1.Environments.StopAirflowCommand",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta1/{environment=projects/*/locations/*/environments/*}:stopAirflowCommand"
                 }
               ]
             },
@@ -64562,36 +65055,97 @@
       "options": {
         "csharp_namespace": {
           "valueCounts": {
-            "Google.Cloud.PaymentGateway.IssuerSwitch.V1": 5
+            "Google.Cloud.PaymentGateway.IssuerSwitch.V1": 6
           }
         },
         "go_package": {
           "valueCounts": {
-            "cloud.google.com/go/paymentgateway/issuerswitch/apiv1/issuerswitchpb;issuerswitchpb": 5
+            "cloud.google.com/go/paymentgateway/issuerswitch/apiv1/issuerswitchpb;issuerswitchpb": 6
           }
         },
         "java_multiple_files": {
           "valueCounts": {
-            "true": 5
+            "true": 6
           }
         },
         "java_package": {
           "valueCounts": {
-            "com.google.cloud.paymentgateway.issuerswitch.v1": 5
+            "com.google.cloud.paymentgateway.issuerswitch.v1": 6
           }
         },
         "php_namespace": {
           "valueCounts": {
-            "Google\\Cloud\\PaymentGateway\\IssuerSwitch\\V1": 5
+            "Google\\Cloud\\PaymentGateway\\IssuerSwitch\\V1": 6
           }
         },
         "ruby_package": {
           "valueCounts": {
-            "Google::Cloud::PaymentGateway::IssuerSwitch::V1": 5
+            "Google::Cloud::PaymentGateway::IssuerSwitch::V1": 6
           }
         }
       },
       "services": [
+        {
+          "shortName": "IssuerSwitchParticipants",
+          "fullName": "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
+          "methods": [
+            {
+              "shortName": "ActivateParticipant",
+              "fullName": "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.ActivateParticipant",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/issuerParticipants:activate"
+                }
+              ]
+            },
+            {
+              "shortName": "DeactivateParticipant",
+              "fullName": "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.DeactivateParticipant",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/issuerParticipants:deactivate"
+                }
+              ]
+            },
+            {
+              "shortName": "FetchParticipant",
+              "fullName": "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.FetchParticipant",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/issuerParticipants:fetch"
+                }
+              ]
+            },
+            {
+              "shortName": "MobileNumberChanged",
+              "fullName": "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.MobileNumberChanged",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/issuerParticipants:mobileNumberChanged"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateIssuerParticipant",
+              "fullName": "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants.UpdateIssuerParticipant",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/issuerParticipants:update"
+                }
+              ]
+            }
+          ]
+        },
         {
           "shortName": "IssuerSwitchResolutions",
           "fullName": "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchResolutions",
@@ -64800,6 +65354,7 @@
       ],
       "configFile": "issuerswitch_v1.yaml",
       "serviceConfigApiNames": [
+        "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchParticipants",
         "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchResolutions",
         "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchRules",
         "google.cloud.paymentgateway.issuerswitch.v1.IssuerSwitchTransactions",
@@ -95075,6 +95630,113 @@
         "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "logging.googleapis.com"
+    },
+    {
+      "id": "google.longrunning",
+      "directory": "google/longrunning",
+      "version": "longrunning",
+      "hostName": "longrunning.googleapis.com",
+      "title": "Long Running Operations API",
+      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "importDirectories": [
+        "google/api",
+        "google/protobuf",
+        "google/rpc"
+      ],
+      "options": {
+        "cc_enable_arenas": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "csharp_namespace": {
+          "valueCounts": {
+            "Google.LongRunning": 1
+          }
+        },
+        "go_package": {
+          "valueCounts": {
+            "cloud.google.com/go/longrunning/autogen/longrunningpb;longrunningpb": 1
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.longrunning": 1
+          }
+        },
+        "php_namespace": {
+          "valueCounts": {
+            "Google\\LongRunning": 1
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "Operations",
+          "fullName": "google.longrunning.Operations",
+          "methods": [
+            {
+              "shortName": "CancelOperation",
+              "fullName": "google.longrunning.Operations.CancelOperation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=operations/**}:cancel"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteOperation",
+              "fullName": "google.longrunning.Operations.DeleteOperation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=operations/**}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetOperation",
+              "fullName": "google.longrunning.Operations.GetOperation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=operations/**}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListOperations",
+              "fullName": "google.longrunning.Operations.ListOperations",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=operations}"
+                }
+              ]
+            },
+            {
+              "shortName": "WaitOperation",
+              "fullName": "google.longrunning.Operations.WaitOperation",
+              "mode": "UNARY"
+            }
+          ]
+        }
+      ],
+      "configFile": "longrunning.yaml",
+      "serviceConfigApiNames": [
+        "google.longrunning.Operations"
+      ],
+      "nameInServiceConfig": "longrunning.googleapis.com"
     },
     {
       "id": "google.maps.addressvalidation.v1",

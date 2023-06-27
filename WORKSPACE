@@ -222,7 +222,7 @@ local_repository(
     path = ".",
 )
 
-_gapic_generator_go_version = "0.36.0"
+_gapic_generator_go_version = "0.37.2"
 
 http_archive(
     name = "com_googleapis_gapic_generator_go",
@@ -270,7 +270,7 @@ maven_install(
     ],
 )
 
-_gapic_generator_java_version = "2.21.0"
+_gapic_generator_java_version = "2.22.0"
 
 maven_install(
     artifacts = [
@@ -390,7 +390,7 @@ pnpm_repository(name = "pnpm")
 ##############################################################################
 
 # PHP micro-generator
-_gapic_generator_php_version = "1.7.6"
+_gapic_generator_php_version = "1.8.0"
 
 http_archive(
     name = "gapic_generator_php",
@@ -461,7 +461,7 @@ gapic_generator_ruby_repositories()
 # Discovery
 ##############################################################################
 
-_disco_to_proto3_converter_version = "c47a76dd3d591478dd1a902413636c06da1153b8"
+_disco_to_proto3_converter_version = "96e1e63d3c1ddc546a57ac78b28893ee1013266a"
 
 http_archive(
     name = "com_google_disco_to_proto3_converter",
