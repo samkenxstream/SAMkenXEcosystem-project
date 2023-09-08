@@ -21,6 +21,7 @@ import "google/api/client.proto";
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
 import "google/api/routing.proto";
+import "google/geo/type/viewport.proto";
 import "google/maps/fleetengine/v1/fleetengine.proto";
 import "google/maps/fleetengine/v1/header.proto";
 import "google/maps/fleetengine/v1/vehicles.proto";
@@ -190,13 +191,10 @@ service VehicleService {
     };
   }
 
-  // Returns a list of vehicles that match the request
-  // options, but the vehicle locations will be somewhat altered for privacy.
-  // This method does not support the `SearchVehicleRequest.order_by` field.
-  // Vehicle matches in the response will be in order of distance from the
-  // pickup point.  Only the `vehicle` and `trip_type` fields will be populated.
+  // Deprecated: Use `SearchVehicles` instead.
   rpc SearchFuzzedVehicles(SearchVehiclesRequest)
       returns (SearchVehiclesResponse) {
+    option deprecated = true;
     option (google.api.http) = {
       post: "/v1/{parent=providers/*}/vehicles:searchFuzzed"
       body: "*"
@@ -456,16 +454,18 @@ message SearchVehiclesRequest {
   //
   // `EXCLUSIVE` and `SHARED` may not be included together.
   // `SHARED` is not supported when `current_trips_present` is
-  // `CURRENT_TRIPS_PRESENT_UNSPECIFIED`.
+  // `CURRENT_TRIPS_PRESENT_UNSPECIFIED`. `UNKNOWN_TRIP_TYPE` is not allowed.
   repeated TripType trip_types = 9 [(google.api.field_behavior) = REQUIRED];
 
-  // Restricts the search to only those vehicles that have updated their
-  // locations within the specified duration. If this field is not
+  // Restricts the search to only those vehicles that have sent location updates
+  // to Fleet Engine within the specified duration. Stationary vehicles still
+  // transmitting their locations are not considered stale. If this field is not
   // set, the server uses five minutes as the default value.
   google.protobuf.Duration maximum_staleness = 10;
 
   // Required. Restricts the search to vehicles with one of the specified types.
-  // At least one vehicle type must be specified.
+  // At least one vehicle type must be specified. VehicleTypes with a category
+  // of `UNKNOWN` are not allowed.
   repeated Vehicle.VehicleType vehicle_types = 14
       [(google.api.field_behavior) = REQUIRED];
 
@@ -550,6 +550,30 @@ message SearchVehiclesRequest {
   // When current_trips_present is `NONE` or `ANY`, `trip_types` can be either
   // `EXCLUSIVE` or `SHARED`, but not both.
   CurrentTripsPresent current_trips_present = 21;
+
+  // Optional. A filter query to apply when searching vehicles. See
+  // http://aip.dev/160 for examples of the filter syntax.
+  //
+  // This field is designed to replace the `required_attributes`,
+  // `required_one_of_attributes`, and `required_one_of_attributes_sets` fields.
+  // If a non-empty value is specified here, the following fields must be empty:
+  // `required_attributes`, `required_one_of_attributes`, and
+  // `required_one_of_attributes_sets`.
+  //
+  // This filter functions as an AND clause with other constraints,
+  // such as `minimum_capacity` or `vehicle_types`.
+  //
+  // Note that the only queries supported are on vehicle attributes (for
+  // example, `attributes.<key> = <value>` or `attributes.<key1> = <value1> AND
+  // attributes.<key2> = <value2>`). The maximum number of restrictions allowed
+  // in a filter query is 50.
+  //
+  // Also, all attributes are stored as strings, so the only supported
+  // comparisons against attributes are string comparisons. In order to compare
+  // against number or boolean values, the values must be explicitly quoted to
+  // be treated as strings (for example, `attributes.<key> = "10"` or
+  // `attributes.<key> = "true"`).
+  string filter = 22 [(google.api.field_behavior) = OPTIONAL];
 }
 
 // `SearchVehicles` response message.
@@ -589,13 +613,14 @@ message ListVehiclesRequest {
   // specified trip types.
   repeated TripType trip_types = 7;
 
-  // Restricts the response to vehicles that have updated their locations within
-  // the specified duration at the time of the call. If present, must be a valid
-  // positive duration.
+  // Restricts the response to vehicles that have sent location updates to Fleet
+  // Engine within the specified duration. Stationary vehicles still
+  // transmitting their locations are not considered stale. If present, must be
+  // a valid positive duration.
   google.protobuf.Duration maximum_staleness = 8;
 
   // Required. Restricts the response to vehicles with one of the specified type
-  // categories.
+  // categories. `UNKNOWN` is not allowed.
   repeated Vehicle.VehicleType.Category vehicle_type_categories = 9
       [(google.api.field_behavior) = REQUIRED];
 
@@ -665,6 +690,35 @@ message ListVehiclesRequest {
 
   // Only return the vehicles with current trip(s).
   bool on_trip_only = 14;
+
+  // Optional. A filter query to apply when listing vehicles. See
+  // http://aip.dev/160 for examples of the filter syntax.
+  //
+  // This field is designed to replace the `required_attributes`,
+  // `required_one_of_attributes`, and `required_one_of_attributes_sets` fields.
+  // If a non-empty value is specified here, the following fields must be empty:
+  // `required_attributes`, `required_one_of_attributes`, and
+  // `required_one_of_attributes_sets`.
+  //
+  // This filter functions as an AND clause with other constraints,
+  // such as `vehicle_state` or `on_trip_only`.
+  //
+  // Note that the only queries supported are on vehicle attributes (for
+  // example, `attributes.<key> = <value>` or `attributes.<key1> = <value1> AND
+  // attributes.<key2> = <value2>`). The maximum number of restrictions allowed
+  // in a filter query is 50.
+  //
+  // Also, all attributes are stored as strings, so the only supported
+  // comparisons against attributes are string comparisons. In order to compare
+  // against number or boolean values, the values must be explicitly quoted to
+  // be treated as strings (for example, `attributes.<key> = "10"` or
+  // `attributes.<key> = "true"`).
+  string filter = 16 [(google.api.field_behavior) = OPTIONAL];
+
+  // Optional. A filter that limits the vehicles returned to those whose last
+  // known location was in the rectangular area defined by the viewport.
+  google.geo.type.Viewport viewport = 17
+      [(google.api.field_behavior) = OPTIONAL];
 }
 
 // `ListVehicles` response message.

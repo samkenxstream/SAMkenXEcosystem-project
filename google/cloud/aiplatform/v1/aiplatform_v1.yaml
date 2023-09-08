@@ -18,6 +18,7 @@ apis:
 - name: google.cloud.aiplatform.v1.ModelService
 - name: google.cloud.aiplatform.v1.PipelineService
 - name: google.cloud.aiplatform.v1.PredictionService
+- name: google.cloud.aiplatform.v1.ScheduleService
 - name: google.cloud.aiplatform.v1.SpecialistPoolService
 - name: google.cloud.aiplatform.v1.TensorboardService
 - name: google.cloud.aiplatform.v1.VizierService
@@ -37,6 +38,7 @@ types:
 - name: google.cloud.aiplatform.v1.CopyModelOperationMetadata
 - name: google.cloud.aiplatform.v1.CopyModelResponse
 - name: google.cloud.aiplatform.v1.CreateDatasetOperationMetadata
+- name: google.cloud.aiplatform.v1.CreateDatasetVersionOperationMetadata
 - name: google.cloud.aiplatform.v1.CreateEndpointOperationMetadata
 - name: google.cloud.aiplatform.v1.CreateEntityTypeOperationMetadata
 - name: google.cloud.aiplatform.v1.CreateFeatureOperationMetadata
@@ -74,6 +76,7 @@ types:
 - name: google.cloud.aiplatform.v1.PurgeContextsResponse
 - name: google.cloud.aiplatform.v1.PurgeExecutionsMetadata
 - name: google.cloud.aiplatform.v1.PurgeExecutionsResponse
+- name: google.cloud.aiplatform.v1.RestoreDatasetVersionOperationMetadata
 - name: google.cloud.aiplatform.v1.SpecialistPool
 - name: google.cloud.aiplatform.v1.SuggestTrialsMetadata
 - name: google.cloud.aiplatform.v1.SuggestTrialsResponse
@@ -81,6 +84,8 @@ types:
 - name: google.cloud.aiplatform.v1.UndeployIndexResponse
 - name: google.cloud.aiplatform.v1.UndeployModelOperationMetadata
 - name: google.cloud.aiplatform.v1.UndeployModelResponse
+- name: google.cloud.aiplatform.v1.UpdateExplanationDatasetOperationMetadata
+- name: google.cloud.aiplatform.v1.UpdateExplanationDatasetResponse
 - name: google.cloud.aiplatform.v1.UpdateFeaturestoreOperationMetadata
 - name: google.cloud.aiplatform.v1.UpdateIndexOperationMetadata
 - name: google.cloud.aiplatform.v1.UpdateModelDeploymentMonitoringJobOperationMetadata
@@ -169,6 +174,8 @@ backend:
     deadline: 60.0
   - selector: 'google.cloud.aiplatform.v1.PredictionService.*'
     deadline: 600.0
+  - selector: 'google.cloud.aiplatform.v1.ScheduleService.*'
+    deadline: 60.0
   - selector: 'google.cloud.aiplatform.v1.SpecialistPoolService.*'
     deadline: 60.0
   - selector: 'google.cloud.aiplatform.v1.TensorboardService.*'
@@ -286,6 +293,7 @@ http:
     - post: '/v1/{name=projects/*/locations/*/studies/*/trials/*/operations/*}:cancel'
     - post: '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}:cancel'
     - post: '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}:cancel'
+    - post: '/v1/{name=projects/*/locations/*/schedules/*/operations/*}:cancel'
     - post: '/v1/{name=projects/*/locations/*/specialistPools/*/operations/*}:cancel'
     - post: '/v1/{name=projects/*/locations/*/tensorboards/*/operations/*}:cancel'
     - post: '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/operations/*}:cancel'
@@ -349,6 +357,7 @@ http:
     - delete: '/v1/{name=projects/*/locations/*/studies/*/trials/*/operations/*}'
     - delete: '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}'
     - delete: '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}'
+    - delete: '/v1/{name=projects/*/locations/*/schedules/*/operations/*}'
     - delete: '/v1/{name=projects/*/locations/*/specialistPools/*/operations/*}'
     - delete: '/v1/{name=projects/*/locations/*/tensorboards/*/operations/*}'
     - delete: '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/operations/*}'
@@ -413,6 +422,7 @@ http:
     - get: '/v1/{name=projects/*/locations/*/studies/*/trials/*/operations/*}'
     - get: '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}'
     - get: '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}'
+    - get: '/v1/{name=projects/*/locations/*/schedules/*/operations/*}'
     - get: '/v1/{name=projects/*/locations/*/specialistPools/*/operations/*}'
     - get: '/v1/{name=projects/*/locations/*/tensorboards/*/operations/*}'
     - get: '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/operations/*}'
@@ -476,6 +486,7 @@ http:
     - get: '/v1/{name=projects/*/locations/*/studies/*/trials/*}/operations'
     - get: '/v1/{name=projects/*/locations/*/trainingPipelines/*}/operations'
     - get: '/v1/{name=projects/*/locations/*/pipelineJobs/*}/operations'
+    - get: '/v1/{name=projects/*/locations/*/schedules/*}/operations'
     - get: '/v1/{name=projects/*/locations/*/specialistPools/*}/operations'
     - get: '/v1/{name=projects/*/locations/*/tensorboards/*}/operations'
     - get: '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*}/operations'
@@ -539,6 +550,7 @@ http:
     - post: '/v1/{name=projects/*/locations/*/studies/*/trials/*/operations/*}:wait'
     - post: '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}:wait'
     - post: '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}:wait'
+    - post: '/v1/{name=projects/*/locations/*/schedules/*/operations/*}:wait'
     - post: '/v1/{name=projects/*/locations/*/specialistPools/*/operations/*}:wait'
     - post: '/v1/{name=projects/*/locations/*/tensorboards/*/operations/*}:wait'
     - post: '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/operations/*}:wait'
@@ -613,6 +625,10 @@ authentication:
       canonical_scopes: |-
         https://www.googleapis.com/auth/cloud-platform
   - selector: 'google.cloud.aiplatform.v1.PredictionService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+  - selector: 'google.cloud.aiplatform.v1.ScheduleService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/cloud-platform
@@ -701,12 +717,6 @@ publishing:
   organization: CLOUD
   library_settings:
   - version: google.cloud.aiplatform.v1
-    dotnet_settings:
-      renamed_resources:
-        datalabeling.googleapis.com/Dataset: DataLabelingDataset
-        automl.googleapis.com/Dataset: AutoMLDataset
-        automl.googleapis.com/Model: AutoMLModel
-  - version: google.cloud.aiplatform.v1beta1
     dotnet_settings:
       renamed_resources:
         datalabeling.googleapis.com/Dataset: DataLabelingDataset

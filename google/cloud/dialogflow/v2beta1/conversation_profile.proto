@@ -324,8 +324,16 @@ message HumanAgentAssistantConfig {
     // Automatically iterates all participants and tries to compile
     // suggestions.
     //
-    // Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST.
+    // Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST,
+    // ENTITY_EXTRACTION, KNOWLEDGE_ASSIST.
     bool enable_event_based_suggestion = 3;
+
+    // Optional. Disable the logging of search queries sent by human agents. It
+    // can prevent those queries from being stored at answer records.
+    //
+    // Supported features: KNOWLEDGE_SEARCH.
+    bool disable_agent_query_logging = 14
+        [(google.api.field_behavior) = OPTIONAL];
 
     // Settings of suggestion trigger.
     //
@@ -398,7 +406,7 @@ message HumanAgentAssistantConfig {
 
     // Dialogflow source setting.
     //
-    // Supported feature: DIALOGFLOW_ASSIST.
+    // Supported feature: DIALOGFLOW_ASSIST, ENTITY_EXTRACTION.
     message DialogflowQuerySource {
       // The configuration used for human agent side Dialogflow assist
       // suggestion.
@@ -453,7 +461,8 @@ message HumanAgentAssistantConfig {
       // SMART_REPLY, SMART_COMPOSE.
       DocumentQuerySource document_query_source = 2;
 
-      // Query from Dialogflow agent. It is used by DIALOGFLOW_ASSIST.
+      // Query from Dialogflow agent. It is used by DIALOGFLOW_ASSIST,
+      // ENTITY_EXTRACTION.
       DialogflowQuerySource dialogflow_query_source = 3;
     }
 
